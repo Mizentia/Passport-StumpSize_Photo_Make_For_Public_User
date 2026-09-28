@@ -1,0 +1,39 @@
+/* --------------------------------------------------------------------------
+   3A. MOBILE CORE: CONTAINER, NAVBAR & UPLOAD (max-width: 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 8px 10px; gap: 12px; max-width: 100vw; overflow-x: hidden;
+  }
+
+  /* Header & Navigation */
+  .navbar { padding: 10px 12px; gap: 8px; }
+  .brand { justify-content: flex-start; gap: 10px; }
+  .brand-logo { width: 36px; height: 36px; font-size: 1.1rem; }
+  .brand-text h1 { font-size: 1.05rem; }
+  .brand-text p { font-size: 0.7rem; line-height: 1.2; }
+  .stepper-nav { padding: 3px; gap: 4px; }
+  .step-btn { padding: 6px 10px; font-size: 0.76rem; }
+  .header-actions { gap: 6px; width: 100%; justify-content: space-between; }
+  .btn-lang, .btn-theme, .btn-settings, .btn-install-app {
+    padding: 6px 10px; font-size: 0.78rem; flex: 1; justify-content: center;
+  }
+
+  /* Upload Section */
+  .upload-card {
+    padding: 24px 14px; gap: 16px; border-radius: var(--radius-lg);
+  }
+  .dropzone {
+    padding: 24px 14px; gap: 12px; border-radius: var(--radius-lg);
+  }
+  .dropzone-icon { width: 56px; height: 56px; font-size: 1.6rem; }
+  .dropzone-title { font-size: 1.1rem; }
+  .dropzone-subtitle { font-size: 0.8rem; }
+  .paste-badge { font-size: 0.72rem; padding: 4px 10px; }
+  .upload-actions { width: 100%; flex-direction: column; gap: 8px; }
+  .upload-actions button {
+    width: 100%; padding: 10px 14px; font-size: 0.85rem;
+  }
+  .sample-row { gap: 6px; margin-top: 6px; }
+  .sample-chip { padding: 5px 10px; font-size: 0.75rem; }
+}

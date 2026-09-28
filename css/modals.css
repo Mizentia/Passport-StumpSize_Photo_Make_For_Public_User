@@ -1,0 +1,4 @@
+@import './modals/modal-base.css';
+@import './modals/settings-tabs.css';
+@import './modals/settings-cards.css';
+@import './modals/settings-shortcuts.css';

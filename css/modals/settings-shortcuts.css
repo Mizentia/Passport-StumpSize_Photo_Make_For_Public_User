@@ -1,0 +1,49 @@
+@import url('./settings-hotkeys.css');
+
+.shortcuts-container {
+  display: flex; flex-direction: column; gap: 16px; padding-bottom: 8px;
+}
+
+.shortcut-category-card {
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg); padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 10px;
+  transition: var(--theme-transition);
+}
+
+.shortcut-category-header {
+  font-size: 0.88rem; font-weight: 700; color: var(--accent-primary);
+  display: flex; align-items: center; gap: 6px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.shortcuts-category-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+}
+@media (max-width: 768px) {
+  .shortcuts-category-grid { grid-template-columns: 1fr; }
+}
+
+.shortcut-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 12px; background: var(--bg-inset); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md); transition: all var(--transition-fast); gap: 10px;
+}
+.shortcut-row:hover {
+  border-color: var(--border-strong); background: var(--bg-card-hover); transform: translateY(-1px);
+}
+.shortcut-row.system-fixed {
+  opacity: 0.85; background: var(--bg-inset-hover);
+}
+
+.shortcut-info {
+  display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0;
+}
+.shortcut-info strong {
+  font-size: 0.82rem; color: var(--text-main); white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.shortcut-info small {
+  font-size: 0.72rem; color: var(--text-dim); white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}

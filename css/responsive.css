@@ -1,0 +1,10 @@
+/* ==========================================================================
+   PASSPORT & STAMP STUDIO PRO - MASTER RESPONSIVE SYSTEM
+   Modular responsive layout rules across mobile, tablet, and desktop.
+   ========================================================================== */
+
+@import url('./responsive-tablets.css');
+@import url('./responsive-mobile-core.css');
+@import url('./responsive-mobile-canvas.css');
+@import url('./responsive-mobile-panels.css');
+@import url('./responsive-small.css');

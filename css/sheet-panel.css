@@ -1,0 +1,72 @@
+@import url('./sheet/toggle-switch.css');
+
+.sheet-grid-layout {
+  display: grid; grid-template-columns: 340px 1fr;
+  gap: 24px; align-items: start;
+  width: 100%; min-width: 0;
+}
+@media (max-width: 1024px) {
+  .sheet-grid-layout { grid-template-columns: 1fr; gap: 16px; }
+}
+
+.sheet-options-panel {
+  display: flex; flex-direction: column; gap: 16px;
+  width: 100%; min-width: 0;
+}
+
+.sheet-preview-card {
+  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl); padding: 20px; box-shadow: var(--glass-shadow);
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  min-height: 500px; overflow: auto; transition: var(--theme-transition);
+  width: 100%; min-width: 0;
+}
+
+.sheet-preview-header {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px; padding: 6px 12px; background: var(--bg-inset);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
+}
+
+.sheet-page-info-pill {
+  font-size: 0.82rem; color: var(--text-main); font-weight: 500;
+  display: flex; align-items: center; gap: 6px;
+}
+
+.sheet-pages-scroll-container {
+  width: 100%; display: flex; flex-wrap: wrap; gap: 24px;
+  justify-content: center; align-items: flex-start; max-height: 750px;
+  overflow-y: auto; padding: 8px 4px;
+}
+
+.sheet-page-card {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px; padding: 12px; background: var(--bg-card);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.sheet-page-card:hover { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25); }
+
+.sheet-page-badge {
+  font-size: 0.76rem; font-weight: 700; color: var(--text-dim);
+  background: var(--bg-inset); padding: 3px 10px; border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+}
+
+.sheet-canvas-wrapper {
+  background: #ffffff; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+  border-radius: 4px; max-width: 100%; max-height: 520px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; border: 1px solid var(--border-subtle);
+}
+
+[data-theme="light"] .sheet-canvas-wrapper { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12); }
+.sheet-canvas-wrapper canvas, #sheetCanvas {
+  max-width: 100%; max-height: 480px; display: block; object-fit: contain;
+}
+
+.sheet-export-buttons, .sheet-export-buttons-compact {
+  display: flex; flex-direction: column; gap: 8px; margin-top: 8px;
+}

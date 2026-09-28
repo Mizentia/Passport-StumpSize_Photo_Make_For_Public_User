@@ -1,0 +1,58 @@
+/* --------------------------------------------------------------------------
+   3B. MOBILE CANVAS WORKSPACE & CONTROLS (max-width: 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .canvas-top-bar { flex-direction: column; align-items: stretch; gap: 8px; }
+  .btn-group-smart { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
+  .btn-group-smart .btn-smart {
+    flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 6px 8px;
+    font-size: 0.75rem; text-align: center; justify-content: center;
+  }
+  .btn-group-history {
+    justify-content: center; gap: 8px; width: 100%;
+    padding-top: 4px; border-top: 1px dashed var(--border-subtle);
+  }
+  .btn-icon-subtle { flex: 1; height: 32px; max-width: 80px; }
+
+  .canvas-dimension-header { padding: 6px 10px; font-size: 0.75rem; }
+  .dim-badge-content { gap: 4px; }
+  .dim-badge-chip { font-size: 0.7rem; padding: 2px 6px; }
+  .dim-zoom-chip { font-size: 0.75rem; }
+
+  /* Rulers on Mobile - Hide side ruler to maximize canvas workspace area */
+  .canvas-workspace-layout {
+    grid-template-columns: 1fr; grid-template-rows: auto 1fr; gap: 4px; width: 100%;
+  }
+  .ruler-corner { display: none; }
+  .ruler-left { display: none; }
+  .ruler-top { grid-column: 1; grid-row: 1; font-size: 0.7rem; padding: 3px 6px; }
+  .canvas-container {
+    grid-column: 1; grid-row: 2; max-height: 360px; width: 100%; margin: 0 auto;
+  }
+  #mainCanvas { max-height: 360px; }
+
+  /* Canvas Bottom Actions */
+  .canvas-bottom-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .transform-actions { justify-content: center; gap: 6px; width: 100%; }
+  .transform-actions .btn-icon { width: 36px; height: 36px; font-size: 0.95rem; }
+  .download-single-actions { display: flex; width: 100%; gap: 8px; }
+  .download-single-actions button {
+    flex: 1; padding: 9px 8px; font-size: 0.78rem; justify-content: center; text-align: center;
+  }
+
+  /* Left & Right Sidebar Cards */
+  .preset-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; max-height: 220px; }
+  .preset-btn { padding: 6px 8px; }
+  .preset-name-text { font-size: 0.74rem; }
+  .preset-dim-subtext { font-size: 0.65rem; }
+  .preset-dpi-badge { font-size: 0.6rem; }
+
+  .suit-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; max-height: 180px; }
+  .suit-item { min-height: 48px; padding: 6px 2px; }
+
+  .color-swatches { gap: 6px; }
+  .swatch-btn { width: 28px; height: 28px; }
+
+  .retouch-tools-bar { flex-wrap: wrap; gap: 6px; }
+  .btn-retouch-tool { flex: 1; justify-content: center; }
+}

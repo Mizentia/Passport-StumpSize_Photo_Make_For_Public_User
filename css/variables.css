@@ -1,0 +1,72 @@
+:root {
+  --bg-primary: #0a0e17; --bg-secondary: #111827; --bg-surface: #111827;
+  --bg-card: rgba(17, 24, 39, 0.75); --bg-card-hover: rgba(31, 41, 55, 0.85); --bg-card-solid: #111827;
+  --bg-inset: rgba(0, 0, 0, 0.35); --bg-inset-hover: rgba(0, 0, 0, 0.5); --bg-hover: rgba(255, 255, 255, 0.08);
+  --toggle-bg: rgba(255, 255, 255, 0.2);
+  
+  --border-subtle: rgba(255, 255, 255, 0.09); --border-strong: rgba(255, 255, 255, 0.18); --border-focus: #3b82f6;
+  --text-main: #f8fafc; --text-muted: #94a3b8; --text-dim: #64748b;
+  
+  --accent-primary: #3b82f6; --accent-secondary: #8b5cf6; --accent-subtle: rgba(59, 130, 246, 0.16);
+  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --accent-success: #10b981; --accent-warning: #f59e0b; --accent-danger: #ef4444;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -2px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.35), 0 8px 10px -6px rgba(0, 0, 0, 0.35);
+  --glass-bg: rgba(17, 24, 39, 0.85); --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 10px 32px 0 rgba(0, 0, 0, 0.45); --glass-blur: blur(14px);
+  
+  --canvas-bg: #1e293b; --canvas-matting: #0f172a;
+  --ruler-bg: rgba(15, 23, 42, 0.85); --ruler-text: #94a3b8; --ruler-border: rgba(59, 130, 246, 0.3);
+  --badge-bg: rgba(59, 130, 246, 0.15); --badge-border: rgba(59, 130, 246, 0.35); --badge-text: #93c5fd;
+
+  --scrollbar-track: rgba(255, 255, 255, 0.03);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.18);
+  --scrollbar-thumb-hover: var(--accent-primary);
+  --scrollbar-thumb-active: #60a5fa;
+
+  --btn-icon-bg: rgba(255, 255, 255, 0.06); --btn-icon-border: rgba(255, 255, 255, 0.1); --btn-icon-hover: rgba(255, 255, 255, 0.14);
+  
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px; --radius-full: 9999px;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --transition-fast: 0.15s ease; --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --theme-transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+html[lang="bn"], body.lang-bn {
+  --font-sans: 'Hind Siliguri', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[data-theme="light"] {
+  --bg-primary: #f1f5f9; --bg-secondary: #ffffff; --bg-surface: #ffffff;
+  --bg-card: #ffffff; --bg-card-hover: #f8fafc; --bg-card-solid: #ffffff;
+  --bg-inset: #f8fafc; --bg-inset-hover: #e2e8f0; --bg-hover: #f1f5f9;
+  --toggle-bg: #cbd5e1;
+  
+  --border-subtle: #e2e8f0; --border-strong: #cbd5e1; --border-focus: #2563eb;
+  --text-main: #0f172a; --text-muted: #334155; --text-dim: #64748b;
+  
+  --accent-primary: #2563eb; --accent-secondary: #7c3aed; --accent-subtle: #eff6ff;
+  --accent-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --gradient-accent: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --accent-success: #059669; --accent-warning: #d97706; --accent-danger: #dc2626;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.95); --glass-border: #e2e8f0;
+  --glass-shadow: 0 10px 30px 0 rgba(100, 116, 139, 0.14); --glass-blur: blur(14px);
+  
+  --canvas-bg: #e2e8f0; --canvas-matting: #cbd5e1;
+  --ruler-bg: #ffffff; --ruler-text: #334155; --ruler-border: rgba(37, 99, 235, 0.35);
+  --badge-bg: #eff6ff; --badge-border: #bfdbfe; --badge-text: #1d4ed8;
+
+  --scrollbar-track: rgba(0, 0, 0, 0.03);
+  --scrollbar-thumb: rgba(0, 0, 0, 0.22);
+  --scrollbar-thumb-hover: var(--accent-primary);
+  --scrollbar-thumb-active: #1d4ed8;
+
+  --btn-icon-bg: #ffffff; --btn-icon-border: #e2e8f0; --btn-icon-hover: #f1f5f9;
+}

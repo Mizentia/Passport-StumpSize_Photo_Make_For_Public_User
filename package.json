@@ -1,0 +1,11 @@
+{
+  "name": "passport-photo-maker-public",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Standalone Passport & Stamp Photo Maker for Public Users",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js --open"
+  },
+  "dependencies": {}
+}

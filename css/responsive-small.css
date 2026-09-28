@@ -1,0 +1,40 @@
+/* --------------------------------------------------------------------------
+   4. COMPACT MOBILE SCREENS & SMALL PHONES (max-width: 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .app-container { padding: 6px 8px; gap: 10px; }
+  .brand-text p { display: none; }
+  .brand-text h1 { font-size: 0.98rem; }
+  .brand-logo { width: 32px; height: 32px; font-size: 1rem; }
+  .step-btn { padding: 5px 6px; font-size: 0.72rem; }
+  .header-actions { gap: 4px; }
+  .btn-lang, .btn-theme, .btn-settings, .btn-install-app { padding: 5px 6px; font-size: 0.74rem; }
+  .btn-lang .lang-label, .btn-theme .theme-label, .btn-settings .settings-label {
+    display: inline-block; font-size: 0.72rem;
+  }
+  .preset-grid { grid-template-columns: 1fr 1fr; gap: 5px; }
+  .preset-btn { padding: 5px 6px; }
+  .suit-grid { grid-template-columns: repeat(4, 1fr); gap: 4px; }
+  .suit-item { font-size: 0.62rem; padding: 4px 1px; min-height: 44px; }
+  .suit-item .suit-icon { font-size: 1rem; }
+  .canvas-container { max-height: 300px; }
+  #mainCanvas { max-height: 300px; }
+  .sheet-export-buttons { grid-template-columns: 1fr; gap: 8px; }
+  .url-input-box { flex-wrap: wrap; padding: 6px 8px; }
+  .url-text-input { width: 100%; font-size: 0.82rem; }
+  .url-input-box .btn-smart { flex: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   5. EXTRA SMALL MOBILE (max-width: 360px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 360px) {
+  .preset-grid { grid-template-columns: 1fr; }
+  .btn-group-smart .btn-smart { flex: 1 1 100%; min-width: 100%; }
+  .download-single-actions { flex-direction: column; }
+  .download-single-actions button { width: 100%; }
+  .btn-lang .lang-label, .btn-theme .theme-label, .btn-settings .settings-label {
+    display: none;
+  }
+  .btn-lang, .btn-theme, .btn-settings, .btn-install-app { padding: 6px; }
+}

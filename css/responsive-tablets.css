@@ -1,0 +1,29 @@
+/* --------------------------------------------------------------------------
+   1. TABLET LANDSCAPE / MEDIUM DESKTOPS (max-width: 1100px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .editor-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .canvas-viewport-card { grid-column: 1 / -1; order: -1; min-height: 480px; }
+  .sheet-grid-layout { grid-template-columns: 1fr; gap: 16px; }
+  .sheet-preview-card { min-height: 480px; }
+}
+
+/* --------------------------------------------------------------------------
+   2. TABLET PORTRAIT / COMPACT LAPTOPS (max-width: 860px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .app-container { padding: 12px 16px; gap: 16px; }
+  .navbar { flex-direction: column; gap: 10px; align-items: stretch; padding: 12px 14px; }
+  .brand { justify-content: center; text-align: center; }
+  .stepper-nav {
+    justify-content: center; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+  .step-btn {
+    padding: 7px 12px; font-size: 0.8rem; white-space: nowrap; flex: 1; justify-content: center;
+  }
+  .header-actions { justify-content: center; gap: 8px; flex-wrap: wrap; }
+  .editor-grid { grid-template-columns: 1fr; gap: 16px; }
+  .canvas-viewport-card {
+    grid-column: auto; order: -1; min-height: auto; padding: 14px 16px;
+  }
+}

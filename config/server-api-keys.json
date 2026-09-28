@@ -1,0 +1,42 @@
+{
+  "enabled": true,
+  "is_public_active": true,
+  "public_cloud_allowed": true,
+  "default_provider": "removebg",
+  "providers": {
+    "gemini": {
+      "api_keys": [],
+      "model": "gemini-2.0-flash",
+      "enabled": false
+    },
+    "clipdrop": {
+      "api_keys": [],
+      "enabled": false
+    },
+    "photoroom": {
+      "api_keys": [],
+      "enabled": false
+    },
+    "cutoutpro": {
+      "enabled": false,
+      "api_keys": []
+    },
+    "removebg": {
+      "api_keys": [
+        "8afx2skGvDEqAAKth9KFfjso"
+      ],
+      "apiKey": "8afx2skGvDEqAAKth9KFfjso",
+      "enabled": true
+    },
+    "huggingface": {
+      "api_keys": [],
+      "model": "ZhengPeng7/BiRefNet",
+      "enabled": false
+    },
+    "custom_api": {
+      "enabled": false,
+      "api_keys": [],
+      "endpoint": ""
+    }
+  }
+}
