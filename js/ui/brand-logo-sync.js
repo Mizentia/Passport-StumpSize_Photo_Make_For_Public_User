@@ -37,7 +37,10 @@ export async function initBrandLogoSync(storageKey = 'public_project_logo', port
   const customDashboardUrl = (typeof window !== 'undefined' && localStorage.getItem('admin_dashboard_url')) || '';
   const urls = ['/api/project-brand'];
   if (customDashboardUrl) urls.push(`${customDashboardUrl.replace(/\/$/, '')}/api/public-settings`);
-  urls.push('http://127.0.0.1:3000/api/public-settings', 'http://localhost:3000/api/public-settings');
+  const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+  if (isLocal) {
+    urls.push('http://127.0.0.1:3000/api/public-settings', 'http://localhost:3000/api/public-settings');
+  }
   for (const u of urls) {
     try {
       const res = await fetch(u);
