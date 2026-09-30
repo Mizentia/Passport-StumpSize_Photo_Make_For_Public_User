@@ -1,10 +1,10 @@
 {
   "version": 2,
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/api/bg-remove", "destination": "/api/bg-remove.js" },
     { "source": "/api/server-info", "destination": "/api/server-info.js" },
     { "source": "/api/project-brand", "destination": "/api/project-brand.js" },
-    { "source": "/api/portal-control", "destination": "/api/portal-control.js" },
-    { "source": "/(.*)", "destination": "/$1" }
+    { "source": "/api/portal-control", "destination": "/api/portal-control.js" }
   ]
 }
