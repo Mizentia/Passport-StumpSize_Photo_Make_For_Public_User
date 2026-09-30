@@ -1,23 +1,5 @@
-const fs = require('fs');
-const path = require('path');
 const { callCloudCutout } = require('./server-provider-callers.js');
-
-const CONFIG_PATH = path.join(__dirname, '..', 'config', 'server-api-keys.json');
-
-function loadServerApiConfig() {
-  let cfg = { enabled: true, providers: {} };
-  try {
-    if (fs.existsSync(CONFIG_PATH)) cfg = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
-  } catch (_) {}
-  if (!cfg.providers) cfg.providers = {};
-  if (process.env.REMOVEBG_API_KEY) {
-    cfg.providers.removebg = { enabled: true, api_keys: [process.env.REMOVEBG_API_KEY] };
-  }
-  if (process.env.GEMINI_API_KEY) {
-    cfg.providers.gemini = { enabled: true, api_keys: [process.env.GEMINI_API_KEY], model: process.env.GEMINI_MODEL || 'gemini-2.0-flash' };
-  }
-  return cfg;
-}
+const { getLiveServerConfig } = require('./server-config-loader.js');
 
 function getProviderApiKey(providerConfig) {
   if (!providerConfig || !providerConfig.enabled) return null;
@@ -31,6 +13,12 @@ async function processCutoutPayload(parsed, res, config) {
     res.writeHead(400, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ error: 'imageBase64 is required' }));
   }
+
+  if (config.is_public_active === false) {
+    res.writeHead(503, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ success: false, error: 'সার্ভিস সাময়িকভাবে রক্ষণাবেক্ষণের জন্য বন্ধ রয়েছে।' }));
+  }
+
   if (config.public_cloud_allowed === false) {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ success: false, fallbackToLocal: true }));
@@ -39,8 +27,13 @@ async function processCutoutPayload(parsed, res, config) {
   const providers = config.providers || {};
   let targetProvider = provider;
   if (targetProvider === 'auto' || !providers[targetProvider]?.enabled) {
-    const available = Object.keys(providers).find(k => providers[k]?.enabled && getProviderApiKey(providers[k]));
-    if (available) targetProvider = available;
+    const defaultP = config.default_provider;
+    if (defaultP && providers[defaultP]?.enabled && getProviderApiKey(providers[defaultP])) {
+      targetProvider = defaultP;
+    } else {
+      const available = Object.keys(providers).find(k => providers[k]?.enabled && getProviderApiKey(providers[k]));
+      if (available) targetProvider = available;
+    }
   }
 
   const provConfig = providers[targetProvider];
@@ -62,7 +55,7 @@ async function processCutoutPayload(parsed, res, config) {
 
 async function handleServerBgRemoval(req, res) {
   try {
-    const config = loadServerApiConfig();
+    const config = await getLiveServerConfig();
     if (req.body && typeof req.body === 'object') return processCutoutPayload(req.body, res, config);
     if (typeof req.body === 'string') {
       try { return processCutoutPayload(JSON.parse(req.body), res, config); } catch (_) {}
@@ -91,8 +84,8 @@ async function handleServerBgRemoval(req, res) {
   }
 }
 
-function handleServerConfigInfo(req, res) {
-  const config = loadServerApiConfig();
+async function handleServerConfigInfo(req, res) {
+  const config = await getLiveServerConfig();
   const safeProviders = {};
   if (config.providers) {
     for (const [key, val] of Object.entries(config.providers)) {
