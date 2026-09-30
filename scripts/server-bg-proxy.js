@@ -1,5 +1,6 @@
 const { callCloudCutout } = require('./server-provider-callers.js');
 const { getLiveServerConfig } = require('./server-config-loader.js');
+const { checkRateLimit, isOriginAllowed } = require('./server-security-guard.js');
 
 function getProviderApiKey(providerConfig) {
   if (!providerConfig || !providerConfig.enabled) return null;
@@ -54,6 +55,17 @@ async function processCutoutPayload(parsed, res, config) {
 }
 
 async function handleServerBgRemoval(req, res) {
+  if (!isOriginAllowed(req)) {
+    res.writeHead(403, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ error: 'অননুমোদিত ডোমেইন থেকে রিকোয়েস্ট ব্লক করা হয়েছে।' }));
+  }
+
+  const rate = checkRateLimit(req);
+  if (!rate.allowed) {
+    res.writeHead(429, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ error: `খুব বেশি রিকোয়েস্ট পাঠানো হয়েছে। দয়া করে ${rate.retryAfter} সেকেন্ড পর চেষ্টা করুন।` }));
+  }
+
   try {
     const config = await getLiveServerConfig();
     if (req.body && typeof req.body === 'object') return processCutoutPayload(req.body, res, config);
@@ -84,20 +96,9 @@ async function handleServerBgRemoval(req, res) {
   }
 }
 
-async function handleServerConfigInfo(req, res) {
-  const config = await getLiveServerConfig();
-  const safeProviders = {};
-  if (config.providers) {
-    for (const [key, val] of Object.entries(config.providers)) {
-      safeProviders[key] = {
-        enabled: !!val.enabled,
-        hasKey: Array.isArray(val.api_keys) && val.api_keys.some(k => !!k?.trim()),
-        model: val.model || null
-      };
-    }
-  }
+function handleServerConfigInfo(req, res) {
   res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-  res.end(JSON.stringify({ serverProxyAvailable: true, enabled: !!config.enabled, providers: safeProviders }));
+  res.end(JSON.stringify({ serverProxyAvailable: true, protected: true }));
 }
 
 module.exports = { handleServerBgRemoval, handleServerConfigInfo };
