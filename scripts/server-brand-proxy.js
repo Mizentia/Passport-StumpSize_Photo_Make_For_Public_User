@@ -1,7 +1,13 @@
-const DASHBOARD_URLS = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://127.0.0.1:3001'];
+function getDashboardUrls() {
+  const list = [];
+  if (process.env.ADMIN_DASHBOARD_URL) list.push(process.env.ADMIN_DASHBOARD_URL.replace(/\/$/, ''));
+  if (process.env.ADMIN_STUDIO_URL) list.push(process.env.ADMIN_STUDIO_URL.replace(/\/$/, ''));
+  list.push('http://127.0.0.1:3000', 'http://localhost:3000', 'http://127.0.0.1:3001');
+  return list;
+}
 
 async function fetchProjectBrand(targetPort = 8086, slug = 'photo-public') {
-  for (const base of DASHBOARD_URLS) {
+  for (const base of getDashboardUrls()) {
     try {
       const res = await fetch(`${base}/api/public-settings`, { headers: { 'Content-Type': 'application/json' } });
       if (res.ok) {

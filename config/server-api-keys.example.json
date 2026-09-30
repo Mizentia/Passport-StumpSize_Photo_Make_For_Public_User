@@ -4,6 +4,12 @@
   "public_cloud_allowed": true,
   "default_provider": "removebg",
   "providers": {
+    "removebg": {
+      "api_keys": [
+        "YOUR_REMOVE_BG_API_KEY_HERE"
+      ],
+      "enabled": true
+    },
     "gemini": {
       "api_keys": [],
       "model": "gemini-2.0-flash",
@@ -20,13 +26,6 @@
     "cutoutpro": {
       "enabled": false,
       "api_keys": []
-    },
-    "removebg": {
-      "api_keys": [
-        "8afx2skGvDEqAAKth9KFfjso"
-      ],
-      "apiKey": "8afx2skGvDEqAAKth9KFfjso",
-      "enabled": true
     },
     "huggingface": {
       "api_keys": [],
