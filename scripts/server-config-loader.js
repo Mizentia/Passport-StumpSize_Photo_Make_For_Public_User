@@ -33,7 +33,12 @@ async function fetchFromRemote() {
     }
   } catch (_) {}
 
-  const candidateUrls = [process.env.ADMIN_DASHBOARD_URL, process.env.ADMIN_STUDIO_URL].filter(Boolean);
+  const candidateUrls = [
+    process.env.ADMIN_DASHBOARD_URL,
+    process.env.ADMIN_STUDIO_URL,
+    'https://nl-admin-studio.vercel.app',
+    'https://nl-admin-dashboard.vercel.app'
+  ].filter(Boolean);
   for (const base of candidateUrls) {
     try {
       const res = await fetch(`${base.replace(/\/$/, '')}/api/portal-control`, { signal: AbortSignal.timeout(3000) });
