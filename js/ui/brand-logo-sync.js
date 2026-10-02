@@ -1,19 +1,38 @@
 export function applyFavicon(iconUrl) {
   if (typeof document === 'undefined' || !iconUrl) return;
   try {
-    let link = document.querySelector("link[rel='icon']");
-    if (!link) {
-      link = document.createElement('link');
-      link.rel = 'icon';
-      document.head.appendChild(link);
-    }
-    link.href = iconUrl;
-    if (iconUrl.endsWith('.svg')) link.type = 'image/svg+xml';
-    else if (iconUrl.endsWith('.png')) link.type = 'image/png';
-    else link.type = 'image/x-icon';
+    const updateLinks = (href) => {
+      ['appFavicon', 'appShortcutIcon', 'appAppleIcon'].forEach(id => {
+        let el = document.getElementById(id);
+        if (!el) {
+          el = document.createElement('link');
+          el.id = id;
+          el.rel = id === 'appAppleIcon' ? 'apple-touch-icon' : 'icon';
+          document.head.appendChild(el);
+        }
+        el.href = href;
+      });
+    };
 
-    let shortcut = document.querySelector("link[rel='shortcut icon']");
-    if (shortcut) shortcut.href = iconUrl;
+    updateLinks(iconUrl);
+
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = () => {
+      try {
+        const cvs = document.createElement('canvas');
+        cvs.width = 64; cvs.height = 64;
+        const ctx = cvs.getContext('2d');
+        ctx.beginPath();
+        ctx.arc(32, 32, 30, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.clip();
+        ctx.drawImage(img, 0, 0, 64, 64);
+        const dataUrl = cvs.toDataURL('image/png');
+        updateLinks(dataUrl);
+      } catch (_) {}
+    };
+    img.src = iconUrl;
   } catch (_) {}
 }
 
@@ -21,9 +40,9 @@ export function updateHeaderBrandLogo(logoUrl) {
   if (!logoUrl) return;
   const brandLogoContainer = document.querySelector('.brand .brand-logo');
   if (brandLogoContainer) {
-    brandLogoContainer.style.padding = '3px';
+    brandLogoContainer.style.padding = '2px';
     brandLogoContainer.style.overflow = 'hidden';
-    brandLogoContainer.innerHTML = `<img src="${logoUrl}" alt="Logo" style="width:100%;height:100%;object-fit:contain;border-radius:var(--radius-md);" />`;
+    brandLogoContainer.innerHTML = `<img src="${logoUrl}" alt="Logo" class="brand-logo-img" />`;
   }
 }
 

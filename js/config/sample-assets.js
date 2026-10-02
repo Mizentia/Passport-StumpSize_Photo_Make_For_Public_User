@@ -7,19 +7,11 @@ const svgFemalePortrait = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org
 const svgCasualPortrait = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750"><defs><linearGradient id="bgGradC" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%2367e8f9"/><stop offset="100%" stop-color="%233b82f6"/></linearGradient><linearGradient id="skinC" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23fed7aa"/><stop offset="100%" stop-color="%23fb923c"/></linearGradient></defs><rect width="600" height="750" fill="url(%23bgGradC)"/><path d="M 120 750 C 140 530, 200 490, 300 490 C 400 490, 460 530, 480 750 Z" fill="%232563eb"/><path d="M 220 750 L 260 550 L 340 550 L 380 750 Z" fill="%23ffffff"/><rect x="260" y="380" width="80" height="120" rx="20" fill="%23fb923c"/><ellipse cx="300" cy="300" rx="108" ry="142" fill="url(%23skinC)"/><path d="M 180 270 C 175 160, 240 130, 300 130 C 370 130, 425 160, 420 270 C 390 190, 340 170, 300 170 C 250 170, 210 190, 180 270 Z" fill="%2378350f"/><rect x="225" y="260" width="60" height="38" rx="8" fill="%230f172a" stroke="%23475569" stroke-width="4"/><rect x="315" y="260" width="60" height="38" rx="8" fill="%230f172a" stroke="%23475569" stroke-width="4"/><line x1="285" y1="275" x2="315" y2="275" stroke="%23475569" stroke-width="5"/><path d="M 300 295 L 297 325 Q 300 330 306 325" stroke="%23ea580c" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M 265 365 Q 300 395 335 365" stroke="%23b91c1c" stroke-width="6" stroke-linecap="round" fill="none"/></svg>`;
 
 export const SAMPLE_AVATARS = [
-  {
-    name: 'Male Portrait',
-    url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=80',
-    fallbackDataUrl: svgMalePortrait
-  },
-  {
-    name: 'Female Portrait',
-    url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&auto=format&fit=crop&q=80',
-    fallbackDataUrl: svgFemalePortrait
-  },
-  {
-    name: 'Casual Photo',
-    url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&auto=format&fit=crop&q=80',
-    fallbackDataUrl: svgCasualPortrait
-  }
+  { name: 'Male Formal', key: 'sample_male', url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=80', fallbackDataUrl: svgMalePortrait },
+  { name: 'Female Pro', key: 'sample_female', url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80', fallbackDataUrl: svgFemalePortrait },
+  { name: 'Casual Male', key: 'sample_casual', url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&auto=format&fit=crop&q=80', fallbackDataUrl: svgCasualPortrait },
+  { name: 'Kid Portrait', key: 'sample_child', url: 'https://images.unsplash.com/photo-1543332164-6e82f355badc?w=800&auto=format&fit=crop&q=80', fallbackDataUrl: svgCasualPortrait },
+  { name: 'Senior Citizen', key: 'sample_senior', url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&auto=format&fit=crop&q=80', fallbackDataUrl: svgMalePortrait },
+  { name: 'White Official', key: 'sample_official', url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=80', fallbackDataUrl: svgFemalePortrait },
+  { name: 'Studio Female', key: 'sample_studio', url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&auto=format&fit=crop&q=80', fallbackDataUrl: svgFemalePortrait }
 ];

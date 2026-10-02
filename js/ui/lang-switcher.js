@@ -46,9 +46,9 @@ export function setupLanguageSwitcher() {
     // Update language toggle button label with distinct national flag icons
     if (langToggleBtn) {
       if (lang === 'bn') {
-        langToggleBtn.innerHTML = '<span class="lang-flag">🇬🇧</span> <span class="lang-label">English</span>';
+        langToggleBtn.innerHTML = '<span class="btn-icon lang-flag">🇬🇧</span> <span class="btn-label lang-label">English</span>';
       } else {
-        langToggleBtn.innerHTML = '<span class="lang-flag">🇧🇩</span> <span class="lang-label">বাংলা</span>';
+        langToggleBtn.innerHTML = '<span class="btn-icon lang-flag">🇧🇩</span> <span class="btn-label lang-label">বাংলা</span>';
       }
     }
 

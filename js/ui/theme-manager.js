@@ -13,8 +13,8 @@ export function setupThemeManager() {
     const labelText = t(labelKey);
 
     themeToggleBtn.innerHTML = `
-      <span class="theme-icon">${icon}</span>
-      <span class="theme-label" data-i18n="${labelKey}">${labelText}</span>
+      <span class="btn-icon theme-icon">${icon}</span>
+      <span class="btn-label theme-label" data-i18n="${labelKey}">${labelText}</span>
     `;
     refreshAllTooltips();
   }

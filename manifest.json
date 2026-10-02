@@ -1,7 +1,7 @@
 {
-  "name": "Passport & Stamp Studio Pro",
-  "short_name": "PassportStudio",
-  "description": "300 DPI High-Resolution Professional Passport & Stamp Photo Studio",
+  "name": "Passport Photo Maker",
+  "short_name": "PassportPhoto",
+  "description": "Free High-Resolution & Custom Size Passport Photo Maker",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",

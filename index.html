@@ -3,32 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <title>Passport & Stamp Studio Pro - 300 DPI Photo Maker</title>
+  <title>Passport Photo Maker - Free & HD Photos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js" defer></script>
+  <link id="appFavicon" rel="icon" type="image/png" href="icons/icon-192.png">
+  <link id="appShortcutIcon" rel="shortcut icon" href="icons/icon-192.png">
+  <link id="appAppleIcon" rel="apple-touch-icon" href="icons/icon-192.png">
   <script>
-    try {
-      var l = localStorage.getItem('public_project_logo') || localStorage.getItem('studio_project_logo');
-      if (l) {
-        document.write('<link rel="icon" href="' + l + '"><link rel="shortcut icon" href="' + l + '">');
-      }
-    } catch (_) {}
+    (function() {
+      try {
+        var logo = localStorage.getItem('public_project_logo') || localStorage.getItem('studio_project_logo');
+        if (logo) {
+          var fav = document.getElementById('appFavicon');
+          var sc = document.getElementById('appShortcutIcon');
+          var ap = document.getElementById('appAppleIcon');
+          if (fav) fav.href = logo;
+          if (sc) sc.href = logo;
+          if (ap) ap.href = logo;
+        }
+      } catch (_) {}
+    })();
   </script>
-  <link rel="icon" type="image/svg+xml" href="icons/icon-192.svg">
-  <link rel="alternate icon" type="image/png" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/header-nav.css">
   <link rel="stylesheet" href="css/upload-section.css">
+  <link rel="stylesheet" href="css/batch-tray.css">
   <link rel="stylesheet" href="css/editor-workspace.css">
   <link rel="stylesheet" href="css/canvas-workspace.css">
   <link rel="stylesheet" href="css/toolbars.css">
   <link rel="stylesheet" href="css/sheet-panel.css">
   <link rel="stylesheet" href="css/modals.css">
+  <link rel="stylesheet" href="css/about-modal.css">
   <link rel="stylesheet" href="css/toast.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>

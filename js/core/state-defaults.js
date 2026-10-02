@@ -36,7 +36,7 @@ export function createDefaultState() {
     namingTemplate: 'custom_builder',
     namingTokensOrder: ['agency', 'preset', 'dimensions', 'dpi', 'date'],
     namingSeparator: '_',
-    autoSaveEnabled: true, studioName: 'Passport & Stamp Studio Pro', studioPhone: '',
+    autoSaveEnabled: true, studioName: 'Passport Photo Maker', studioPhone: '',
     enableStudioTag: false, enableWatermark: false, watermarkText: 'SAMPLE PROOF',
     defaultBackdropColor: '#ffffff', autoEnhanceOnUpload: false,
     bgEngineMode: 'auto', bgApiProvider: 'removebg', bgApiKey: '',

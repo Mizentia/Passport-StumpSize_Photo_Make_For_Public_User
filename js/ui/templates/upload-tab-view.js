@@ -24,9 +24,13 @@ export function getUploadTabHtml() {
         </div>
         <div class="sample-row">
           <span class="sample-title" data-i18n="quick_samples">Quick Try Samples:</span>
-          <div class="sample-chip" data-sample-index="0" data-i18n="sample_male">👤 Male Portrait</div>
-          <div class="sample-chip" data-sample-index="1" data-i18n="sample_female">👩 Female Portrait</div>
-          <div class="sample-chip" data-sample-index="2" data-i18n="sample_casual">🏖️ Casual Photo</div>
+          <div class="sample-chip" data-sample-index="0" data-i18n="sample_male">👤 Male Formal</div>
+          <div class="sample-chip" data-sample-index="1" data-i18n="sample_female">👩 Female Pro</div>
+          <div class="sample-chip" data-sample-index="2" data-i18n="sample_casual">🏖️ Casual Male</div>
+          <div class="sample-chip" data-sample-index="3" data-i18n="sample_child">🧒 Kid Portrait</div>
+          <div class="sample-chip" data-sample-index="4" data-i18n="sample_senior">👴 Senior Citizen</div>
+          <div class="sample-chip" data-sample-index="5" data-i18n="sample_official">🏛️ White Official</div>
+          <div class="sample-chip" data-sample-index="6" data-i18n="sample_studio">🌸 Studio Female</div>
         </div>
       </div>
       <div id="batchPhotoTrayContainer" class="batch-tray-container" style="display: none;">

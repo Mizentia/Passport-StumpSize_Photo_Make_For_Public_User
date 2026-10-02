@@ -9,6 +9,7 @@ import { getCustomSizeModalHtml } from './templates/custom-size-modal-view.js';
 import { getCustomPaperModalHtml } from './templates/custom-paper-modal-view.js';
 import { getSettingsModalHtml } from './templates/settings-modal-view.js';
 import { getWebcamModalHtml } from './templates/webcam-modal-view.js';
+import { getAboutModalHtml } from './templates/about-modal-view.js';
 
 import { initBrandLogoSync } from './brand-logo-sync.js';
 
@@ -39,6 +40,7 @@ export function loadApplicationDOM() {
     ${getCustomSizeModalHtml()}
     ${getCustomPaperModalHtml()}
     ${getSettingsModalHtml()}
+    ${getAboutModalHtml()}
   `;
 }
 

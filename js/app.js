@@ -18,9 +18,11 @@ import { setupBatchUI } from './ui/batch-ui.js';
 import { setupPwaInstaller } from './ui/pwa-installer.js';
 import { createPhotoLoadHandler } from './app-image-loader.js';
 import { setupAppCoreListeners } from './app-lifecycle.js';
+import { setupAboutModal } from './ui/about-modal-ui.js';
 
 function initApp() {
   toastService.init();
+  setupAboutModal();
   const mainCanvas = document.getElementById('mainCanvas');
   const sheetCanvas = document.getElementById('sheetCanvas');
   const tabManager = setupTabManager();

@@ -1,13 +1,9 @@
 import { appState } from './state.js';
 import { createBatchItem, createHistoryItem } from './batch/batch-item-factory.js';
+import { generateThumbDataUrl } from './history-snapshot-builder.js';
 
 class BatchManager {
-  constructor() {
-    this.items = [];
-    this.activeId = null;
-    this.listeners = [];
-  }
-
+  constructor() { this.items = []; this.activeId = null; this.listeners = []; }
   onChange(fn) { this.listeners.push(fn); }
   notify() { this.listeners.forEach((fn) => fn(this.items, this.activeId)); }
 
@@ -55,6 +51,7 @@ class BatchManager {
     cur.suitRotation = appState.get('suitRotation');
     cur.selectedPreset = appState.get('selectedPreset');
     cur.customSize = { ...(appState.get('customSize') || {}) };
+    try { cur.editorThumbDataUrl = generateThumbDataUrl(); } catch (_) {}
   }
 
   setActive(id) {
@@ -94,5 +91,4 @@ class BatchManager {
   getEnabled() { return this.items.filter((i) => i.enabledForPrint); }
   getActive() { return this.items.find((i) => i.id === this.activeId) || null; }
 }
-
 export const batchManager = new BatchManager();

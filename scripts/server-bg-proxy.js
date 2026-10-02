@@ -19,7 +19,6 @@ async function processCutoutPayload(parsed, res, config) {
     res.writeHead(503, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ success: false, error: 'সার্ভিস সাময়িকভাবে রক্ষণাবেক্ষণের জন্য বন্ধ রয়েছে।' }));
   }
-
   if (config.public_cloud_allowed === false) {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ success: false, fallbackToLocal: true }));
@@ -59,7 +58,6 @@ async function handleServerBgRemoval(req, res) {
     res.writeHead(403, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ error: 'অননুমোদিত ডোমেইন থেকে রিকোয়েস্ট ব্লক করা হয়েছে।' }));
   }
-
   const rate = checkRateLimit(req);
   if (!rate.allowed) {
     res.writeHead(429, { 'Content-Type': 'application/json' });
@@ -69,9 +67,7 @@ async function handleServerBgRemoval(req, res) {
   try {
     const config = await getLiveServerConfig();
     if (req.body && typeof req.body === 'object') return processCutoutPayload(req.body, res, config);
-    if (typeof req.body === 'string') {
-      try { return processCutoutPayload(JSON.parse(req.body), res, config); } catch (_) {}
-    }
+    if (typeof req.body === 'string') { try { return processCutoutPayload(JSON.parse(req.body), res, config); } catch (_) {} }
 
     let bodyData = '';
     req.on('data', chunk => {
@@ -85,10 +81,7 @@ async function handleServerBgRemoval(req, res) {
 
     req.on('end', () => {
       try { processCutoutPayload(JSON.parse(bodyData), res, config); }
-      catch (_) {
-        res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Invalid JSON payload' }));
-      }
+      catch (_) { res.writeHead(400, { 'Content-Type': 'application/json' }); res.end(JSON.stringify({ error: 'Invalid JSON payload' })); }
     });
   } catch (err) {
     res.writeHead(500, { 'Content-Type': 'application/json' });

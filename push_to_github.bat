@@ -56,7 +56,7 @@ if !errorlevel! equ 0 (
     )
 
     echo.
-    echo Running local build (npm run build)...
+    echo Running local build [npm run build]...
     call npm run build
     if !errorlevel! neq 0 (
         echo.
