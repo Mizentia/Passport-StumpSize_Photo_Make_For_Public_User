@@ -15,8 +15,8 @@
   .stepper-nav { padding: 3px; gap: 4px; }
   .step-btn { padding: 6px 10px; font-size: 0.76rem; }
   .header-actions { gap: 6px; width: 100%; justify-content: space-between; }
-  .btn-lang, .btn-theme, .btn-settings, .btn-install-app {
-    padding: 6px 10px; font-size: 0.78rem; flex: 1; justify-content: center;
+  .btn-lang, .btn-theme, .btn-settings, .btn-history-nav, .btn-about-nav, .btn-install-app {
+    padding: 6px 8px; font-size: 0.78rem; justify-content: center;
   }
 
   /* Upload Section */
