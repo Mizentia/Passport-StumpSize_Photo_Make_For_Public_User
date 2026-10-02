@@ -19,7 +19,9 @@ export function setupSampleAvatars(onImageLoaded) {
       };
 
       const img = new Image();
-      img.crossOrigin = 'Anonymous';
+      if (sample.url && (sample.url.startsWith('http://') || sample.url.startsWith('https://'))) {
+        img.crossOrigin = 'Anonymous';
+      }
       
       let timer = setTimeout(() => {
         img.onload = null;
