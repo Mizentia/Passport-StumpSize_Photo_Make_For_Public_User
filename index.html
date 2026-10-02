@@ -9,21 +9,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js" defer></script>
-  <link id="appFavicon" rel="icon" type="image/png" href="icons/icon-192.png">
-  <link id="appShortcutIcon" rel="shortcut icon" href="icons/icon-192.png">
-  <link id="appAppleIcon" rel="apple-touch-icon" href="icons/icon-192.png">
+  <link id="appFavicon" rel="icon" type="image/png" href="https://res.cloudinary.com/ayewcaxj/image/upload/v1790432997/ChatGPT_Image_Sep_26_2026_08_27_13_PM_ufluye.png">
+  <link id="appShortcutIcon" rel="shortcut icon" href="https://res.cloudinary.com/ayewcaxj/image/upload/v1790432997/ChatGPT_Image_Sep_26_2026_08_27_13_PM_ufluye.png">
+  <link id="appAppleIcon" rel="apple-touch-icon" href="https://res.cloudinary.com/ayewcaxj/image/upload/v1790432997/ChatGPT_Image_Sep_26_2026_08_27_13_PM_ufluye.png">
   <script>
     (function() {
       try {
-        var logo = localStorage.getItem('public_project_logo') || localStorage.getItem('studio_project_logo');
-        if (logo) {
-          var fav = document.getElementById('appFavicon');
-          var sc = document.getElementById('appShortcutIcon');
-          var ap = document.getElementById('appAppleIcon');
-          if (fav) fav.href = logo;
-          if (sc) sc.href = logo;
-          if (ap) ap.href = logo;
+        var dbLogo = 'https://res.cloudinary.com/ayewcaxj/image/upload/v1790432997/ChatGPT_Image_Sep_26_2026_08_27_13_PM_ufluye.png';
+        var logo = localStorage.getItem('public_project_logo') || localStorage.getItem('studio_project_logo') || dbLogo;
+        if (!localStorage.getItem('public_project_logo')) {
+          localStorage.setItem('public_project_logo', dbLogo);
         }
+        var fav = document.getElementById('appFavicon');
+        var sc = document.getElementById('appShortcutIcon');
+        var ap = document.getElementById('appAppleIcon');
+        if (fav) fav.href = logo;
+        if (sc) sc.href = logo;
+        if (ap) ap.href = logo;
       } catch (_) {}
     })();
   </script>

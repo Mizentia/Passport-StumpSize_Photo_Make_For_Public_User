@@ -1,6 +1,9 @@
+export const DEFAULT_DB_LOGO = 'https://res.cloudinary.com/ayewcaxj/image/upload/v1790432997/ChatGPT_Image_Sep_26_2026_08_27_13_PM_ufluye.png';
+
 export function getHeaderNavHtml() {
   const customLogo = typeof localStorage !== 'undefined' ? (localStorage.getItem('public_project_logo') || localStorage.getItem('studio_project_logo') || localStorage.getItem('studio_custom_logo')) : null;
-  const logoHtml = customLogo ? `<img src="${customLogo}" alt="Logo" class="brand-logo-img" />` : '<span class="logo-fallback-icon">📸</span>';
+  const activeLogo = customLogo || DEFAULT_DB_LOGO;
+  const logoHtml = `<img src="${activeLogo}" alt="Logo" class="brand-logo-img" onerror="this.onerror=null;this.src='${DEFAULT_DB_LOGO}'" />`;
 
   return `
     <header class="navbar">
