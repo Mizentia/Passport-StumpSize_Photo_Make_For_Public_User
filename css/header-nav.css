@@ -43,46 +43,60 @@
 }
 .step-btn:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
 
-.header-actions { display: flex; align-items: center; gap: 10px; }
+.header-actions { display: flex; align-items: center; gap: 8px; }
 .header-install-wrap { display: flex; align-items: center; }
 .btn-install-app {
   background: linear-gradient(135deg, #10b981, #059669); color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.25); padding: 6px 12px; border-radius: var(--radius-md);
-  font-weight: 700; font-size: 0.8rem; cursor: pointer; display: inline-flex; align-items: center;
-  gap: 6px; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35); transition: all var(--transition-fast);
+  border: 1px solid rgba(255, 255, 255, 0.25); padding: 5px 10px; border-radius: var(--radius-full);
+  font-weight: 700; font-size: 0.76rem; cursor: pointer; display: inline-flex; align-items: center;
+  gap: 5px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); transition: all var(--transition-fast);
+  white-space: nowrap;
 }
-.btn-install-app:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(16, 185, 129, 0.55); }
-.btn-install-app .install-text { line-height: 1.15; max-width: 110px; text-align: center; }
+.btn-install-app:hover {
+  transform: translateY(-1px); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.5);
+  background: linear-gradient(135deg, #059669, #047857);
+}
+.btn-install-app .install-icon { font-size: 0.85rem; line-height: 1; }
+.btn-install-app .install-text { line-height: 1.1; font-weight: 700; }
 
 .header-actions-group {
   display: inline-flex; align-items: center; gap: 4px;
   background: var(--bg-inset); padding: 3px; border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
 }
-.nav-action-btn {
+.nav-action-btn, .nav-page-btn {
   background: var(--bg-card); border: 1px solid transparent;
   color: var(--text-main); padding: 6px 10px; border-radius: var(--radius-md);
   font-weight: 600; font-size: 0.82rem; cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center;
-  user-select: none; position: relative;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
+  display: inline-flex; align-items: center; justify-content: center;
+  user-select: none; position: relative; gap: 0;
 }
-.nav-action-btn .btn-icon { display: inline-flex; align-items: center; justify-content: center; font-size: 0.95rem; }
-.nav-action-btn .btn-label {
-  max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap;
-  transition: max-width 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, margin-left 0.2s ease;
-  margin-left: 0; font-size: 0.8rem;
+.nav-action-btn .btn-icon, .nav-page-btn .btn-icon {
+  display: inline-flex; align-items: center; justify-content: center; font-size: 0.95rem;
+  transition: transform 0.25s ease;
 }
-.nav-action-btn:hover, .nav-action-btn:focus-visible, .nav-action-btn.active {
+/* Labels are hidden by default to keep clean compact layout; NEVER expand on hover */
+.nav-action-btn .btn-label, .nav-page-btn .btn-label {
+  display: none; font-size: 0.8rem; white-space: nowrap;
+}
+/* Subtle elegant hover without resizing or stretching */
+.nav-action-btn:hover:not(.active), .nav-page-btn:hover:not(.active) {
   background: var(--bg-card-hover); border-color: var(--accent-primary);
-  transform: translateY(-1px); box-shadow: 0 3px 10px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
 }
-.nav-action-btn:hover .btn-label, .nav-action-btn:focus-visible .btn-label, .nav-action-btn.active .btn-label {
-  max-width: 80px; opacity: 1; margin-left: 6px;
-}
-.nav-action-btn.active {
-  background: var(--accent-gradient) !important; color: #fff !important;
+/* Only currently active page button is highlighted and expanded with label */
+.nav-page-btn.active {
+  background: var(--accent-gradient) !important; color: #ffffff !important;
   box-shadow: 0 4px 14px rgba(59, 130, 246, 0.45) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  padding: 6px 12px; gap: 6px;
 }
-.nav-action-btn:hover .lang-flag { transform: scale(1.15) rotate(-5deg); transition: transform 0.25s ease; }
-.nav-action-btn:hover .theme-icon { transform: rotate(20deg) scale(1.15); transition: transform 0.3s ease; }
-.nav-action-btn:hover .settings-icon { transform: rotate(90deg); transition: transform 0.4s ease; }
+.nav-page-btn.active .btn-label {
+  display: inline-block;
+}
+
+.nav-action-btn:hover .lang-flag { transform: scale(1.15) rotate(-6deg); }
+.nav-action-btn:hover .theme-icon { transform: rotate(20deg) scale(1.15); }
+.nav-page-btn:hover .settings-icon { transform: rotate(45deg); }
+.nav-page-btn:hover .btn-icon { transform: translateY(-1px); }

@@ -5,11 +5,11 @@ import { getEditorCanvasHtml } from './templates/editor-canvas-view.js';
 import { getEditorSidebarRightHtml } from './templates/editor-sidebar-right-view.js';
 import { getSheetTabHtml } from './templates/sheet-tab-view.js';
 import { getHistoryTabHtml } from './templates/history-tab-view.js';
+import { getAboutTabHtml } from './templates/about-tab-view.js';
+import { getSettingsTabHtml } from './templates/settings-tab-view.js';
 import { getCustomSizeModalHtml } from './templates/custom-size-modal-view.js';
 import { getCustomPaperModalHtml } from './templates/custom-paper-modal-view.js';
-import { getSettingsModalHtml } from './templates/settings-modal-view.js';
 import { getWebcamModalHtml } from './templates/webcam-modal-view.js';
-import { getAboutModalHtml } from './templates/about-modal-view.js';
 
 import { initBrandLogoSync } from './brand-logo-sync.js';
 
@@ -34,13 +34,13 @@ export function loadApplicationDOM() {
         ${editorTabHtml}
         ${getSheetTabHtml()}
         ${getHistoryTabHtml()}
+        ${getAboutTabHtml()}
+        ${getSettingsTabHtml()}
       </main>
     </div>
     ${getWebcamModalHtml()}
     ${getCustomSizeModalHtml()}
     ${getCustomPaperModalHtml()}
-    ${getSettingsModalHtml()}
-    ${getAboutModalHtml()}
   `;
 }
 

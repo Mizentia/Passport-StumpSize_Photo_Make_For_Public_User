@@ -1,3 +1,31 @@
+.settings-page-card {
+  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl); padding: 26px; box-shadow: var(--glass-shadow);
+  display: flex; flex-direction: column; gap: 16px; width: 100%; min-width: 0;
+  animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.settings-page-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap; gap: 14px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 16px;
+}
+.settings-header-info { display: flex; flex-direction: column; gap: 6px; max-width: 720px; }
+.settings-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  padding: 3px 10px; border-radius: var(--radius-full); width: fit-content;
+  font-size: 0.75rem; font-weight: 700; color: var(--accent-primary);
+}
+.settings-page-title { font-size: 1.4rem; font-weight: 800; color: var(--text-main); }
+.settings-page-subtitle { font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; }
+.settings-header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.settings-panes-wrapper { width: 100%; min-height: 380px; }
+.settings-page-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--border-subtle); padding-top: 16px;
+}
+.settings-footer-tip { font-size: 0.8rem; color: var(--text-muted); }
+
 .settings-modal-box {
   max-width: 900px; width: 94vw; height: 88vh; max-height: 740px;
   display: flex; flex-direction: column; overflow: hidden; padding: 22px;

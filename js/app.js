@@ -42,7 +42,7 @@ function initApp() {
     renderPhotoToCanvas(mainCanvas);
     updateUIFromState();
     renderPrintSheet(sheetCanvas, mainCanvas);
-  });
+  }, tabManager);
 
   restoreSavedSession().then((restored) => {
     if (restored && restored.originalImage) {

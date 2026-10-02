@@ -18,7 +18,11 @@ export function attachCardHoverDrawer(card, item, mainCanvas, tabManager) {
     removeActiveDrawer();
     showDrawer(card, item, mainCanvas, tabManager);
   });
-  card.addEventListener('mouseleave', () => {
+
+  card.addEventListener('mouseleave', (e) => {
+    if (activeDrawer && e.relatedTarget && activeDrawer.contains(e.relatedTarget)) {
+      return;
+    }
     drawerHideTimer = setTimeout(removeActiveDrawer, 220);
   });
 }
@@ -61,24 +65,31 @@ function showDrawer(card, item, mainCanvas, tabManager) {
 
   drawer.innerHTML = `
     <div class="drawer-inner">
-      <div class="drawer-header-title">⚡ ${isBn ? 'দ্রুত স্টেজ জাম্প:' : 'Quick Stage Jump:'}</div>
+      <div class="drawer-header-title">⚡ ${isBn ? 'দ্রুত স্টেজ প্রিভিউ ও জাম্প:' : 'Quick Stage Jump:'}</div>
       <div class="drawer-stages-row">
         <div class="drawer-step-item drawer-editor-item">
           <div class="drawer-thumb-wrap">
             <img src="${editorThumb}" class="drawer-thumb drawer-editor-thumb" alt="Crop">
             <span class="drawer-thumb-badge">${sizeText || presetName}</span>
           </div>
-          <span class="drawer-step-sub">${isBn ? '২. এডিটর' : 'Step 2: Editor'}</span>
+          <span class="drawer-step-sub">${isBn ? '২. স্টুডিও এডিটর' : 'Step 2: Editor'}</span>
         </div>
         ${sheetHtml}
       </div>
     </div>`;
 
-  drawer.addEventListener('mouseenter', () => { if (drawerHideTimer) clearTimeout(drawerHideTimer); });
-  drawer.addEventListener('mouseleave', () => { drawerHideTimer = setTimeout(removeActiveDrawer, 220); });
+  drawer.addEventListener('mouseenter', () => {
+    if (drawerHideTimer) { clearTimeout(drawerHideTimer); drawerHideTimer = null; }
+  });
+
+  drawer.addEventListener('mouseleave', (e) => {
+    if (e.relatedTarget && card.contains(e.relatedTarget)) return;
+    drawerHideTimer = setTimeout(removeActiveDrawer, 220);
+  });
 
   drawer.querySelector('.drawer-editor-item')?.addEventListener('click', (e) => {
-    e.stopPropagation(); removeActiveDrawer();
+    e.stopPropagation();
+    removeActiveDrawer();
     batchManager.setActive(item.id);
     if (mainCanvas) renderPhotoToCanvas(mainCanvas);
     updateUIFromState();
@@ -87,11 +98,34 @@ function showDrawer(card, item, mainCanvas, tabManager) {
 
   drawer.querySelectorAll('.drawer-sheet-item').forEach((si) => {
     si.addEventListener('click', (e) => {
-      e.stopPropagation(); removeActiveDrawer();
+      e.stopPropagation();
+      removeActiveDrawer();
       batchManager.setActive(item.id);
       tabManager?.switchTab('sheet');
     });
   });
 
-  card.appendChild(drawer);
+  // Append to body as a floating portal so overflow: auto never clips it
+  document.body.appendChild(drawer);
+
+  const rect = card.getBoundingClientRect();
+  const drawerRect = drawer.getBoundingClientRect();
+
+  let left = rect.left + rect.width / 2;
+  const halfWidth = drawerRect.width / 2;
+  const padding = 12;
+  if (left - halfWidth < padding) left = halfWidth + padding;
+  if (left + halfWidth > window.innerWidth - padding) left = window.innerWidth - halfWidth - padding;
+
+  let top = rect.top - drawerRect.height - 12;
+  if (top < 10) {
+    top = rect.bottom + 12;
+    drawer.classList.add('drawer-below');
+  }
+
+  drawer.style.position = 'fixed';
+  drawer.style.left = `${left}px`;
+  drawer.style.top = `${top}px`;
+  drawer.style.transform = 'translateX(-50%)';
+  drawer.style.zIndex = '99999';
 }

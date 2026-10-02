@@ -43,22 +43,31 @@
   40%, 60% { transform: translate3d(6px, 0, 0); }
 }
 
-/* Hover Preview Drawer */
+/* Hover Preview Drawer (Fixed Viewport Portal) */
 .batch-hover-drawer {
-  position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%);
-  z-index: 999; min-width: 200px; background: var(--bg-card);
-  border: 1px solid var(--accent-primary); border-radius: var(--radius-lg);
-  padding: 8px 10px; box-shadow: 0 14px 35px rgba(0, 0, 0, 0.5), 0 0 15px rgba(59, 130, 246, 0.25);
-  animation: drawerFadeIn 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-  pointer-events: auto; white-space: nowrap;
+  position: fixed;
+  z-index: 99999;
+  min-width: 210px;
+  background: var(--bg-surface);
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-lg);
+  padding: 10px 12px;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.45), 0 0 20px rgba(59, 130, 246, 0.25);
+  animation: drawerFadeIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: auto;
+  white-space: nowrap;
 }
 .batch-hover-drawer::after {
   content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
   border-width: 6px; border-style: solid;
   border-color: var(--accent-primary) transparent transparent transparent;
 }
+.batch-hover-drawer.drawer-below::after {
+  top: auto; bottom: 100%;
+  border-color: transparent transparent var(--accent-primary) transparent;
+}
 @keyframes drawerFadeIn {
-  from { opacity: 0; transform: translate(-50%, 8px) scale(0.95); }
+  from { opacity: 0; transform: translate(-50%, 6px) scale(0.96); }
   to { opacity: 1; transform: translate(-50%, 0) scale(1); }
 }
 .drawer-inner { display: flex; flex-direction: column; gap: 6px; }

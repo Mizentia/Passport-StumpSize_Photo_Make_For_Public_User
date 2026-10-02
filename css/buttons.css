@@ -42,6 +42,21 @@ button {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
+.btn-smart {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+.btn-smart:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
 .btn-sm {
   padding: 6px 12px;
   font-size: 0.85rem;

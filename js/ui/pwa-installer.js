@@ -17,9 +17,9 @@ export function setupPwaInstaller() {
       (typeof window !== 'undefined' && window.innerWidth <= 768 && ('ontouchstart' in window));
     const isBn = appState.get('lang') === 'bn';
     if (isMobile) {
-      installText.textContent = isBn ? 'মোবাইল অ্যাপ ইনস্টল' : 'Install Mobile App';
+      installText.textContent = isBn ? 'মোবাইল অ্যাপ' : 'Mobile App';
     } else {
-      installText.textContent = isBn ? 'ডেস্কটপ অ্যাপ ইনস্টল' : 'Install Desktop App';
+      installText.textContent = isBn ? 'অ্যাপ ইনস্টল' : 'Install App';
     }
   }
 

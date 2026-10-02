@@ -12,38 +12,36 @@ import { setupSettingsPaperForm } from './settings/settings-paper-form.js';
 
 export { loadStoredSettings, saveSettingsToStorage };
 
-export function setupSettingsModal(onSettingChange) {
-  const modal = document.getElementById('settingsModal');
+export function setupSettingsModal(onSettingChange, tabManager) {
+  const container = document.getElementById('settingsTab') || document.getElementById('settingsModal');
   const shortcutsMgr = setupShortcutsRebinding(appState.get('shortcuts') || {});
-  setupSettingsTabsAndActions(modal, shortcutsMgr, onSettingChange);
+  setupSettingsTabsAndActions(container, shortcutsMgr, onSettingChange);
   const paperForm = setupSettingsPaperForm(onSettingChange);
 
-  const openModal = () => {
+  const refreshSettingsPageData = () => {
     populateSettingsForm();
     shortcutsMgr.setShortcuts(appState.get('shortcuts') || {});
     paperForm.updatePaperLabels();
     renderCustomPapersInSettings(onSettingChange);
     paperForm.updatePaperConversionPreview();
-    modal?.classList.add('active');
   };
-  const closeModal = () => modal?.classList.remove('active');
 
-  document.getElementById('btnOpenSettings')?.addEventListener('click', openModal);
-  document.getElementById('btnCloseSettings')?.addEventListener('click', closeModal);
-  modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-
-  document.getElementById('btnSaveSettings')?.addEventListener('click', () => {
+  const handleSave = () => {
     try {
       const formData = readSettingsFormData();
       const currentShortcuts = shortcutsMgr ? shortcutsMgr.getCurrentShortcuts() : (appState.get('shortcuts') || {});
       appState.update({ ...formData, shortcuts: currentShortcuts });
       saveSettingsToStorage();
       refreshAllTooltips();
-      closeModal();
       if (onSettingChange) onSettingChange();
       toastService.show(t('msg_settings_saved') || 'Studio settings saved! 💾', 'success');
-    } catch (err) { toastService.show('Failed to save: ' + (err.message || err), 'error'); }
-  });
+    } catch (err) {
+      toastService.show('Failed to save: ' + (err.message || err), 'error');
+    }
+  };
+
+  document.getElementById('btnSaveSettings')?.addEventListener('click', handleSave);
+  document.getElementById('btnSaveSettingsTop')?.addEventListener('click', handleSave);
 
   document.querySelectorAll('.btn-apply-bio-preset').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -55,13 +53,26 @@ export function setupSettingsModal(onSettingChange) {
         photoPresetStore.recordUsage(id);
       }
       appState.set('selectedPreset', id, true);
-      closeModal();
       if (onSettingChange) onSettingChange();
       toastService.show(`${t('bio_btn_apply')}: ${t(`preset_${id}`) || id}`, 'success');
+      if (tabManager) {
+        tabManager.switchTab(appState.get('originalImage') ? 'editor' : 'upload');
+      }
     });
   });
 
-  appState.on('lang', () => { paperForm.updatePaperLabels(); paperForm.updatePaperConversionPreview(); });
+  window.addEventListener('app:tabchange', (e) => {
+    if (e.detail?.tabId === 'settings') {
+      refreshSettingsPageData();
+    }
+  });
+
+  appState.on('lang', () => {
+    paperForm.updatePaperLabels();
+    paperForm.updatePaperConversionPreview();
+  });
+
   renderCustomPaperOptionsInSelect();
   loadStoredSettings();
+  refreshSettingsPageData();
 }
