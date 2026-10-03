@@ -12,18 +12,32 @@
    2. TABLET PORTRAIT / COMPACT LAPTOPS (max-width: 860px)
    -------------------------------------------------------------------------- */
 @media (max-width: 860px) {
-  .app-container { padding: 12px 16px; gap: 16px; }
-  .navbar { flex-direction: column; gap: 10px; align-items: stretch; padding: 12px 14px; }
-  .brand { justify-content: center; text-align: center; }
+  .app-container { padding: 10px 14px; gap: 14px; }
+  .navbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand actions"
+      "stepper stepper";
+    gap: 6px 8px;
+    padding: 6px 10px;
+    align-items: center;
+  }
+  .brand { grid-area: brand; justify-content: flex-start; text-align: left; }
+  .brand-logo { width: 30px; height: 30px; font-size: 1rem; }
+  .header-actions { grid-area: actions; justify-content: flex-end; gap: 4px; }
   .stepper-nav {
-    justify-content: center; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    grid-area: stepper; width: 100%; display: flex;
+    overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
   }
+  .stepper-nav::-webkit-scrollbar { display: none; }
   .step-btn {
-    padding: 7px 12px; font-size: 0.8rem; white-space: nowrap; flex: 1; justify-content: center;
+    padding: 0 8px; height: 26px; font-size: 0.76rem; white-space: nowrap; flex: 1 1 0;
+    min-width: 0; justify-content: center;
   }
-  .header-actions { justify-content: center; gap: 8px; flex-wrap: wrap; }
   .editor-grid { grid-template-columns: 1fr; gap: 16px; }
   .canvas-viewport-card {
     grid-column: auto; order: -1; min-height: auto; padding: 14px 16px;
   }
 }
+

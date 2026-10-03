@@ -2,13 +2,18 @@
    4. COMPACT MOBILE SCREENS & SMALL PHONES (max-width: 480px)
    -------------------------------------------------------------------------- */
 @media (max-width: 480px) {
-  .app-container { padding: 6px 8px; gap: 10px; }
+  .app-container { padding: 5px 6px; gap: 8px; }
+  .navbar { padding: 4px 6px; gap: 4px 6px; }
   .brand-text p { display: none; }
-  .brand-text h1 { font-size: 0.95rem; }
-  .brand-logo { width: 32px; height: 32px; font-size: 1rem; }
-  .step-btn { padding: 5px 6px; font-size: 0.72rem; }
-  .header-actions { gap: 4px; }
-  .btn-lang, .btn-theme, .btn-settings, .btn-install-app { padding: 5px 6px; font-size: 0.74rem; }
+  .brand-text h1 { font-size: 0.82rem; }
+  .brand-logo { width: 26px; height: 26px; font-size: 0.9rem; }
+  .step-btn { padding: 0 4px; height: 24px; font-size: 0.68rem; }
+  .header-actions { gap: 2px; }
+  .header-actions-group { gap: 2px; padding: 1px 2px; }
+  .btn-lang, .btn-theme, .btn-settings, .btn-install-app { padding: 0 4px; font-size: 0.72rem; }
+  .nav-action-btn, .nav-page-btn { height: 24px; min-width: 24px; padding: 0 4px; }
+  .nav-action-btn .btn-icon, .nav-page-btn .btn-icon { font-size: 0.78rem; }
+  .btn-install-app { height: 24px; padding: 0 5px; font-size: 0.64rem; }
   
   /* Keep action buttons compact icons to prevent navbar overflow */
   .nav-action-btn .btn-label, .nav-page-btn:not(.active) .btn-label { display: none !important; }
@@ -39,8 +44,8 @@
    5. EXTRA SMALL MOBILE (max-width: 360px - down to 320px)
    -------------------------------------------------------------------------- */
 @media (max-width: 360px) {
-  .brand-text h1 { font-size: 0.88rem; }
-  .step-btn { padding: 4px 4px; font-size: 0.68rem; }
+  .brand-text h1 { font-size: 0.78rem; }
+  .step-btn { padding: 0 2px; font-size: 0.64rem; height: 22px; }
   .preset-grid { grid-template-columns: 1fr; }
   .preset-custom { grid-column: span 1 !important; } /* Fix grid blowout */
   .btn-group-smart .btn-smart { flex: 1 1 100%; min-width: 100%; }

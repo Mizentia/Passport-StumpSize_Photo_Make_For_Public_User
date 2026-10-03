@@ -7,24 +7,31 @@
   }
 
   /* Header & Navigation */
-  .navbar { padding: 8px 10px; gap: 8px; flex-wrap: wrap; }
-  .brand { justify-content: flex-start; gap: 8px; min-width: 0; }
-  .brand-logo { width: 36px; height: 36px; font-size: 1.1rem; flex-shrink: 0; }
+  .navbar {
+    display: grid; grid-template-columns: 1fr auto;
+    grid-template-areas: "brand actions" "stepper stepper";
+    gap: 5px 6px; padding: 5px 8px; align-items: center;
+  }
+  .brand { grid-area: brand; justify-content: flex-start; gap: 6px; min-width: 0; }
+  .brand-logo { width: 28px; height: 28px; font-size: 0.95rem; }
   .brand-text { min-width: 0; }
-  .brand-text h1 { font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .brand-text p { font-size: 0.68rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .brand-text h1 { font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; }
+  .brand-text p { display: none; }
+  
+  .header-actions { grid-area: actions; width: auto; gap: 3px; justify-content: flex-end; }
+  .header-actions-group { padding: 2px; gap: 2px; }
+  .nav-action-btn, .nav-page-btn { height: 26px; min-width: 26px; padding: 0 5px; }
+  .nav-action-btn .btn-icon, .nav-page-btn .btn-icon { font-size: 0.82rem; }
+  .btn-install-app { height: 26px; padding: 0 6px; font-size: 0.68rem; gap: 3px; }
   
   .stepper-nav {
-    display: flex; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; padding: 3px; gap: 4px;
+    grid-area: stepper; width: 100%; display: flex;
+    overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    padding: 2px; gap: 3px;
   }
   .stepper-nav::-webkit-scrollbar { display: none; }
-  .step-btn { padding: 6px 8px; font-size: 0.74rem; flex: 1 1 0; min-width: 0; justify-content: center; }
-
-  .header-actions { gap: 6px; width: 100%; justify-content: flex-end; flex-wrap: wrap; }
-  .header-actions-group { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .btn-lang, .btn-theme, .btn-settings, .btn-history-nav, .btn-about-nav, .btn-install-app {
-    padding: 6px 8px; font-size: 0.78rem; justify-content: center;
+  .step-btn {
+    height: 26px; padding: 0 4px; font-size: 0.72rem; flex: 1 1 0; min-width: 0; justify-content: center;
   }
 
   /* Upload Section */
