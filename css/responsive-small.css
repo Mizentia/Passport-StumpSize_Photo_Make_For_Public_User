@@ -4,37 +4,59 @@
 @media (max-width: 480px) {
   .app-container { padding: 6px 8px; gap: 10px; }
   .brand-text p { display: none; }
-  .brand-text h1 { font-size: 0.98rem; }
+  .brand-text h1 { font-size: 0.95rem; }
   .brand-logo { width: 32px; height: 32px; font-size: 1rem; }
   .step-btn { padding: 5px 6px; font-size: 0.72rem; }
   .header-actions { gap: 4px; }
   .btn-lang, .btn-theme, .btn-settings, .btn-install-app { padding: 5px 6px; font-size: 0.74rem; }
-  .btn-lang .lang-label, .btn-theme .theme-label, .btn-settings .settings-label {
-    display: inline-block; font-size: 0.72rem;
-  }
+  
+  /* Keep action buttons compact icons to prevent navbar overflow */
+  .nav-action-btn .btn-label, .nav-page-btn:not(.active) .btn-label { display: none !important; }
+
+  .canvas-viewport-card { padding: 10px 8px; }
+  .tool-card { padding: 12px 10px; }
   .preset-grid { grid-template-columns: 1fr 1fr; gap: 5px; }
   .preset-btn { padding: 5px 6px; }
   .suit-grid { grid-template-columns: repeat(4, 1fr); gap: 4px; }
   .suit-item { font-size: 0.62rem; padding: 4px 1px; min-height: 44px; }
   .suit-item .suit-icon { font-size: 1rem; }
+  
   .canvas-container { max-height: 300px; }
   #mainCanvas { max-height: 300px; }
   .sheet-export-buttons { grid-template-columns: 1fr; gap: 8px; }
   .url-input-box { flex-wrap: wrap; padding: 6px 8px; }
   .url-text-input { width: 100%; font-size: 0.82rem; }
   .url-input-box .btn-smart { flex: 1; }
+
+  /* About Tab on Compact Screens */
+  .about-hero-card { padding: 18px 12px; }
+  .about-hero-title { font-size: 1.35rem; }
+  .about-features-grid { grid-template-columns: 1fr; gap: 10px; }
+  .about-meta-grid { grid-template-columns: 1fr; gap: 10px; }
 }
 
 /* --------------------------------------------------------------------------
-   5. EXTRA SMALL MOBILE (max-width: 360px)
+   5. EXTRA SMALL MOBILE (max-width: 360px - down to 320px)
    -------------------------------------------------------------------------- */
 @media (max-width: 360px) {
+  .brand-text h1 { font-size: 0.88rem; }
+  .step-btn { padding: 4px 4px; font-size: 0.68rem; }
   .preset-grid { grid-template-columns: 1fr; }
+  .preset-custom { grid-column: span 1 !important; } /* Fix grid blowout */
   .btn-group-smart .btn-smart { flex: 1 1 100%; min-width: 100%; }
-  .download-single-actions { flex-direction: column; }
+  
+  .download-single-actions { flex-direction: column; width: 100%; }
   .download-single-actions button { width: 100%; }
-  .btn-lang .lang-label, .btn-theme .theme-label, .btn-settings .settings-label {
-    display: none;
-  }
-  .btn-lang, .btn-theme, .btn-settings, .btn-install-app { padding: 6px; }
+
+  .transform-actions { gap: 2px; }
+  .transform-actions .btn-icon { width: 30px; height: 30px; font-size: 0.8rem; }
+
+  /* 3 columns on ultra-small screens prevents suit cards overlap */
+  .suit-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .history-grid-container { grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 6px; }
+
+  .btn-lang, .btn-theme, .btn-settings, .btn-install-app { padding: 5px; }
+  .dropzone { padding: 16px 8px; }
+  .dropzone-icon { width: 44px; height: 44px; font-size: 1.3rem; }
+  .dropzone-title { font-size: 0.95rem; }
 }

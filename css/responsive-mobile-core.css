@@ -7,33 +7,41 @@
   }
 
   /* Header & Navigation */
-  .navbar { padding: 10px 12px; gap: 8px; }
-  .brand { justify-content: flex-start; gap: 10px; }
-  .brand-logo { width: 36px; height: 36px; font-size: 1.1rem; }
-  .brand-text h1 { font-size: 1.05rem; }
-  .brand-text p { font-size: 0.7rem; line-height: 1.2; }
-  .stepper-nav { padding: 3px; gap: 4px; }
-  .step-btn { padding: 6px 10px; font-size: 0.76rem; }
-  .header-actions { gap: 6px; width: 100%; justify-content: space-between; }
+  .navbar { padding: 8px 10px; gap: 8px; flex-wrap: wrap; }
+  .brand { justify-content: flex-start; gap: 8px; min-width: 0; }
+  .brand-logo { width: 36px; height: 36px; font-size: 1.1rem; flex-shrink: 0; }
+  .brand-text { min-width: 0; }
+  .brand-text h1 { font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .brand-text p { font-size: 0.68rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  
+  .stepper-nav {
+    display: flex; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; padding: 3px; gap: 4px;
+  }
+  .stepper-nav::-webkit-scrollbar { display: none; }
+  .step-btn { padding: 6px 8px; font-size: 0.74rem; flex: 1 1 0; min-width: 0; justify-content: center; }
+
+  .header-actions { gap: 6px; width: 100%; justify-content: flex-end; flex-wrap: wrap; }
+  .header-actions-group { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .btn-lang, .btn-theme, .btn-settings, .btn-history-nav, .btn-about-nav, .btn-install-app {
     padding: 6px 8px; font-size: 0.78rem; justify-content: center;
   }
 
   /* Upload Section */
   .upload-card {
-    padding: 24px 14px; gap: 16px; border-radius: var(--radius-lg);
+    padding: 20px 12px; gap: 14px; border-radius: var(--radius-lg);
   }
   .dropzone {
-    padding: 24px 14px; gap: 12px; border-radius: var(--radius-lg);
+    padding: 22px 12px; gap: 10px; border-radius: var(--radius-lg);
   }
-  .dropzone-icon { width: 56px; height: 56px; font-size: 1.6rem; }
-  .dropzone-title { font-size: 1.1rem; }
-  .dropzone-subtitle { font-size: 0.8rem; }
-  .paste-badge { font-size: 0.72rem; padding: 4px 10px; }
+  .dropzone-icon { width: 52px; height: 52px; font-size: 1.5rem; }
+  .dropzone-title { font-size: 1.05rem; }
+  .dropzone-subtitle { font-size: 0.78rem; }
+  .paste-badge { font-size: 0.7rem; padding: 4px 8px; }
   .upload-actions { width: 100%; flex-direction: column; gap: 8px; }
   .upload-actions button {
     width: 100%; padding: 10px 14px; font-size: 0.85rem;
   }
   .sample-row { gap: 6px; margin-top: 6px; }
-  .sample-chip { padding: 5px 10px; font-size: 0.75rem; }
+  .sample-chip { padding: 5px 8px; font-size: 0.72rem; }
 }

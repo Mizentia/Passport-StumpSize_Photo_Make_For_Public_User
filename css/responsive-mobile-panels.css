@@ -1,32 +1,40 @@
 /* --------------------------------------------------------------------------
-   3C. MOBILE SHEET PANEL & MODALS (max-width: 768px)
+   3C. MOBILE SHEET PANEL, MODALS & HISTORY (max-width: 768px)
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
   /* Sheet Panel on Mobile */
-  .sheet-preview-card { padding: 12px 10px; min-height: auto; }
-  .sheet-pages-scroll-container { max-height: 520px; gap: 14px; padding: 4px 0; }
+  .sheet-preview-card { padding: 12px 10px; min-height: auto; width: 100%; }
+  .sheet-pages-scroll-container { max-height: 480px; gap: 12px; padding: 4px 0; }
   .sheet-page-card { padding: 8px; width: 100%; max-width: 100%; }
   .sheet-canvas-wrapper { max-height: 380px; width: 100%; }
   .sheet-canvas-wrapper canvas, #sheetCanvas { max-height: 380px; }
-  .sheet-export-buttons {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%;
-  }
-  .sheet-export-buttons button {
-    width: 100%; padding: 10px 8px; font-size: 0.78rem; text-align: center; justify-content: center;
+  .sheet-export-buttons-compact > div { grid-template-columns: 1fr !important; gap: 8px; }
+  .sheet-export-buttons button, .sheet-export-buttons-compact button {
+    width: 100%; padding: 10px 8px; font-size: 0.8rem; text-align: center; justify-content: center;
   }
 
   /* Modals on Mobile */
   .modal-backdrop { padding: 8px; }
   .modal-box {
-    padding: 16px; max-height: 92vh; border-radius: var(--radius-lg); width: 96vw;
+    padding: 16px 12px; max-height: 92vh; border-radius: var(--radius-lg); width: 96vw; max-width: 96vw;
   }
+  #customModalActionButtons, #customModalEditButtons, #modalPaperAddActions {
+    flex-direction: column; gap: 8px;
+  }
+  #modalPaperEditActions > div:first-child { flex-direction: column; gap: 8px; }
+  #customModalActionButtons button, #customModalEditButtons button,
+  #modalPaperAddActions button, #modalPaperEditActions button { width: 100%; }
+  .webcam-viewport { height: auto; aspect-ratio: 4/3; max-height: 50vh; }
+
+  /* Settings Modal on Mobile */
   .settings-modal-box {
     padding: 12px; width: 96vw; height: 92vh; max-height: 92vh; border-radius: var(--radius-lg);
   }
   .settings-tabs-nav {
     flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
-    gap: 4px; padding-bottom: 6px;
+    scrollbar-width: none; gap: 4px; padding-bottom: 6px;
   }
+  .settings-tabs-nav::-webkit-scrollbar { display: none; }
   .settings-tab-btn { padding: 6px 10px; font-size: 0.75rem; flex-shrink: 0; }
   .settings-grid-2col { grid-template-columns: 1fr; gap: 10px; }
   .bg-engine-grid { grid-template-columns: 1fr; gap: 10px; }
@@ -35,11 +43,16 @@
   .settings-modal-footer { flex-direction: column-reverse; gap: 8px; }
   .settings-modal-footer button { width: 100%; }
 
-  /* History Tab on Mobile */
+  /* History Tab on Mobile - Fixed compact multi-column photo grid */
   .history-page-card { padding: 14px 10px; }
   .history-header { flex-direction: column; align-items: flex-start; gap: 8px; }
   .history-toolbar { flex-direction: column; align-items: stretch; gap: 10px; }
   .history-search-box { max-width: 100%; }
-  .history-filter-pills { width: 100%; justify-content: flex-start; overflow-x: auto; }
-  .history-grid-container { grid-template-columns: 1fr; gap: 12px; }
+  .history-filter-pills {
+    width: 100%; justify-content: flex-start; overflow-x: auto;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none; flex-wrap: nowrap;
+  }
+  .history-filter-pills::-webkit-scrollbar { display: none; }
+  .history-filter-pill { flex-shrink: 0; }
+  .history-grid-container { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; }
 }

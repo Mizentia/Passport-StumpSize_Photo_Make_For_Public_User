@@ -43,12 +43,15 @@
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .toast-container {
+    bottom: 12px; left: 12px; right: 12px; align-items: stretch;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .toast {
+    width: 100%; padding: 10px 14px; font-size: 0.8rem;
   }
 }
