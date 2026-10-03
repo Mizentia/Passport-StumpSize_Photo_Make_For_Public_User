@@ -9,19 +9,15 @@ export function getAboutTabHtml() {
           <div class="about-hero-content">
             <div class="about-hero-badge">
               <span class="about-hero-icon">📸</span>
-              <span class="about-version-tag">Version 2.5 (2026 Edition) &bull; 100% Free Public Tool</span>
+              <span class="about-version-tag" data-i18n="about_badge_version">Version 2.5 (2026 Edition) • 100% Free Public Tool</span>
             </div>
             <h2 class="about-hero-title" data-i18n="app_title">Passport Photo Maker</h2>
-            <p class="about-hero-subtitle">
-              নকশা ল্যাবের সাধারণ পাবলিক, শিক্ষার্থী ও প্রফেশনালদের জন্য উন্মুক্ত একটি সম্পূর্ণ ফ্রি, নিরাপদ ও আন্তর্জাতিক মানের ফটো ক্রপ ও প্রিন্ট স্টুডিও।
+            <p class="about-hero-subtitle" data-i18n="about_hero_subtitle">
+              A completely free, secure, and international-standard photo cropping and print studio open for the general public, students, and professionals.
             </p>
             <div class="about-hero-actions">
-              <button class="btn-primary" id="btnAboutStartPhoto">
-                <span>📸</span><span data-i18n="tab_upload">১. ছবি তৈরি শুরু করুন</span>
-              </button>
-              <button class="btn-secondary" id="btnAboutGoSettings">
-                <span>⚙️</span><span data-i18n="settings_title">স্টুডিও সেটিংস কনফিগার করুন</span>
-              </button>
+              <button class="btn-primary" id="btnAboutStartPhoto" data-i18n="about_btn_start">📸 1. Start Photo Maker</button>
+              <button class="btn-secondary" id="btnAboutGoSettings" data-i18n="about_btn_settings">⚙️ Studio Master Settings</button>
             </div>
           </div>
         </div>
@@ -30,46 +26,46 @@ export function getAboutTabHtml() {
         <div class="about-privacy-banner">
           <div class="privacy-icon">🔒</div>
           <div class="privacy-text">
-            <h4 class="privacy-heading">১০০% সম্পূর্ণ অফলাইন ও লোকাল ক্লায়েন্ট প্রাইভেসি গ্যারান্টি</h4>
-            <p class="privacy-desc">
-              আপনার আপলোড করা কোনো ছবি কখনোই আমাদের বা তৃতীয় পক্ষের কোনো দূরবর্তী সার্ভারে আপলোড হয় না। প্রতিটি ছবির ফেস ডিটেকশন, ক্রপ, ব্যাকগ্রাউন্ড ও প্রিন্ট শিট তৈরি আপনার কম্পিউটারের ব্রাউজারের মেমরিতে সম্পূর্ণ গোপনে সম্পন্ন হয়।
+            <h4 class="privacy-heading" data-i18n="about_privacy_title">100% Offline & Local Client Privacy Guarantee</h4>
+            <p class="privacy-desc" data-i18n="about_privacy_desc">
+              Your photos are never uploaded to any remote servers. Face detection, cropping, background removal, and print sheet generation happen completely privately within your own browser memory.
             </p>
           </div>
         </div>
 
         <!-- Key Features Grid -->
         <div class="about-features-container">
-          <h3 class="about-section-heading">🌟 প্রধান বৈশিষ্ঠ্য ও স্টুডিও সুবিধাসমূহ</h3>
+          <h3 class="about-section-heading" data-i18n="about_features_heading">🌟 Key Studio Features & Capabilities</h3>
           <div class="about-features-grid">
             <div class="about-feat-card">
               <div class="feat-icon-wrap">👁️</div>
-              <h4 class="feat-title">বায়োমেট্রিক অটো-ফিট</h4>
-              <p class="feat-desc">ICAO 9303 আন্তর্জাতিক স্ট্যান্ডার্ড অনুযায়ী স্বয়ংক্রিয়ভাবে চোখের অবস্থান ও ফেস হাইট (৭০-৮০%) শনাক্ত করে নিখুঁত পাসপোর্ট ফ্রেম প্রস্তুত করে।</p>
+              <h4 class="feat-title" data-i18n="about_feat_bio_title">Biometric Auto-Fit</h4>
+              <p class="feat-desc" data-i18n="about_feat_bio_desc">Automatically detects eye level and face height (70-80%) in accordance with international ICAO 9303 standards.</p>
             </div>
             <div class="about-feat-card">
               <div class="feat-icon-wrap">📐</div>
-              <h4 class="feat-title">কাস্টম সাইজ ও ৩০০/৬০০ DPI</h4>
-              <p class="feat-desc">বাংলাদেশ পাসপোর্ট, ইউএস ভিসা, ইউরোপীয় শেনজেন, স্ট্যাম্প সাইজ বা যেকোনো কাস্টম মিলিমিটার/ইঞ্চি মাপ এবং আল্ট্রা-এইচডি DPI সাপোর্ট।</p>
+              <h4 class="feat-title" data-i18n="about_feat_custom_title">Custom Sizes & 300/600 DPI</h4>
+              <p class="feat-desc" data-i18n="about_feat_custom_desc">Full support for Bangladesh Passport, US Visa, European Schengen, Stamp Size, or custom measurements.</p>
             </div>
             <div class="about-feat-card">
               <div class="feat-icon-wrap">🖨️</div>
-              <h4 class="feat-title">মাল্টি-ফটো প্রিন্ট শিট টাইলিং</h4>
-              <p class="feat-desc">4R, 5R, A4 বা নিজস্ব কাস্টম পেপারে এক বা একাধিক বিভিন্ন ছবির নিখুঁত বর্ডার ও কাটিং গাইড লাইন সহ এক ক্লিকে প্রিন্ট শিট তৈরি।</p>
+              <h4 class="feat-title" data-i18n="about_feat_sheet_title">Multi-Photo Print Sheet Tiling</h4>
+              <p class="feat-desc" data-i18n="about_feat_sheet_desc">Generate print-ready photo sheets on 4R, 5R, A4, or custom papers with cutting guides and margins.</p>
             </div>
             <div class="about-feat-card">
               <div class="feat-icon-wrap">🎨</div>
-              <h4 class="feat-title">স্মার্ট ব্যাকগ্রাউন্ড রিপ্লেসমেন্ট</h4>
-              <p class="feat-desc">অটোমেটিক ব্যাকড্রপ রিমুভাল, সাদা, অফিশিয়াল ব্লু, অফ-হোয়াইট ব্যাকগ্রাউন্ড প্রতিস্থাপন এবং লাইটিং-কনট্রাস্ট অ্যাডজাস্টমেন্ট।</p>
+              <h4 class="feat-title" data-i18n="about_feat_bg_title">Smart Background Replacement</h4>
+              <p class="feat-desc" data-i18n="about_feat_bg_desc">Automatic background removal, solid white, official blue, off-white replacements, and studio color tone adjustments.</p>
             </div>
             <div class="about-feat-card">
               <div class="feat-icon-wrap">🩹</div>
-              <h4 class="feat-title">ফেস রিটাচ ও দাগ মোছার টুল</h4>
-              <p class="feat-desc">মুখের অপ্রয়োজনীয় দাগ মোছার স্পট হিলিং ব্রাশ, ফ্ল্যাশ জনিত লাল চোখ দূর করার রেড-আই কারেকশন, রোটেট ও প্রিসিশন অ্যাঙ্গেল অ্যাডজাস্ট।</p>
+              <h4 class="feat-title" data-i18n="about_feat_retouch_title">Face Retouch & Blemish Fix</h4>
+              <p class="feat-desc" data-i18n="about_feat_retouch_desc">Spot healing brush for blemishes, flash red-eye correction, portrait rotation, and sharpness tuning.</p>
             </div>
             <div class="about-feat-card">
               <div class="feat-icon-wrap">📜</div>
-              <h4 class="feat-title">প্রজেক্ট আর্কাইভ ও ড্রাফট হিস্ট্রি</h4>
-              <p class="feat-desc">কাজের প্রতিটি ধাপের অটো-সেভ ড্রাফট ও হিস্ট্রি ব্যাকআপ। এক ক্লিকে যেকোনো সময় আগের কাজ রিস্টোর, এডিট বা এক্সপোর্ট করার সুবিধা।</p>
+              <h4 class="feat-title" data-i18n="about_feat_history_title">Project Archive & Draft History</h4>
+              <p class="feat-desc" data-i18n="about_feat_history_desc">Auto-saves drafts and completed projects. Restore, re-edit, or re-export previous photos anytime.</p>
             </div>
           </div>
         </div>

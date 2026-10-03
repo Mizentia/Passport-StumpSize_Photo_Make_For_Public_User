@@ -2,7 +2,7 @@ export function getSheetOptionsBoxHtml() {
   return `
     <div style="background: var(--bg-inset); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 6px 10px; margin-bottom: 6px;">
       <div class="toggle-row" style="padding: 1px 0;">
-        <span style="font-size: 0.76rem;" data-i18n="toggle_border">Thin Photo Border (বর্ডার)</span>
+        <span style="font-size: 0.76rem;" data-i18n="toggle_border">Thin Photo Border</span>
         <label class="switch"><input type="checkbox" id="toggleBorder" checked><span class="slider-toggle"></span></label>
       </div>
       <div id="rowBorderControls" style="display: flex; gap: 6px; align-items: center; margin-top: 4px; border-top: 1px dashed var(--border-subtle); padding-top: 4px;">
@@ -21,13 +21,13 @@ export function getSheetOptionsBoxHtml() {
     </div>
     <div style="background: var(--bg-inset); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 6px 10px; margin-bottom: 6px;">
       <div class="toggle-row" style="padding: 1px 0;">
-        <span style="font-size: 0.76rem;" data-i18n="toggle_cut_marks">Scissor / Cut Marks (কাটার দাগ)</span>
+        <span style="font-size: 0.76rem;" data-i18n="toggle_cut_marks">Scissor / Cut Marks</span>
         <label class="switch"><input type="checkbox" id="toggleCutMarks" checked><span class="slider-toggle"></span></label>
       </div>
       <div id="rowCutMarksControls" style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px; border-top: 1px dashed var(--border-subtle); padding-top: 4px;">
         <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 4px;">
           <select id="sheetCutStyleSelect" class="form-select" style="height: 28px; font-size: 0.74rem; padding: 2px 4px;">
-            <option value="inter_boundary" selected data-i18n="opt_cut_inter_boundary">Center Line (মাঝখানের দাগ)</option>
+            <option value="inter_boundary" selected data-i18n="opt_cut_inter_boundary">Smart Center Line</option>
             <option value="corner_cross" data-i18n="opt_cut_cross">Corner Cross (+)</option>
             <option value="corner_angle" data-i18n="opt_cut_angle">Corner Angles (L)</option>
             <option value="dash_box" data-i18n="opt_cut_dash">Dashed Box (- -)</option>
@@ -53,7 +53,7 @@ export function getSheetOptionsBoxHtml() {
     <div style="background: var(--bg-inset); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 6px 10px; margin-bottom: 8px;">
       <div class="toggle-row" style="padding: 1px 0;">
         <div>
-          <span style="font-size: 0.76rem; font-weight: 600;" data-i18n="toggle_row_packing">Fill Row Space (ফাঁকা পূরণ)</span>
+          <span style="font-size: 0.76rem; font-weight: 600;" data-i18n="toggle_row_packing">Fill Row Space with Smaller Photos</span>
         </div>
         <label class="switch"><input type="checkbox" id="toggleRowSpaceSharing" checked><span class="slider-toggle"></span></label>
       </div>

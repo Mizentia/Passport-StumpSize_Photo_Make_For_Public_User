@@ -23,12 +23,12 @@ export function getCustomSizeModalHtml() {
           </div>
           <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: flex-end;">
             <div class="form-group">
-              <label class="form-label" id="customLabel1">2. Height (উচ্চতা)</label>
+              <label class="form-label" id="customLabel1">2. Height</label>
               <input type="number" id="customInput1" class="form-input" value="50" step="any" min="1">
             </div>
             <button class="btn-icon" id="btnSwapCustomHW" title="Swap Orientation (Height ⇄ Width)" style="height: 38px; width: 38px; margin-bottom: 1px; transition: transform 0.25s ease;" type="button">⇄</button>
             <div class="form-group">
-              <label class="form-label" id="customLabel2">3. Width (প্রস্থ)</label>
+              <label class="form-label" id="customLabel2">3. Width</label>
               <input type="number" id="customInput2" class="form-input" value="40" step="any" min="1">
             </div>
           </div>

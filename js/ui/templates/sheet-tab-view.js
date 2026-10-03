@@ -11,7 +11,7 @@ export function getSheetTabHtml() {
             <!-- Paper Size Selection -->
             <div class="form-group" style="margin-bottom: 10px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                <label class="form-label" style="margin-bottom: 0;" data-i18n="paper_size">Paper Size (কাগজের মাপ)</label>
+                <label class="form-label" style="margin-bottom: 0;" data-i18n="paper_size">Paper Size</label>
                 <div style="display: flex; gap: 6px;">
                   <button class="btn-preset-add-header" id="btnAddNewPaperSheet" title="Add Custom Paper Size" data-i18n-title="title_add_custom_paper" type="button"><span data-i18n="btn_add_paper_short">➕ Add Paper</span></button>
                   <button class="btn-preset-add-header" id="btnEditCustomPaperSheet" title="Edit Paper Size" style="background: rgba(59, 130, 246, 0.15); color: var(--accent-primary);" type="button"><span data-i18n="btn_edit_paper_short">✏️ Edit</span></button>
@@ -23,7 +23,7 @@ export function getSheetTabHtml() {
             <!-- Multi-Photo Print Queue List -->
             <div class="form-group" style="margin-bottom: 10px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                <label class="form-label" style="margin-bottom: 0; font-weight: 700;" data-i18n="lbl_photos_on_sheet">Photos on Sheet (প্রিন্ট কিউ)</label>
+                <label class="form-label" style="margin-bottom: 0; font-weight: 700;" data-i18n="lbl_photos_on_sheet">Photos on Sheet</label>
                 <span class="sheet-capacity-pill" id="sheetCapacityBadge" style="font-size: 0.72rem; font-weight: 700; color: var(--accent-primary); background: rgba(59, 130, 246, 0.12); padding: 2px 8px; border-radius: 12px;">6 photos</span>
               </div>
               <div id="sheetPhotoQueueList" style="display: flex; flex-direction: column; gap: 6px;"></div>
@@ -62,10 +62,10 @@ export function getSheetTabHtml() {
               <button class="btn-secondary" id="btnPrintDirect" style="height: 34px; font-size: 0.78rem; justify-content: center;" data-i18n="btn_print_direct" data-i18n-title="tooltip_print_direct" data-shortcut-key="printDirect">🖨️ Direct 1-Click Print</button>
             </div>
 
-            <!-- Session History Strip (সেশন হিস্ট্রি) -->
+            <!-- Session History Strip -->
             <div style="margin-top: 10px; padding: 8px 10px; background: var(--bg-inset); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                <span style="font-size: 0.74rem; font-weight: 700; color: var(--text-main);" data-i18n="lbl_session_tree">📸 Session History (হিস্ট্রি থেকে যোগ করুন)</span>
+                <span style="font-size: 0.74rem; font-weight: 700; color: var(--text-main);" data-i18n="lbl_session_tree">📸 Session History Photos</span>
                 <span id="sheetHistoryCountBadge" style="font-size: 0.68rem; color: var(--text-dim);"></span>
               </div>
               <div id="sheetHistoryStripContainer" style="display: flex; gap: 6px; overflow-x: auto; padding: 2px 2px 4px 2px; min-height: 60px; align-items: center;"></div>

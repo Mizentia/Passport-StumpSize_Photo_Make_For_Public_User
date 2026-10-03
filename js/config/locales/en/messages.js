@@ -48,5 +48,8 @@ export const EN_MESSAGES = {
   msg_session_restored: "Restored your previous photo editing session!",
   msg_paper_added: "Custom paper added successfully! 📄",
   msg_paper_updated: "Custom paper updated successfully! 💾",
-  msg_paper_deleted: "Custom paper deleted"
+  msg_paper_deleted: "Custom paper deleted",
+  msg_tool_spot_heal: "Spot Heal Brush: Click on blemishes or acne to remove them.",
+  msg_tool_red_eye: "Red-Eye Removal: Click directly inside reddish pupil to correct.",
+  msg_retouch_applied: "Retouch brush adjustment applied!"
 };

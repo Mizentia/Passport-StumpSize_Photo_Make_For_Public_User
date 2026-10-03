@@ -21,11 +21,11 @@ export function setupSettingsPaperForm(onSettingChange) {
   function updatePaperLabels() {
     const isBn = appState.get('lang') === 'bn';
     if (isPaperHeightFirst) {
-      if (paperLabel1) paperLabel1.textContent = isBn ? 'উচ্চতা (Height)' : 'Height (উচ্চতা)';
-      if (paperLabel2) paperLabel2.textContent = isBn ? 'প্রস্থ (Width)' : 'Width (প্রস্থ)';
+      if (paperLabel1) paperLabel1.textContent = isBn ? 'উচ্চতা' : 'Height';
+      if (paperLabel2) paperLabel2.textContent = isBn ? 'প্রস্থ' : 'Width';
     } else {
-      if (paperLabel1) paperLabel1.textContent = isBn ? 'প্রস্থ (Width)' : 'Width (প্রস্থ)';
-      if (paperLabel2) paperLabel2.textContent = isBn ? 'উচ্চতা (Height)' : 'Height (উচ্চতা)';
+      if (paperLabel1) paperLabel1.textContent = isBn ? 'প্রস্থ' : 'Width';
+      if (paperLabel2) paperLabel2.textContent = isBn ? 'উচ্চতা' : 'Height';
     }
   }
 
@@ -47,7 +47,7 @@ export function setupSettingsPaperForm(onSettingChange) {
 
     paperPreview.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div><strong>${isBn ? '📏 সাইজ প্রিভিউ:' : '📏 Size Preview:'}</strong> <span style="color: var(--accent-primary); font-weight: 700;">${wInStr} x ${hInStr}"</span> &bull; <span>${wMmStr} x ${hMmStr} mm</span></div>
+        <div><strong>${isBn ? '📏 সাইজ প্রিভিউ:' : '📏 Size Preview:'}</strong> <span style="color: var(--accent-primary); font-weight: 700;">${wInStr} x ${hInStr}"</span> &bull; <span>${wMmStr} x ${hMmStr} ${isBn ? 'মিমি' : 'mm'}</span></div>
       </div>`;
   }
 
@@ -75,7 +75,8 @@ export function setupSettingsPaperForm(onSettingChange) {
     renderCustomPapersInSettings(onSettingChange);
     renderCustomPaperOptionsInSelect();
     if (paperNameInput) paperNameInput.value = '';
-    toastService.show(`Custom paper '${name}' added 📄`, 'success');
+    const isBnToast = appState.get('lang') === 'bn';
+    toastService.show(isBnToast ? `কাস্টম কাগজ '${name}' যোগ হয়েছে 📄` : `Custom paper '${name}' added 📄`, 'success');
   });
 
   return { updatePaperLabels, updatePaperConversionPreview };

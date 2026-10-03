@@ -7,12 +7,12 @@ export function updateLiveCustomPreview(elements, state) {
   const isBn = appState.get('lang') === 'bn';
 
   if (state.isHeightFirst) {
-    if (label1) label1.textContent = isBn ? '২. উচ্চতা (Height)' : '2. Height (উচ্চতা)';
-    if (label2) label2.textContent = isBn ? '৩. প্রস্থ (Width)' : '3. Width (প্রস্থ)';
+    if (label1) label1.textContent = isBn ? '২. উচ্চতা' : '2. Height';
+    if (label2) label2.textContent = isBn ? '৩. প্রস্থ' : '3. Width';
     btnSwap?.setAttribute('title', isBn ? 'পোর্ট্রেট মোড ↕' : 'Portrait Mode ↕');
   } else {
-    if (label1) label1.textContent = isBn ? '২. প্রস্থ (Width)' : '2. Width (প্রস্থ)';
-    if (label2) label2.textContent = isBn ? '৩. উচ্চতা (Height)' : '3. Height (উচ্চতা)';
+    if (label1) label1.textContent = isBn ? '২. প্রস্থ' : '2. Width';
+    if (label2) label2.textContent = isBn ? '৩. উচ্চতা' : '3. Height';
     btnSwap?.setAttribute('title', isBn ? 'ল্যান্ডস্কেপ মোড ↔' : 'Landscape Mode ↔');
   }
 

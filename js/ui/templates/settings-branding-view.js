@@ -3,7 +3,7 @@ export function getSettingsBrandingAndStandardsHtml() {
     <div class="settings-tab-pane" id="panePrint">
       <div class="settings-grid-2col">
         <div class="setting-card">
-          <div class="setting-section-header">🔲 Photo Border Parameters</div>
+          <div class="setting-section-header" data-i18n="sec_border_params">🔲 Photo Border Parameters</div>
           <div class="setting-item-row">
             <div class="setting-item-info"><span class="setting-title" data-i18n="setting_border_color_title">Border Color</span></div>
             <select id="settingBorderColorSelect" class="form-select">
@@ -22,7 +22,7 @@ export function getSettingsBrandingAndStandardsHtml() {
           </div>
         </div>
         <div class="setting-card">
-          <div class="setting-section-header">✂️ Cutting Guide Marks</div>
+          <div class="setting-section-header" data-i18n="sec_cutting_guides">✂️ Cutting Guide Marks</div>
           <div class="setting-item-row">
             <div class="setting-item-info"><span class="setting-title" data-i18n="setting_cut_style_title">Cut Marks Line Style</span></div>
             <select id="settingCutMarksSelect" class="form-select">
@@ -57,13 +57,13 @@ export function getSettingsBrandingAndStandardsHtml() {
     <div class="settings-tab-pane" id="paneBranding">
       <div class="settings-grid-2col">
         <div class="setting-card">
-          <div class="setting-section-header">🏢 Studio Business Information</div>
+          <div class="setting-section-header" data-i18n="sec_studio_info">🏢 Studio Business Information</div>
           <div class="setting-item-row"><div class="setting-item-info"><span class="setting-title" data-i18n="setting_studio_name_title">Studio Business Name</span></div><input type="text" id="settingStudioNameInput" class="form-input" placeholder="e.g. Mizentia Digital Photo Lab" value="Passport & Stamp Studio Pro"></div>
           <div class="setting-item-row"><div class="setting-item-info"><span class="setting-title" data-i18n="setting_studio_phone_title">Studio Phone</span></div><input type="text" id="settingStudioPhoneInput" class="form-input" placeholder="e.g. +880 1700-000000"></div>
           <div class="toggle-row" style="padding: 4px 0;"><div><div class="setting-title" data-i18n="setting_studio_tag_title">Print Tagline on Sheet</div></div><label class="switch"><input type="checkbox" id="settingStudioTagToggle"><span class="slider-toggle"></span></label></div>
         </div>
         <div class="setting-card">
-          <div class="setting-section-header">🛡️ Proof Watermark</div>
+          <div class="setting-section-header" data-i18n="sec_proof_watermark">🛡️ Proof Watermark</div>
           <div class="toggle-row" style="padding: 4px 0;"><div><div class="setting-title" data-i18n="setting_watermark_title">Sample Watermark</div></div><label class="switch"><input type="checkbox" id="settingWatermarkToggle"><span class="slider-toggle"></span></label></div>
           <div class="setting-item-row"><div class="setting-item-info"><span class="setting-title" data-i18n="setting_watermark_text_title">Watermark Text</span></div><input type="text" id="settingWatermarkTextInput" class="form-input" value="SAMPLE PROOF"></div>
         </div>

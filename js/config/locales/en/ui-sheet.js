@@ -72,7 +72,7 @@ export const EN_UI_SHEET = {
   label_sheet_spacing: "📏 Margins & Gap",
   label_border_width: "Thickness", label_border_color: "Color",
   label_cut_style: "Line Style", label_cut_width: "Thickness", label_cut_color: "Cut Marks Color",
-  opt_cut_inter_boundary: "Smart Center Line (মাঝখানের দাগ)",
+  opt_cut_inter_boundary: "Smart Center Line",
   opt_cut_cross: "Corner Cross (+)", opt_cut_angle: "Corner Angles (L)",
   opt_cut_dash: "Dashed Box (- - -)", opt_cut_dot: "Dotted Box (. . .)",
   tooltip_download_sheet_png: "Download Lossless PNG Print Sheet",

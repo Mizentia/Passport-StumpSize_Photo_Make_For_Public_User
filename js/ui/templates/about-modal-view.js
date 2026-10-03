@@ -7,50 +7,50 @@ export function getAboutModalHtml() {
             <div class="about-logo-icon">📸</div>
             <div class="about-title-wrap">
               <h3 class="about-app-name" data-i18n="app_title">Passport Photo Maker</h3>
-              <span class="about-version-pill">v2.5 (2026 Edition) &bull; 100% Free Public Tool</span>
+              <span class="about-version-pill" data-i18n="about_badge_version">Version 2.5 (2026 Edition) • 100% Free Public Tool</span>
             </div>
           </div>
           <button class="modal-close-btn" id="btnCloseAboutModal" title="Close">✕</button>
         </div>
         <div class="modal-body about-modal-body">
           <div class="about-mission-box">
-            <p class="about-mission-text">
-              <strong>Passport Photo Maker</strong> হলো নকশা ল্যাবের সাধারণ পাবলিক ও শিক্ষার্থীদের জন্য উন্মুক্ত একটি সম্পূর্ণ ফ্রি ও আধুনিক ফটো টুল। যেকোনো কম্পিউটার বা মোবাইল থেকে কোনো রকম ফি বা ওয়াটারমার্ক ছাড়া অতি সহজে আন্তর্জাতিক মানের পাসপোর্ট, ভিসা, স্ট্যাম্প ও কাস্টম সাইজের ছবি তৈরি ও শিট প্রিন্ট করার সুবিধার্থে এটি তৈরি করা হয়েছে।
+            <p class="about-mission-text" data-i18n="about_modal_mission">
+              Passport Photo Maker is a free, modern photo tool created by Noksha Lab for the public and students. It enables easy creation and sheet printing of international standard passport, visa, stamp, and custom photos without fees or watermarks from any device.
             </p>
           </div>
 
           <div class="about-meta-grid">
             <div class="about-meta-item">
-              <span class="meta-label">🏢 উদ্দ্যোগ ও কারিগরি দল:</span>
-              <span class="meta-value">নকশা ল্যাব (Noksha Lab Core Architecture)</span>
+              <span class="meta-label" data-i18n="about_meta_initiative_label">Initiative & Team:</span>
+              <span class="meta-value" data-i18n="about_meta_initiative_val">Noksha Lab Architecture</span>
             </div>
             <div class="about-meta-item">
-              <span class="meta-label">👨‍💻 লিড ডেভেলপার ও নির্মাতা:</span>
-              <span class="meta-value">Mizanur Rahman (মিজানুর রহমান)</span>
+              <span class="meta-label" data-i18n="about_meta_dev_label">Lead Developer:</span>
+              <span class="meta-value" data-i18n="about_meta_dev_val">Mizanur Rahman</span>
             </div>
             <div class="about-meta-item">
-              <span class="meta-label">📅 প্রকাশ ও সংস্করণ:</span>
-              <span class="meta-value">অক্টোবর ২০২৬ &bull; Version 2.5 (Public Free Release)</span>
+              <span class="meta-label" data-i18n="about_meta_release_label">Version & Release:</span>
+              <span class="meta-value" data-i18n="about_meta_release_val">Version 2.5 (October 2026 Edition)</span>
             </div>
             <div class="about-meta-item">
-              <span class="meta-label">🔒 গোপনীয়তা ও নিরাপত্তা:</span>
-              <span class="meta-value">১০০% লোকাল ক্লায়েন্ট প্রসেসিং (আপনার ছবি আপনার ডিভাইসেই সুরক্ষিত থাকে)</span>
+              <span class="meta-label" data-i18n="about_modal_privacy_label">Privacy & Security:</span>
+              <span class="meta-value" data-i18n="about_modal_privacy_val">100% local client processing (your photos stay on your device)</span>
             </div>
           </div>
 
           <div class="about-features-section">
-            <h4 class="about-features-title">🌟 মূল সুবিধাসমূহ:</h4>
+            <h4 class="about-features-title" data-i18n="about_modal_features_title">🌟 Key Capabilities:</h4>
             <ul class="about-features-list">
-              <li>✨ <strong>বায়োমেট্রিক অটো-ফিট:</strong> চোখের লেভেল ও ফেস এরিয়া নিখুঁতভাবে ফ্রেম করা।</li>
-              <li>📐 <strong>কাস্টম সাইজ ও ডিপিআই:</strong> যেকোনো মিমি/ইঞ্চি/পিক্সেল সাইজ এবং নিজস্ব DPI নির্বাচন।</li>
-              <li>🖨️ <strong>মাল্টি-ফটো শিট টাইলিং:</strong> 4R, 5R, A4 ও কাস্টম পেপারে এক বা একাধিক ছবির স্বয়ংক্রিয় শিট।</li>
-              <li>🪄 <strong>ব্যাকগ্রাউন্ড ও কালার রিটাচ:</strong> একক ক্লিকে সাদা/নীল/পছন্দমতো ব্যাকড্রপ ও ফটো এনহ্যান্স।</li>
+              <li data-i18n="about_modal_feat_1">✨ Biometric Auto-Fit: Precise eye level and face ratio framing.</li>
+              <li data-i18n="about_modal_feat_2">📐 Custom Sizes & DPI: Any mm/inch/pixel size with ultra-HD DPI.</li>
+              <li data-i18n="about_modal_feat_3">🖨️ Multi-Photo Tiling: Automated sheets on 4R, 5R, A4, or custom papers.</li>
+              <li data-i18n="about_modal_feat_4">🪄 Backdrop & Retouch: 1-click solid backdrop change and photo enhancement.</li>
             </ul>
           </div>
         </div>
         <div class="modal-footer about-modal-footer">
-          <span class="about-copyright">&copy; 2026 Noksha Lab. Free for Public & Commercial Use.</span>
-          <button class="btn-primary" id="btnCloseAboutBtn">ঠিক আছে (Got It)</button>
+          <span class="about-copyright" data-i18n="about_modal_copyright">© 2026 Noksha Lab. Free for Public & Commercial Use.</span>
+          <button class="btn-primary" id="btnCloseAboutBtn" data-i18n="btn_got_it">Got It</button>
         </div>
       </div>
     </div>

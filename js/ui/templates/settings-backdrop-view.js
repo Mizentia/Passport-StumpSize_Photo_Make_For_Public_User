@@ -29,7 +29,7 @@ export function getSettingsBackdropHtml() {
         </div>
         <div class="setting-card" style="grid-column: span 2;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-            <div class="setting-section-header" style="margin-bottom: 0;">🤖 Smart AI Background Removal</div>
+            <div class="setting-section-header" style="margin-bottom: 0;" data-i18n="ai_bg_remover_title">🤖 Smart AI Background Removal</div>
             <div style="display: flex; align-items: center; gap: 8px;">
               <label class="form-label" style="margin-bottom: 0; font-size: 0.76rem;" data-i18n="setting_bg_feather_title">Edge Feather:</label>
               <input type="range" id="settingBgFeatherSlider" class="range-slider" min="1" max="5" value="2" style="width: 80px;">
@@ -40,8 +40,8 @@ export function getSettingsBackdropHtml() {
             <div style="display: flex; align-items: center; gap: 10px;">
               <span style="font-size: 1.4rem;">✨</span>
               <div>
-                <div style="font-weight: 700; font-size: 0.9rem; color: var(--text-main);">অটোমেটিক হাই-প্রিসিশন AI ব্যাকগ্রাউন্ড রিমুভার</div>
-                <div style="font-size: 0.78rem; color: var(--text-dim);">Google MediaPipe ও সার্ভার-সাইড ক্লাউড AI মডেল দ্বারা স্বয়ংক্রিয়ভাবে সূক্ষ্ম ও নিখুঁত ব্যাকগ্রাউন্ড রিমুভ সম্পন্ন হয়। কোনো কনফিগারেশন বা কী-এর প্রয়োজন নেই।</div>
+                <div style="font-weight: 700; font-size: 0.9rem; color: var(--text-main);" data-i18n="ai_bg_remover_title">AI Background Remover Engine</div>
+                <div style="font-size: 0.78rem; color: var(--text-dim);" data-i18n="ai_bg_remover_desc">High-precision face edge detection and background extraction powered by in-browser neural networks.</div>
               </div>
             </div>
           </div>

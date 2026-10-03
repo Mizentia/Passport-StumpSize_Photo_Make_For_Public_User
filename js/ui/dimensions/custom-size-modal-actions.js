@@ -70,8 +70,9 @@ export function setupModalActions(elements, state, onRedraw, closeModal) {
   btnDeleteModal?.addEventListener('click', () => {
     const presetId = hiddenId?.value;
     if (!presetId) return;
-    const p = photoPresetStore.getPreset(presetId);
-    if (confirm(`Delete preset '${p ? p.name : presetId}'?`)) {
+    const isBnDel = appState.get('lang') === 'bn';
+    const confirmMsg = isBnDel ? `'${p ? p.name : presetId}' প্রিসেটটি কি মুছে ফেলতে চান?` : `Delete preset '${p ? p.name : presetId}'?`;
+    if (confirm(confirmMsg)) {
       photoPresetStore.deletePreset(presetId);
       closeModal();
       if (appState.get('selectedPreset') === presetId) appState.set('selectedPreset', 'bd_passport', true);

@@ -10,7 +10,7 @@ export const EN_UI_HISTORY = {
   history_filter_drafts: "📝 Auto-saved Drafts",
   badge_saved: "Saved",
   badge_draft: "Draft",
-  btn_load_more_history: "Load More History (আরও দেখুন)",
+  btn_load_more_history: "Load More History",
   btn_clear_all_history: "🗑️ Clear History",
   btn_export_history: "📥 Export History",
   btn_import_history: "📤 Import History",

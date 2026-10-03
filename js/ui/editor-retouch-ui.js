@@ -1,4 +1,5 @@
 import { appState } from '../core/state.js';
+import { t } from '../config/i18n.js';
 import { applySpotHealing, applyRedEyeFix } from '../processors/retouch-engine.js';
 import { toastService } from './toast-service.js';
 import { mapCanvasClickToImage } from './retouch/canvas-coord-mapper.js';
@@ -21,12 +22,12 @@ export function setupRetouchUI(mainCanvas, triggerRedraw) {
 
   btnSpot?.addEventListener('click', () => {
     setActiveTool(activeRetouchTool === 'spot' ? 'none' : 'spot');
-    if (activeRetouchTool === 'spot') toastService.show('Spot Healing: Click blemishes to heal', 'info');
+    if (activeRetouchTool === 'spot') toastService.show(t('msg_tool_spot_heal'), 'info');
   });
 
   btnRedEye?.addEventListener('click', () => {
     setActiveTool(activeRetouchTool === 'redeye' ? 'none' : 'redeye');
-    if (activeRetouchTool === 'redeye') toastService.show('Red-Eye Fix: Click red pupils to correct', 'info');
+    if (activeRetouchTool === 'redeye') toastService.show(t('msg_tool_red_eye'), 'info');
   });
 
   sliderSize?.addEventListener('input', (e) => {
@@ -54,7 +55,7 @@ export function setupRetouchUI(mainCanvas, triggerRedraw) {
       appState.set('originalImage', updatedImg);
       appState.recordHistorySnapshot();
       triggerRedraw();
-      toastService.show('Retouch applied!', 'success');
+      toastService.show(t('msg_retouch_applied'), 'success');
     };
     updatedImg.src = offscreen.toDataURL('image/png');
   });

@@ -14,10 +14,10 @@ export function getSettingsTabHtml() {
           <div class="settings-header-info">
             <div class="settings-badge">
               <span>⚙️</span>
-              <span class="settings-badge-text">Studio Master Preferences</span>
+              <span class="settings-badge-text" data-i18n="settings_badge_text">Studio Master Preferences</span>
             </div>
             <h2 class="settings-page-title" data-i18n="title_settings">⚙️ Studio Pro Master Configuration</h2>
-            <p class="settings-page-subtitle">Configure DPI resolution, default paper sizes, print margins, hotkeys, and automated backup rules.</p>
+            <p class="settings-page-subtitle" data-i18n="settings_page_subtitle">Configure DPI resolution, default paper sizes, print margins, hotkeys, and automated backup rules.</p>
           </div>
           <div class="settings-header-actions">
             <button class="btn-primary" id="btnSaveSettingsTop">
@@ -26,7 +26,7 @@ export function getSettingsTabHtml() {
             </button>
             <button class="btn-secondary" id="btnSettingsBackToStudio">
               <span>←</span>
-              <span>স্টুডিওতে ফিরুন (Back)</span>
+              <span data-i18n="btn_back_to_studio">Return to Studio</span>
             </button>
           </div>
         </div>

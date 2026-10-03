@@ -10,12 +10,12 @@ export function setupPaperModalDialog(elements, state) {
   function updateLabels() {
     const isBn = appState.get('lang') === 'bn';
     if (state.isHeightFirst) {
-      if (label1) label1.textContent = isBn ? 'উচ্চতা (Height)' : 'Height (উচ্চতা)';
-      if (label2) label2.textContent = isBn ? 'প্রস্থ (Width)' : 'Width (প্রস্থ)';
+      if (label1) label1.textContent = isBn ? 'উচ্চতা' : 'Height';
+      if (label2) label2.textContent = isBn ? 'প্রস্থ' : 'Width';
       btnSwap?.setAttribute('title', isBn ? 'পোর্ট্রেট মোড ↕' : 'Portrait Mode ↕');
     } else {
-      if (label1) label1.textContent = isBn ? 'প্রস্থ (Width)' : 'Width (প্রস্থ)';
-      if (label2) label2.textContent = isBn ? 'উচ্চতা (Height)' : 'Height (উচ্চতা)';
+      if (label1) label1.textContent = isBn ? 'প্রস্থ' : 'Width';
+      if (label2) label2.textContent = isBn ? 'উচ্চতা' : 'Height';
       btnSwap?.setAttribute('title', isBn ? 'ল্যান্ডস্কেপ মোড ↔' : 'Landscape Mode ↔');
     }
   }
@@ -48,8 +48,8 @@ export function setupPaperModalDialog(elements, state) {
     preview.innerHTML = `
       <div style="display: flex; flex-direction: column; gap: 4px;">
         <div style="display: flex; justify-content: space-between;">
-          <span><strong>${isBn ? '📏 সাইজ:' : '📏 Size:'}</strong> ${wInStr} x ${hInStr}" (${wMmStr} x ${hMmStr} mm)</span>
-          <span style="color: var(--accent-primary); font-weight: 700;">${state.isHeightFirst ? '↕ Portrait' : '↔ Landscape'}</span>
+          <span><strong>${isBn ? '📏 সাইজ:' : '📏 Size:'}</strong> ${wInStr} x ${hInStr}" (${wMmStr} x ${hMmStr} ${isBn ? 'মিমি' : 'mm'})</span>
+          <span style="color: var(--accent-primary); font-weight: 700;">${state.isHeightFirst ? (isBn ? '↕ পোর্ট্রেট' : '↕ Portrait') : (isBn ? '↔ ল্যান্ডস্কেপ' : '↔ Landscape')}</span>
         </div>
         <div style="font-size: 0.76rem; color: #10b981; font-weight: 600;">
           ✨ ${isBn ? `১ পেজে ধরে: ${toBengaliNumeral(cap)}টি ছবি (${toBengaliNumeral(cols)} কলাম x ${toBengaliNumeral(rows)} সারি)` : `Capacity: ${cap} photos/page (${cols} cols x ${rows} rows)`}

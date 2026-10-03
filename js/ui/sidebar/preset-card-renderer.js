@@ -44,7 +44,9 @@ export function createPresetCard(preset, index, total, sortMode, currentSelected
     if (act === 'edit') { e.stopPropagation(); openCustomSizeModal(preset); return; }
     if (act === 'delete') {
       e.stopPropagation();
-      if (confirm(`Delete preset '${displayName}'?`)) {
+      const isBnDel = appState.get('lang') === 'bn';
+      const confirmMsg = isBnDel ? `'${displayName}' প্রিসেটটি কি মুছে ফেলতে চান?` : `Delete preset '${displayName}'?`;
+      if (confirm(confirmMsg)) {
         photoPresetStore.deletePreset(preset.id);
         if (appState.get('selectedPreset') === preset.id) appState.set('selectedPreset', 'bd_passport', true);
         renderAll(); if (onRedraw) onRedraw();
