@@ -76,26 +76,17 @@
   display: inline-flex; align-items: center; justify-content: center; font-size: 0.95rem;
   transition: transform 0.25s ease;
 }
-/* Labels are hidden by default to keep clean compact layout; NEVER expand on hover */
-.nav-action-btn .btn-label, .nav-page-btn .btn-label {
-  display: none; font-size: 0.8rem; white-space: nowrap;
-}
-/* Subtle elegant hover without resizing or stretching */
+.nav-action-btn .btn-label, .nav-page-btn .btn-label { display: none; font-size: 0.8rem; white-space: nowrap; }
 .nav-action-btn:hover:not(.active), .nav-page-btn:hover:not(.active) {
   background: var(--bg-card-hover); border-color: var(--accent-primary);
   box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
 }
-/* Only currently active page button is highlighted and expanded with label */
 .nav-page-btn.active {
   background: var(--accent-gradient) !important; color: #ffffff !important;
   box-shadow: 0 4px 14px rgba(59, 130, 246, 0.45) !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
-  padding: 6px 12px; gap: 6px;
+  border-color: rgba(255, 255, 255, 0.2) !important; padding: 6px 12px; gap: 6px;
 }
-.nav-page-btn.active .btn-label {
-  display: inline-block;
-}
-
+.nav-page-btn.active .btn-label { display: inline-block; }
 .nav-action-btn:hover .lang-flag { transform: scale(1.15) rotate(-6deg); }
 .nav-action-btn:hover .theme-icon { transform: rotate(20deg) scale(1.15); }
 .nav-page-btn:hover .settings-icon { transform: rotate(45deg); }

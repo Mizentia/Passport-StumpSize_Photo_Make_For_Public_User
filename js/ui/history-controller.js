@@ -5,11 +5,11 @@ import { toastService } from './toast-service.js';
 import { t } from '../config/i18n.js';
 import { batchManager } from '../core/batch-manager.js';
 
-export function createHistoryController({ gridContainer, emptyState, paginationArea, loadMoreBtn, onOpenRecord }) {
+export function createHistoryController({ gridContainer, emptyState, paginationArea, loadMoreBtn, onOpenRecord, tabManager }) {
   let activeFilter = 'all';
   let searchQuery = '';
   let currentOffset = 0;
-  const pageSize = 12;
+  const pageSize = 24;
   let isLoading = false;
 
   async function loadPage(reset = false) {
@@ -30,9 +30,11 @@ export function createHistoryController({ gridContainer, emptyState, paginationA
         paginationArea.style.display = 'none';
       } else {
         emptyState.style.display = 'none';
-        res.items.forEach((rec) => {
+        res.items.forEach((rec, idx) => {
+          const serialNum = currentOffset + idx + 1;
           const el = createHistoryCardElement(
             rec,
+            serialNum,
             (item) => onOpenRecord(item),
             (item) => {
               if (item.snapshot?.originalImageData) {
@@ -46,7 +48,8 @@ export function createHistoryController({ gridContainer, emptyState, paginationA
                 await deleteHistoryRecord(item.id);
                 loadPage(true);
               }
-            }
+            },
+            tabManager
           );
           gridContainer.appendChild(el);
         });
@@ -59,15 +62,8 @@ export function createHistoryController({ gridContainer, emptyState, paginationA
     }
   }
 
-  function setFilter(filter) {
-    activeFilter = filter;
-    loadPage(true);
-  }
-
-  function setSearch(query) {
-    searchQuery = query;
-    loadPage(true);
-  }
+  function setFilter(filter) { activeFilter = filter; loadPage(true); }
+  function setSearch(query) { searchQuery = query; loadPage(true); }
 
   async function clearAll() {
     if (confirm(t('confirm_clear_all_history'))) {

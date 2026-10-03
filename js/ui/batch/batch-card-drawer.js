@@ -3,6 +3,7 @@ import { batchManager } from '../../core/batch-manager.js';
 import { renderPhotoToCanvas } from '../../core/canvas-engine.js';
 import { updateUIFromState } from '../editor-transform-ui.js';
 import { toBengaliNumeral } from '../../config/i18n.js';
+import { positionFloatingDrawer } from '../drawer-position-helper.js';
 
 let activeDrawer = null;
 let drawerHideTimer = null;
@@ -18,13 +19,31 @@ export function attachCardHoverDrawer(card, item, mainCanvas, tabManager) {
     removeActiveDrawer();
     showDrawer(card, item, mainCanvas, tabManager);
   });
-
   card.addEventListener('mouseleave', (e) => {
-    if (activeDrawer && e.relatedTarget && activeDrawer.contains(e.relatedTarget)) {
-      return;
-    }
+    if (activeDrawer && e.relatedTarget && activeDrawer.contains(e.relatedTarget)) return;
     drawerHideTimer = setTimeout(removeActiveDrawer, 220);
   });
+}
+
+function buildSheetItemsHtml(isBn) {
+  const sheetCanvases = (typeof window !== 'undefined' && window._renderedSheetPages) || [];
+  if (sheetCanvases.length > 0) {
+    return sheetCanvases.map((canvas, idx) => {
+      const pageStr = isBn ? toBengaliNumeral(idx + 1) : idx + 1;
+      return `<div class="drawer-step-item drawer-sheet-item" data-page="${idx}">
+        <div class="drawer-thumb-wrap">
+          <img src="${canvas.toDataURL('image/jpeg', 0.6)}" class="drawer-thumb drawer-sheet-thumb" alt="Sheet ${idx + 1}">
+          <span class="drawer-thumb-badge">${isBn ? `পৃষ্ঠা ${pageStr}` : `Page ${pageStr}`}</span>
+        </div>
+        <span class="drawer-step-sub">${isBn ? '৩. প্রিন্ট শীট' : 'Step 3: Sheet'}</span>
+      </div>`;
+    }).join('');
+  }
+  return `<div class="drawer-step-item drawer-sheet-item" data-page="0">
+    <div class="drawer-thumb-wrap"><div class="drawer-thumb drawer-sheet-placeholder">🖨️</div>
+      <span class="drawer-thumb-badge">${isBn ? 'শীট ভিউ' : 'Sheet View'}</span></div>
+    <span class="drawer-step-sub">${isBn ? '৩. প্রিন্ট শীট' : 'Step 3: Sheet'}</span>
+  </div>`;
 }
 
 function showDrawer(card, item, mainCanvas, tabManager) {
@@ -36,32 +55,6 @@ function showDrawer(card, item, mainCanvas, tabManager) {
   const editorThumb = item.editorThumbDataUrl || item.thumbDataUrl || item.originalImage?.src || '';
   const presetName = (item.selectedPreset || 'passport').replace(/_/g, ' ').toUpperCase();
   const sizeText = item.customSize ? `${Math.round(item.customSize.widthMm)}x${Math.round(item.customSize.heightMm)}mm` : '';
-  const sheetCanvases = (typeof window !== 'undefined' && window._renderedSheetPages) || [];
-
-  let sheetHtml = '';
-  if (sheetCanvases.length > 0) {
-    sheetCanvases.forEach((canvas, idx) => {
-      const pageStr = isBn ? toBengaliNumeral(idx + 1) : idx + 1;
-      const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
-      sheetHtml += `
-        <div class="drawer-step-item drawer-sheet-item" data-page="${idx}">
-          <div class="drawer-thumb-wrap">
-            <img src="${dataUrl}" class="drawer-thumb drawer-sheet-thumb" alt="Sheet ${idx + 1}">
-            <span class="drawer-thumb-badge">${isBn ? `পৃষ্ঠা ${pageStr}` : `Page ${pageStr}`}</span>
-          </div>
-          <span class="drawer-step-sub">${isBn ? '৩. প্রিন্ট শীট' : 'Step 3: Sheet'}</span>
-        </div>`;
-    });
-  } else {
-    sheetHtml = `
-      <div class="drawer-step-item drawer-sheet-item" data-page="0">
-        <div class="drawer-thumb-wrap">
-          <div class="drawer-thumb drawer-sheet-placeholder">🖨️</div>
-          <span class="drawer-thumb-badge">${isBn ? 'শীট ভিউ' : 'Sheet View'}</span>
-        </div>
-        <span class="drawer-step-sub">${isBn ? '৩. প্রিন্ট শীট' : 'Step 3: Sheet'}</span>
-      </div>`;
-  }
 
   drawer.innerHTML = `
     <div class="drawer-inner">
@@ -74,19 +67,15 @@ function showDrawer(card, item, mainCanvas, tabManager) {
           </div>
           <span class="drawer-step-sub">${isBn ? '২. স্টুডিও এডিটর' : 'Step 2: Editor'}</span>
         </div>
-        ${sheetHtml}
+        ${buildSheetItemsHtml(isBn)}
       </div>
     </div>`;
 
-  drawer.addEventListener('mouseenter', () => {
-    if (drawerHideTimer) { clearTimeout(drawerHideTimer); drawerHideTimer = null; }
-  });
-
+  drawer.addEventListener('mouseenter', () => { if (drawerHideTimer) clearTimeout(drawerHideTimer); });
   drawer.addEventListener('mouseleave', (e) => {
     if (e.relatedTarget && card.contains(e.relatedTarget)) return;
     drawerHideTimer = setTimeout(removeActiveDrawer, 220);
   });
-
   drawer.querySelector('.drawer-editor-item')?.addEventListener('click', (e) => {
     e.stopPropagation();
     removeActiveDrawer();
@@ -95,7 +84,6 @@ function showDrawer(card, item, mainCanvas, tabManager) {
     updateUIFromState();
     tabManager?.switchTab('editor');
   });
-
   drawer.querySelectorAll('.drawer-sheet-item').forEach((si) => {
     si.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -105,27 +93,6 @@ function showDrawer(card, item, mainCanvas, tabManager) {
     });
   });
 
-  // Append to body as a floating portal so overflow: auto never clips it
   document.body.appendChild(drawer);
-
-  const rect = card.getBoundingClientRect();
-  const drawerRect = drawer.getBoundingClientRect();
-
-  let left = rect.left + rect.width / 2;
-  const halfWidth = drawerRect.width / 2;
-  const padding = 12;
-  if (left - halfWidth < padding) left = halfWidth + padding;
-  if (left + halfWidth > window.innerWidth - padding) left = window.innerWidth - halfWidth - padding;
-
-  let top = rect.top - drawerRect.height - 12;
-  if (top < 10) {
-    top = rect.bottom + 12;
-    drawer.classList.add('drawer-below');
-  }
-
-  drawer.style.position = 'fixed';
-  drawer.style.left = `${left}px`;
-  drawer.style.top = `${top}px`;
-  drawer.style.transform = 'translateX(-50%)';
-  drawer.style.zIndex = '99999';
+  positionFloatingDrawer(drawer, card);
 }

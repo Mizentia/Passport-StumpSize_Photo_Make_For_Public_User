@@ -1,0 +1,19 @@
+/* About Features Grid */
+.about-features-container { display: flex; flex-direction: column; }
+.about-features-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;
+}
+.about-feat-card {
+  background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 20px;
+  box-shadow: var(--glass-shadow); display: flex; flex-direction: column; gap: 10px;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+.about-feat-card:hover { transform: translateY(-2px); border-color: var(--accent-primary); }
+.feat-icon-wrap {
+  width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--bg-inset);
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+  border: 1px solid var(--border-subtle);
+}
+.feat-title { font-size: 0.95rem; font-weight: 700; color: var(--text-main); }
+.feat-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }

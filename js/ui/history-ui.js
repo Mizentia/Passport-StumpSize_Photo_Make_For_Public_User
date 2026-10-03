@@ -20,6 +20,7 @@ export function setupHistoryUI(tabManager) {
     emptyState,
     paginationArea,
     loadMoreBtn,
+    tabManager,
     onOpenRecord: (record) => {
       restoreHistoryRecord(record, tabManager);
     }
@@ -43,29 +44,18 @@ export function setupHistoryUI(tabManager) {
     }, 250);
   });
 
-  loadMoreBtn?.addEventListener('click', () => {
-    controller.loadPage(false);
-  });
-
-  clearBtn?.addEventListener('click', () => {
-    controller.clearAll();
-  });
+  loadMoreBtn?.addEventListener('click', () => controller.loadPage(false));
+  clearBtn?.addEventListener('click', () => controller.clearAll());
 
   historyManager.onChange(() => {
-    if (appState.get('activeTab') === 'history') {
-      controller.loadPage(true);
-    }
+    if (appState.get('activeTab') === 'history') controller.loadPage(true);
   });
 
   appState.on('activeTab', (tab) => {
-    if (tab === 'history') {
-      controller.loadPage(true);
-    }
+    if (tab === 'history') controller.loadPage(true);
   });
 
   appState.on('lang', () => {
-    if (appState.get('activeTab') === 'history') {
-      controller.loadPage(true);
-    }
+    if (appState.get('activeTab') === 'history') controller.loadPage(true);
   });
 }
