@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { MIME_TYPES, getLocalIPv4 } = require('./scripts/server-utils.js');
 const { handleServerBgRemoval, handleServerConfigInfo } = require('./scripts/server-bg-proxy.js');
-const { handleServerProjectBrand } = require('./scripts/server-brand-proxy.js');
+const { handleServerProjectBrand, handleServerManifest } = require('./scripts/server-brand-proxy.js');
 
 const PORT = process.env.PORT || 8086;
 const isLocalOnly = process.argv.includes('--local-only');
@@ -13,10 +13,10 @@ const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Api-Key');
-
   if (req.method === 'OPTIONS') { res.writeHead(204); return res.end(); }
 
   let reqPath = decodeURI(req.url.split('?')[0]);
+  if (reqPath === '/manifest.json') return handleServerManifest(req, res, 8086, 'photo-public');
   if (reqPath === '/api/bg-remove' && req.method === 'POST') return handleServerBgRemoval(req, res);
   if (reqPath === '/api/server-info' && req.method === 'GET') return handleServerConfigInfo(req, res);
   if (reqPath === '/api/project-brand') return handleServerProjectBrand(req, res, 8086, 'photo-public');
@@ -64,11 +64,9 @@ function startServer(portToTry) {
     console.log('================================================================\n');
     console.log(isLocalOnly ? ` Mode: LOCALHOST ONLY | URL: http://localhost:${portToTry}/\n` : ` 💻 This PC URL:       http://localhost:${portToTry}/\n 📱 Mobile / WiFi URL: http://${localIP}:${portToTry}/\n`);
     console.log(' Server Status: RUNNING (Press Ctrl+C to stop)\n================================================================\n');
-
     if (shouldOpenBrowser) {
       const { exec } = require('child_process');
-      const openUrl = isLocalOnly ? `http://localhost:${portToTry}/` : `http://${localIP}:${portToTry}/`;
-      exec(`start ${openUrl}`);
+      exec(`start ${isLocalOnly ? `http://localhost:${portToTry}/` : `http://${localIP}:${portToTry}/`}`);
     }
   });
 }
@@ -77,17 +75,9 @@ server.on('error', (err) => {
   if (err.code === 'EADDRINUSE') {
     let nextPort = currentPort + 1;
     if (nextPort === 8085) nextPort = 8087;
-    if (nextPort <= 8100) {
-      console.log(`⚠️ Port ${currentPort} is in use, switching to port ${nextPort}...`);
-      currentPort = nextPort;
-      startServer(currentPort);
-    } else {
-      console.error(`❌ Error: All ports from ${PORT} to ${nextPort - 1} occupied.`);
-      process.exit(1);
-    }
-  } else {
-    console.error('❌ Server error:', err);
-  }
+    if (nextPort <= 8100) { currentPort = nextPort; startServer(currentPort); }
+    else { console.error(`❌ Error: All ports from ${PORT} to ${nextPort - 1} occupied.`); process.exit(1); }
+  } else { console.error('❌ Server error:', err); }
 });
 
 startServer(currentPort);

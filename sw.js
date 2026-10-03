@@ -1,4 +1,4 @@
-const CACHE_NAME = 'passport-studio-cache-v8';
+const CACHE_NAME = 'passport-studio-cache-v9';
 
 const CORE_ASSETS = [
   './', './index.html', './manifest.json',

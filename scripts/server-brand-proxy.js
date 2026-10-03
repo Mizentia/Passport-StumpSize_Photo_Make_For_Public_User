@@ -15,16 +15,12 @@ async function fetchFromFirestore(targetPort = 8086, slug = 'photo-public') {
     const res = await fetch(FIRESTORE_PROJECTS_URL, { signal: AbortSignal.timeout(4000) });
     if (res.ok) {
       const json = await res.json();
-      const list = json.fields?.value?.arrayValue?.values || [];
-      for (const item of list) {
+      for (const item of (json.fields?.value?.arrayValue?.values || [])) {
         const p = item.mapValue?.fields;
         if (!p) continue;
         const portVal = parseInt(p.port?.integerValue || p.port?.stringValue || '0', 10);
-        const slugVal = p.slug?.stringValue;
-        const idVal = p.id?.stringValue;
-        if (portVal === targetPort || slugVal === slug || idVal === 'proj-photo-public') {
-          const logo = p.logo?.stringValue;
-          if (logo) return { success: true, logo, name: p.name?.stringValue, banglaName: p.banglaName?.stringValue };
+        if (portVal === targetPort || p.slug?.stringValue === slug || p.id?.stringValue === 'proj-photo-public') {
+          if (p.logo?.stringValue) return { success: true, logo: p.logo.stringValue, name: p.name?.stringValue, banglaName: p.banglaName?.stringValue };
         }
       }
     }
@@ -39,32 +35,22 @@ async function fetchFromFirestore(targetPort = 8086, slug = 'photo-public') {
       if (logo) return { success: true, logo, name: fields?.bizName?.stringValue || 'Noksha Lab' };
     }
   } catch (_) {}
-
   return null;
 }
 
 async function fetchProjectBrand(targetPort = 8086, slug = 'photo-public') {
-  // 1. Try local/configured Admin Dashboard API
   for (const base of getDashboardUrls()) {
     try {
-      const res = await fetch(`${base}/api/public-settings`, {
-        headers: { 'Content-Type': 'application/json' },
-        signal: AbortSignal.timeout(1500)
-      });
+      const res = await fetch(`${base}/api/public-settings`, { headers: { 'Content-Type': 'application/json' }, signal: AbortSignal.timeout(1500) });
       if (res.ok) {
         const json = await res.json();
-        const projs = json.projects || [];
-        const found = projs.find(p => p.port === targetPort || p.slug === slug || p.id === 'proj-photo-public');
+        const found = (json.projects || []).find(p => p.port === targetPort || p.slug === slug || p.id === 'proj-photo-public');
         if (found?.logo) return { success: true, logo: found.logo, name: found.name, banglaName: found.banglaName };
       }
     } catch (_) {}
   }
-
-  // 2. Query Central Firestore Database directly
   const firestoreResult = await fetchFromFirestore(targetPort, slug);
   if (firestoreResult?.logo) return firestoreResult;
-
-  // 3. Guaranteed verified database logo fallback
   return { success: true, logo: DEFAULT_DB_LOGO, name: 'Passport & Stamp Photo Maker' };
 }
 
@@ -76,4 +62,31 @@ async function handleServerProjectBrand(req, res, targetPort = 8086, slug = 'pho
   res.end(JSON.stringify(result));
 }
 
-module.exports = { handleServerProjectBrand, fetchProjectBrand, DEFAULT_DB_LOGO };
+async function handleServerManifest(req, res, targetPort = 8086, slug = 'photo-public') {
+  res.setHeader('Content-Type', 'application/manifest+json; charset=utf-8');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Cache-Control', 'no-cache');
+  const brand = await fetchProjectBrand(targetPort, slug);
+  const activeLogo = brand?.logo || DEFAULT_DB_LOGO;
+  const manifest = {
+    name: brand?.name || "Passport Photo Maker",
+    short_name: "PassportPhoto",
+    description: "Free High-Resolution & Custom Size Passport Photo Maker",
+    start_url: "./index.html",
+    display: "standalone",
+    background_color: "#0f172a",
+    theme_color: "#2563eb",
+    orientation: "any",
+    icons: [
+      { src: "icons/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
+      { src: "icons/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
+      { src: activeLogo, sizes: "512x512", type: "image/png", purpose: "any maskable" }
+    ],
+    categories: ["photography", "utilities", "productivity"],
+    shortcuts: [{ name: "New Passport Photo", url: "./index.html?action=new", description: "Upload and create a new passport photo" }]
+  };
+  res.writeHead(200);
+  res.end(JSON.stringify(manifest, null, 2));
+}
+
+module.exports = { handleServerProjectBrand, handleServerManifest, fetchProjectBrand, DEFAULT_DB_LOGO };

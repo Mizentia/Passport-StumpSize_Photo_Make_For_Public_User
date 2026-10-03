@@ -19,6 +19,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/ayewcaxj/image/upload/v1790432997/ChatGPT_Image_Sep_26_2026_08_27_13_PM_ufluye.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "categories": ["photography", "utilities", "productivity"],
