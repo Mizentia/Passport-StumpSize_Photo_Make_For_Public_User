@@ -22,6 +22,7 @@ export function attachHistoryCardHoverDrawer(card, record, tabManager) {
     if (activeDrawer && e.relatedTarget && activeDrawer.contains(e.relatedTarget)) return;
     hideTimer = setTimeout(removeActiveHistoryDrawer, 220);
   });
+  card.addEventListener('contextmenu', (e) => { e.preventDefault(); e.stopPropagation(); });
 
   // Mobile Long-Press (Press & Hold)
   let pressTimer = null;

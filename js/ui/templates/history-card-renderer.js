@@ -56,6 +56,10 @@ export function createHistoryCardElement(record, serialNum, onOpen, onAddToSheet
     if (card._suppressClickUntil && Date.now() < card._suppressClickUntil) return;
     onOpen(record);
   });
+  card.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  });
 
   attachHistoryCardHoverDrawer(card, record, tabManager);
   return card;
