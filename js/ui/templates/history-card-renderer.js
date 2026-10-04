@@ -52,7 +52,10 @@ export function createHistoryCardElement(record, serialNum, onOpen, onAddToSheet
     e.stopPropagation();
     onDelete(record);
   });
-  card.addEventListener('click', () => onOpen(record));
+  card.addEventListener('click', () => {
+    if (card._suppressClickUntil && Date.now() < card._suppressClickUntil) return;
+    onOpen(record);
+  });
 
   attachHistoryCardHoverDrawer(card, record, tabManager);
   return card;

@@ -14,11 +14,15 @@ export function positionFloatingDrawer(drawer, anchorEl) {
   }
 
   let top = rect.top - drawerRect.height - 10;
-  if (top < 10) {
+  if (top < padding) {
     top = rect.bottom + 10;
     drawer.classList.add('drawer-below');
   } else {
     drawer.classList.remove('drawer-below');
+  }
+
+  if (top + drawerRect.height > window.innerHeight - padding) {
+    top = Math.max(padding, window.innerHeight - drawerRect.height - padding);
   }
 
   drawer.style.position = 'fixed';
