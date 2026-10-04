@@ -17,7 +17,7 @@
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-areas:
-      "brand actions"
+      "brand drawer-btn"
       "stepper stepper";
     gap: 6px 8px;
     padding: 6px 10px;
@@ -25,7 +25,8 @@
   }
   .brand { grid-area: brand; justify-content: flex-start; text-align: left; }
   .brand-logo { width: 30px; height: 30px; font-size: 1rem; }
-  .header-actions { grid-area: actions; justify-content: flex-end; gap: 4px; }
+  .header-actions { display: none !important; }
+  .nav-drawer-toggle-btn { grid-area: drawer-btn; display: inline-flex; align-items: center; justify-content: center; }
   .stepper-nav {
     grid-area: stepper; width: 100%; display: flex;
     overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;

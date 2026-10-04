@@ -19,6 +19,7 @@ import { setupPwaInstaller } from './ui/pwa-installer.js';
 import { createPhotoLoadHandler } from './app-image-loader.js';
 import { setupAppCoreListeners } from './app-lifecycle.js';
 import { setupAboutModal } from './ui/about-modal-ui.js';
+import { setupNavDrawer } from './ui/nav-drawer-ui.js';
 
 function initApp() {
   toastService.init();
@@ -26,6 +27,7 @@ function initApp() {
   const mainCanvas = document.getElementById('mainCanvas');
   const sheetCanvas = document.getElementById('sheetCanvas');
   const tabManager = setupTabManager();
+  setupNavDrawer(tabManager);
 
   setupAppCoreListeners();
   const handleLoadedImage = createPhotoLoadHandler(mainCanvas, tabManager);

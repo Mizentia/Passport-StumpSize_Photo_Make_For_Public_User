@@ -9,29 +9,32 @@
   /* Header & Navigation */
   .navbar {
     display: grid; grid-template-columns: 1fr auto;
-    grid-template-areas: "brand actions" "stepper stepper";
-    gap: 5px 6px; padding: 5px 8px; align-items: center;
+    grid-template-areas: "brand drawer-btn" "stepper stepper";
+    gap: 6px 8px; padding: 6px 10px; align-items: center;
   }
-  .brand { grid-area: brand; justify-content: flex-start; gap: 6px; min-width: 0; }
-  .brand-logo { width: 28px; height: 28px; font-size: 0.95rem; }
-  .brand-text { min-width: 0; }
-  .brand-text h1 { font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; }
-  .brand-text p { display: none; }
-  
-  .header-actions { grid-area: actions; width: auto; gap: 3px; justify-content: flex-end; }
-  .header-actions-group { padding: 2px; gap: 2px; }
-  .nav-action-btn, .nav-page-btn { height: 26px; min-width: 26px; padding: 0 5px; }
-  .nav-action-btn .btn-icon, .nav-page-btn .btn-icon { font-size: 0.82rem; }
-  .btn-install-app { height: 26px; padding: 0 6px; font-size: 0.68rem; gap: 3px; }
-  
+  .brand { grid-area: brand; justify-content: flex-start; gap: 8px; min-width: 0; }
+  .brand-logo { width: 32px; height: 32px; font-size: 1rem; flex-shrink: 0; }
+  .brand-text { min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+  .brand-text h1 { font-size: 0.9rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
+  .brand-text p { display: block !important; font-size: 0.62rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; margin-top: 1px; }
+
+  /* Desktop action buttons hidden on mobile -> Accessible in Drawer */
+  .header-actions { display: none !important; }
+
+  /* 3-line / 3-dot drawer menu button on row 1 right */
+  .nav-drawer-toggle-btn {
+    grid-area: drawer-btn; display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  /* Row 2: Stepper Nav spanning full width */
   .stepper-nav {
     grid-area: stepper; width: 100%; display: flex;
     overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
-    padding: 2px; gap: 3px;
+    padding: 2px 3px; gap: 4px;
   }
   .stepper-nav::-webkit-scrollbar { display: none; }
   .step-btn {
-    height: 26px; padding: 0 4px; font-size: 0.72rem; flex: 1 1 0; min-width: 0; justify-content: center;
+    height: 28px; padding: 0 6px; font-size: 0.74rem; flex: 1 1 0; min-width: 0; justify-content: center;
   }
 
   /* Upload Section */

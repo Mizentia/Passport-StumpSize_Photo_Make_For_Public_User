@@ -34,6 +34,13 @@ export function getHeaderNavHtml() {
           <button class="nav-action-btn btn-lang" id="btnToggleLang" data-i18n-title="toggle_lang_title" data-shortcut-key="toggleLang"><span class="btn-icon lang-flag">🇧🇩</span><span class="btn-label lang-label">বাংলা</span></button>
         </div>
       </div>
+      <button class="nav-drawer-toggle-btn" id="btnOpenNavDrawer" title="Menu" aria-label="Open Menu">
+        <span class="drawer-hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
     </header>
   `;
 }

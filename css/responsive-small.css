@@ -3,20 +3,12 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 480px) {
   .app-container { padding: 5px 6px; gap: 8px; }
-  .navbar { padding: 4px 6px; gap: 4px 6px; }
-  .brand-text p { display: none; }
-  .brand-text h1 { font-size: 0.82rem; }
-  .brand-logo { width: 26px; height: 26px; font-size: 0.9rem; }
-  .step-btn { padding: 0 4px; height: 24px; font-size: 0.68rem; }
-  .header-actions { gap: 2px; }
-  .header-actions-group { gap: 2px; padding: 1px 2px; }
-  .btn-lang, .btn-theme, .btn-settings, .btn-install-app { padding: 0 4px; font-size: 0.72rem; }
-  .nav-action-btn, .nav-page-btn { height: 24px; min-width: 24px; padding: 0 4px; }
-  .nav-action-btn .btn-icon, .nav-page-btn .btn-icon { font-size: 0.78rem; }
-  .btn-install-app { height: 24px; padding: 0 5px; font-size: 0.64rem; }
-  
-  /* Keep action buttons compact icons to prevent navbar overflow */
-  .nav-action-btn .btn-label, .nav-page-btn:not(.active) .btn-label { display: none !important; }
+  .navbar { padding: 5px 8px; gap: 5px 6px; }
+  .brand-text h1 { font-size: 0.82rem; line-height: 1.15; }
+  .brand-text p { display: block !important; font-size: 0.58rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .brand-logo { width: 28px; height: 28px; font-size: 0.92rem; }
+  .nav-drawer-toggle-btn { width: 30px; height: 30px; }
+  .step-btn { padding: 0 4px; height: 26px; font-size: 0.7rem; }
 
   .canvas-viewport-card { padding: 10px 8px; }
   .tool-card { padding: 12px 10px; }

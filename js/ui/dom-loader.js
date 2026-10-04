@@ -1,4 +1,5 @@
 import { getHeaderNavHtml } from './templates/header-nav-view.js';
+import { getNavDrawerHtml } from './templates/nav-drawer-view.js';
 import { getUploadTabHtml } from './templates/upload-tab-view.js';
 import { getEditorSidebarLeftHtml } from './templates/editor-sidebar-left-view.js';
 import { getEditorCanvasHtml } from './templates/editor-canvas-view.js';
@@ -38,6 +39,7 @@ export function loadApplicationDOM() {
         ${getSettingsTabHtml()}
       </main>
     </div>
+    ${getNavDrawerHtml()}
     ${getWebcamModalHtml()}
     ${getCustomSizeModalHtml()}
     ${getCustomPaperModalHtml()}
