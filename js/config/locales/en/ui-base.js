@@ -86,8 +86,8 @@ export const EN_UI_BASE = {
   tab_retouch_short: "Retouch & Beauty", tab_attire_short: "Formal Attire",
   card_size_presets_short: "Presets", card_backdrop_short: "Backdrop",
   btn_manage_presets: "Manage", tooltip_manage_presets: "Manage Presets (Sort, Add, Reset)",
-  mobile_tool_size: "📏 Size", mobile_tool_backdrop: "🎨 Backdrop",
-  mobile_tool_retouch: "✨ Retouch", mobile_tool_attire: "👔 Attire",
+  mobile_tool_size: "Size", mobile_tool_backdrop: "Backdrop",
+  mobile_tool_retouch: "Retouch", mobile_tool_attire: "Attire",
   btn_change_photo_short: "Photo", btn_auto_fit_short: "Fit Face", btn_auto_enhance_short: "Enhance",
   btn_save_project_short: "Save", btn_add_to_history_short: "Batch"
 };

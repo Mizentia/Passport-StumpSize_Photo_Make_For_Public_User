@@ -1,17 +1,13 @@
 async function attemptCutout(url, payload) {
   try {
     const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(25000)
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload), signal: AbortSignal.timeout(25000)
     });
     if (res.status === 404 || res.status === 405) return null;
     const json = await res.json().catch(() => ({}));
     return { ok: res.ok, status: res.status, json };
-  } catch (_) {
-    return null;
-  }
+  } catch (_) { return null; }
 }
 
 let cachedDbUrls = null;
@@ -43,18 +39,21 @@ async function getCandidateEndpoints() {
   const isLocal = typeof window !== 'undefined' && ['localhost', '127.0.0.1'].includes(window.location.hostname);
   const dbUrls = await getDashboardUrlsFromDatabase();
   if (isLocal) {
-    return ['/api/bg-remove', `${dbUrls.localUrl}/api/api-keys/cutout`, 'http://127.0.0.1:8086/api/bg-remove', `${dbUrls.liveUrl}/api/api-keys/cutout`];
+    return ['/api/bg-remove', `${dbUrls.localUrl}/api/api-keys/cutout`, `${dbUrls.liveUrl}/api/api-keys/cutout`];
   }
   return [`${dbUrls.liveUrl}/api/api-keys/cutout`, '/api/bg-remove'];
 }
 
 export async function tryServerSideBgRemoval(imageElement, provider = 'auto') {
   try {
+    const origW = imageElement.naturalWidth || imageElement.width || 400;
+    const origH = imageElement.naturalHeight || imageElement.height || 400;
+    const scale = Math.min(1, 1280 / Math.max(origW, origH));
+    const targetW = Math.round(origW * scale), targetH = Math.round(origH * scale);
+
     const canvas = document.createElement('canvas');
-    canvas.width = imageElement.naturalWidth || imageElement.width || 400;
-    canvas.height = imageElement.naturalHeight || imageElement.height || 400;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(imageElement, 0, 0);
+    canvas.width = targetW; canvas.height = targetH;
+    canvas.getContext('2d').drawImage(imageElement, 0, 0, targetW, targetH);
 
     const imageBase64 = canvas.toDataURL('image/png');
     const payload = { imageBase64, provider, projectId: 'proj-photo-public', port: 8086 };
@@ -64,22 +63,25 @@ export async function tryServerSideBgRemoval(imageElement, provider = 'auto') {
     for (const url of endpoints) {
       const resp = await attemptCutout(url, payload);
       if (!resp) continue;
-
       const { ok, json, status } = resp;
       if (ok && json.success && json.resultImageBase64) {
         const processedImg = new Image();
-        await new Promise((resolve, reject) => {
-          processedImg.onload = resolve;
-          processedImg.onerror = reject;
-          processedImg.src = json.resultImageBase64;
-        });
-        return { success: true, image: processedImg };
+        await new Promise((res, rej) => { processedImg.onload = res; processedImg.onerror = rej; processedImg.src = json.resultImageBase64; });
+        if (scale >= 1) return { success: true, image: processedImg };
+        const fullCanvas = document.createElement('canvas');
+        fullCanvas.width = origW; fullCanvas.height = origH;
+        fullCanvas.getContext('2d').drawImage(processedImg, 0, 0, origW, origH);
+        const fullImg = new Image();
+        await new Promise((res, rej) => { fullImg.onload = res; fullImg.onerror = rej; fullImg.src = fullCanvas.toDataURL('image/png'); });
+        return { success: true, image: fullImg };
       }
-
-      if (json && json.error) return { success: false, error: json.error, fallbackToLocal: json.fallbackToLocal ?? false };
-      lastError = `সার্ভার এরর কোড: ${status}`;
+      if (json && json.error) {
+        lastError = json.error;
+        if (json.fallbackToLocal) return { success: false, error: json.error, fallbackToLocal: true };
+        continue;
+      }
+      lastError = status === 413 ? 'ছবির সাইজ ক্লাউড লিমিট (৪.৫ MB) ছাড়িয়েছে' : `সার্ভার এরর কোড: ${status}`;
     }
-
     return { success: false, fallbackToLocal: false, error: lastError || 'সার্ভারের সাথে সংযোগ স্থাপন করা যায়নি।' };
   } catch (e) {
     return { success: false, fallbackToLocal: false, error: e.message };

@@ -1,4 +1,5 @@
 import { appState } from '../core/state.js';
+import { batchManager } from '../core/batch-manager.js';
 
 export function setupTabManager() {
   const stepButtons = document.querySelectorAll('.step-btn');
@@ -8,6 +9,7 @@ export function setupTabManager() {
   const btnOpenSettings = document.getElementById('btnOpenSettings');
 
   function switchTab(tabId) {
+    if (tabId === 'sheet') batchManager.saveActiveSnapshot();
     appState.set('activeTab', tabId);
 
     // Update step buttons (1. Upload, 2. Editor, 3. Sheet)

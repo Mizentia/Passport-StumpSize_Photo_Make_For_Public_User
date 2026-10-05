@@ -30,28 +30,32 @@ class BatchManager {
   }
 
   saveActiveSnapshot() {
+    if (!this.activeId && this.items.length > 0) this.activeId = this.items[0].id;
     if (!this.activeId) return;
     const cur = this.items.find((i) => i.id === this.activeId);
     if (!cur) return;
-    cur.originalImage = appState.get('originalImage');
-    cur.segmentedImage = appState.get('segmentedImage');
-    cur.isBackgroundRemoved = appState.get('isBackgroundRemoved');
-    cur.backgroundColor = appState.get('backgroundColor');
-    cur.cropOffset = { ...appState.get('cropOffset') };
-    cur.zoom = appState.get('zoom');
+    cur.originalImage = appState.get('originalImage') || cur.originalImage;
+    cur.segmentedImage = appState.get('segmentedImage') || null;
+    cur.isBackgroundRemoved = !!appState.get('isBackgroundRemoved');
+    cur.backgroundColor = appState.get('backgroundColor') || '#ffffff';
+    cur.cropOffset = { ...(appState.get('cropOffset') || { x: 0, y: 0 }) };
+    cur.zoom = appState.get('zoom') || 1;
     cur.rotation = appState.get('rotation') || 0;
     cur.flipH = !!appState.get('flipH');
     cur.flipV = !!appState.get('flipV');
-    cur.filters = { ...appState.get('filters') };
-    cur.selectedSuit = appState.get('selectedSuit');
-    cur.suitScale = appState.get('suitScale');
-    cur.suitOffsetX = appState.get('suitOffsetX');
-    cur.suitOffsetY = appState.get('suitOffsetY');
-    cur.suitCollarWidth = appState.get('suitCollarWidth');
-    cur.suitRotation = appState.get('suitRotation');
-    cur.selectedPreset = appState.get('selectedPreset');
-    cur.customSize = { ...(appState.get('customSize') || {}) };
-    try { cur.editorThumbDataUrl = generateThumbDataUrl(); } catch (_) {}
+    cur.filters = { ...(appState.get('filters') || {}) };
+    cur.selectedSuit = appState.get('selectedSuit') || 'none';
+    cur.suitScale = appState.get('suitScale') ?? 1.0;
+    cur.suitOffsetX = appState.get('suitOffsetX') ?? 0;
+    cur.suitOffsetY = appState.get('suitOffsetY') ?? 0;
+    cur.suitCollarWidth = appState.get('suitCollarWidth') ?? 1.0;
+    cur.suitRotation = appState.get('suitRotation') ?? 0;
+    cur.selectedPreset = appState.get('selectedPreset') || cur.selectedPreset;
+    cur.customSize = { ...(appState.get('customSize') || cur.customSize || {}) };
+    try {
+      const thumb = generateThumbDataUrl();
+      if (thumb) { cur.thumbDataUrl = thumb; cur.editorThumbDataUrl = thumb; }
+    } catch (_) {}
   }
 
   setActive(id) {

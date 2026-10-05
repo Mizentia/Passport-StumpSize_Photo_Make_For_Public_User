@@ -83,8 +83,8 @@ export const BN_UI_BASE = {
   tab_retouch_short: "রিটাচ ও বিউটি", tab_attire_short: "ফরমাল স্যুট",
   card_size_presets_short: "সাইজ প্রিসেট", card_backdrop_short: "ব্যাকড্রপ",
   btn_manage_presets: "ম্যানেজ", tooltip_manage_presets: "প্রিসেট ব্যবস্থাপনা (সাজানো, যোগ, রিসেট)",
-  mobile_tool_size: "📏 সাইজ", mobile_tool_backdrop: "🎨 ব্যাকড্রপ",
-  mobile_tool_retouch: "✨ রিটাচ", mobile_tool_attire: "👔 স্যুট",
+  mobile_tool_size: "সাইজ", mobile_tool_backdrop: "ব্যাকড্রপ",
+  mobile_tool_retouch: "রিটাচ", mobile_tool_attire: "স্যুট",
   btn_change_photo_short: "ছবি", btn_auto_fit_short: "ফিট ফেস", btn_auto_enhance_short: "এনহ্যান্স",
   btn_save_project_short: "সেভ", btn_add_to_history_short: "ব্যাচ"
 };

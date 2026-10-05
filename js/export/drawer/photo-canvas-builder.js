@@ -3,31 +3,36 @@ import { appState } from '../../core/state.js';
 import { batchManager } from '../../core/batch-manager.js';
 
 export function buildPhotoCanvasList(photoCanvas, totalRequestedCopies) {
+  batchManager.saveActiveSnapshot();
   const batchItems = batchManager.getAll();
   const photoList = [];
 
   if (batchItems.length >= 1) {
     batchItems.forEach((item) => {
       const c = document.createElement('canvas');
+      const isActive = item.id === batchManager.activeId;
       const itemState = {
         ...appState.state,
         originalImage: item.originalImage || appState.get('originalImage'),
-        segmentedImage: item.segmentedImage,
-        isBackgroundRemoved: item.isBackgroundRemoved ?? appState.get('isBackgroundRemoved'),
-        backgroundColor: item.backgroundColor || appState.get('backgroundColor') || '#ffffff',
-        cropOffset: item.cropOffset || appState.get('cropOffset'),
-        zoom: item.zoom || appState.get('zoom') || 1,
-        filters: item.filters || appState.get('filters'),
-        selectedSuit: item.selectedSuit || appState.get('selectedSuit') || 'none',
-        suitScale: item.suitScale ?? appState.get('suitScale') ?? 1.0,
-        suitOffsetX: item.suitOffsetX ?? appState.get('suitOffsetX') ?? 0,
-        suitOffsetY: item.suitOffsetY ?? appState.get('suitOffsetY') ?? 0,
-        suitCollarWidth: item.suitCollarWidth ?? appState.get('suitCollarWidth') ?? 1.0,
-        suitRotation: item.suitRotation ?? appState.get('suitRotation') ?? 0,
+        segmentedImage: isActive ? (appState.get('segmentedImage') || item.segmentedImage) : (item.segmentedImage || null),
+        isBackgroundRemoved: isActive ? !!appState.get('isBackgroundRemoved') : !!item.isBackgroundRemoved,
+        backgroundColor: (isActive ? appState.get('backgroundColor') : item.backgroundColor) || '#ffffff',
+        cropOffset: isActive ? { ...(appState.get('cropOffset') || { x: 0, y: 0 }) } : (item.cropOffset || { x: 0, y: 0 }),
+        zoom: isActive ? (appState.get('zoom') || 1) : (item.zoom || 1),
+        rotation: isActive ? (appState.get('rotation') || 0) : (item.rotation || 0),
+        flipH: isActive ? !!appState.get('flipH') : !!item.flipH,
+        flipV: isActive ? !!appState.get('flipV') : !!item.flipV,
+        filters: isActive ? { ...(appState.get('filters') || {}) } : (item.filters || {}),
+        selectedSuit: (isActive ? appState.get('selectedSuit') : item.selectedSuit) || 'none',
+        suitScale: (isActive ? appState.get('suitScale') : item.suitScale) ?? 1.0,
+        suitOffsetX: (isActive ? appState.get('suitOffsetX') : item.suitOffsetX) ?? 0,
+        suitOffsetY: (isActive ? appState.get('suitOffsetY') : item.suitOffsetY) ?? 0,
+        suitCollarWidth: (isActive ? appState.get('suitCollarWidth') : item.suitCollarWidth) ?? 1.0,
+        suitRotation: (isActive ? appState.get('suitRotation') : item.suitRotation) ?? 0,
         selectedPreset: item.selectedPreset || appState.get('selectedPreset'),
         customSize: item.customSize || appState.get('customSize')
       };
-      
+
       renderPhotoToCanvas(c, { state: itemState });
       const { width: pW, height: pH } = getTargetDimensions(itemState.selectedPreset, itemState);
       const qty = Math.max(1, Number(item.quantityOnSheet) || 1);

@@ -58,21 +58,9 @@ export function setupSheetUI(primarySheetCanvas, photoCanvas) {
   document.getElementById('btnDownloadSheetPdf')?.addEventListener('click', () => handleExport('pdf'));
   document.getElementById('btnPrintDirect')?.addEventListener('click', () => printCanvasDirect(window._renderedSheetPages || [primarySheetCanvas]));
 
-  appState.on('lang', () => {
-    renderCustomPaperOptionsInSelect();
-    updateDynamicButtonLabels();
-    triggerSheetRedraw();
-  });
-
-  appState.on('dpi', () => {
-    updateDynamicButtonLabels();
-    triggerSheetRedraw();
-  });
-
-  appState.on('customPaperPresets', () => {
-    renderCustomPaperOptionsInSelect();
-    triggerSheetRedraw();
-  });
+  appState.on('lang', () => { renderCustomPaperOptionsInSelect(); updateDynamicButtonLabels(); triggerSheetRedraw(); });
+  appState.on('dpi', () => { updateDynamicButtonLabels(); triggerSheetRedraw(); });
+  appState.on('customPaperPresets', () => { renderCustomPaperOptionsInSelect(); triggerSheetRedraw(); });
 
   batchManager.onChange(() => {
     renderSheetBatchTray(triggerSheetRedraw);
@@ -87,6 +75,7 @@ export function setupSheetUI(primarySheetCanvas, photoCanvas) {
 
   appState.on('activeTab', (tab) => {
     if (tab === 'sheet') {
+      batchManager.saveActiveSnapshot();
       renderCustomPaperOptionsInSelect();
       updateDynamicButtonLabels();
       renderSheetBatchTray(triggerSheetRedraw);

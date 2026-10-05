@@ -37,7 +37,7 @@ function isOriginAllowed(req) {
   try {
     const host = new URL(origin).hostname.toLowerCase();
     if (host === 'localhost' || host === '127.0.0.1') return true;
-    if (host.endsWith('.vercel.app')) return true;
+    if (host.endsWith('.vercel.app') || host.endsWith('.github.io')) return true;
     if (host.includes('nokshalab') || host.includes('mizentia')) return true;
     return false;
   } catch (_) {
