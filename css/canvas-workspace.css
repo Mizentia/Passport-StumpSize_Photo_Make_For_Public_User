@@ -1,32 +1,32 @@
 .canvas-workspace-layout {
   display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto 1fr;
-  gap: 6px; align-items: center; justify-items: center; max-width: 100%; width: 100%; margin: auto;
+  gap: 4px; align-items: center; justify-items: center; max-width: 100%; width: 100%; margin: auto;
   min-width: 0;
 }
-.ruler-corner { width: 24px; height: 24px; }
+.ruler-corner { width: 18px; height: 18px; }
 .ruler-top {
   grid-column: 2; grid-row: 1; display: flex; align-items: center; justify-content: center;
-  gap: 6px; width: 100%; padding: 4px 8px; background: var(--ruler-bg);
-  border: 1px dashed var(--ruler-border); border-radius: var(--radius-sm);
-  font-size: 0.75rem; font-weight: 700; color: var(--ruler-text);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  gap: 4px; width: 100%; padding: 2px 6px; background: var(--ruler-bg);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
+  font-size: 0.68rem; font-weight: 600; color: var(--ruler-text);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; height: 20px;
 }
 .ruler-left {
   grid-column: 1; grid-row: 2; display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 6px; height: 100%; padding: 8px 4px; background: var(--ruler-bg);
-  border: 1px dashed var(--ruler-border); border-radius: var(--radius-sm);
-  font-size: 0.75rem; font-weight: 700; color: var(--ruler-text);
+  justify-content: center; gap: 4px; height: 100%; padding: 6px 2px; background: var(--ruler-bg);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
+  font-size: 0.68rem; font-weight: 600; color: var(--ruler-text);
   writing-mode: vertical-lr; transform: rotate(180deg);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 20px;
 }
 .canvas-container {
   grid-column: 2; grid-row: 2; position: relative; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
-  border-radius: 4px; background: #ffffff; display: flex; align-items: center;
-  justify-content: center; max-width: 100%; max-height: 420px; border: 1px solid var(--border-strong);
-  overflow: hidden; min-width: 0;
+  border-radius: 4px; background: #ffffff; display: inline-flex; align-items: center;
+  justify-content: center; width: fit-content; max-width: 100%; max-height: 440px;
+  border: 1px solid var(--border-strong); overflow: hidden; min-width: 0; margin: 0 auto;
 }
 [data-theme="light"] .canvas-container { box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14); }
-#mainCanvas { max-width: 100%; max-height: 420px; width: auto; height: auto; display: block; object-fit: contain; cursor: grab; user-select: none; touch-action: none; }
+#mainCanvas { max-width: 100%; max-height: 440px; width: 100%; height: 100%; display: block; object-fit: contain; cursor: grab; user-select: none; touch-action: none; }
 #mainCanvas:active { cursor: grabbing; }
 
 .crop-guide-overlay {

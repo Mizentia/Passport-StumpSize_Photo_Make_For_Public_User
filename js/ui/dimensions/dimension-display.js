@@ -56,6 +56,11 @@ export function updateDimensionDisplay() {
   if (elPx) elPx.textContent = `${pxWFormatted} x ${pxHFormatted} ${pxUnit}`;
   if (elDpi) elDpi.textContent = dpiFormatted;
   if (elZoom) elZoom.textContent = `🔍 ${zoomFormatted}%`;
-  if (elRulerW) elRulerW.textContent = `⟵ ${wMmStr} ${mmUnit} / ${wInchStr}" (${pxWFormatted} ${pxUnit}) ⟶`;
-  if (elRulerH) elRulerH.textContent = `⟵ ${hMmStr} ${mmUnit} / ${hInchStr}" (${pxHFormatted} ${pxUnit}) ⟶`;
+  if (elRulerW) elRulerW.textContent = `${wMmStr} ${mmUnit} (${pxWFormatted}px)`;
+  if (elRulerH) elRulerH.textContent = `${hMmStr} ${mmUnit} (${pxHFormatted}px)`;
+
+  const canvasContainer = document.querySelector('.canvas-container');
+  if (canvasContainer && pxW && pxH) {
+    canvasContainer.style.aspectRatio = `${pxW} / ${pxH}`;
+  }
 }

@@ -19,6 +19,17 @@ export function bindPresetToolbarControls(onRedraw) {
 
   if (!isToolbarBound) {
     isToolbarBound = true;
+    document.getElementById('btnTogglePresetSettings')?.addEventListener('click', () => {
+      const drawer = document.getElementById('presetManageDrawer');
+      const btn = document.getElementById('btnTogglePresetSettings');
+      const grid = document.getElementById('photoPresetGrid');
+      if (drawer) {
+        const isHidden = drawer.style.display === 'none' || !drawer.style.display;
+        drawer.style.display = isHidden ? 'flex' : 'none';
+        btn?.classList.toggle('active', isHidden);
+        grid?.classList.toggle('manage-mode-active', isHidden);
+      }
+    });
     document.getElementById('btnAddPhotoPresetHeader')?.addEventListener('click', () => openCustomSizeModal(null));
     chkManualSort?.addEventListener('change', (e) => {
       const mode = e.target.checked ? 'manual' : 'recent';

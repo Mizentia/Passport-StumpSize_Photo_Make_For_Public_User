@@ -8,6 +8,7 @@ import { setupEditorAttire } from './editor-attire-ui.js';
 import { setupEditorTransforms } from './editor-transform-ui.js';
 import { setupRetouchUI } from './editor-retouch-ui.js';
 import { renderSavedPhotoPresetsInSidebar } from './custom-preset-manager.js';
+import { setupEditorTabsController } from './editor-tabs-controller.js';
 import { historyManager } from '../core/history-manager.js';
 import { toastService } from './toast-service.js';
 import { t } from '../config/i18n.js';
@@ -25,6 +26,7 @@ export function setupEditorUI(canvasElement) {
   setupRetouchUI(canvasElement, triggerRedraw);
   setupCustomSizeModal(triggerRedraw);
   renderSavedPhotoPresetsInSidebar(triggerRedraw);
+  setupEditorTabsController();
 
   document.getElementById('btnChangePhoto')?.addEventListener('click', () => {
     document.getElementById('fileUploadInput')?.click();

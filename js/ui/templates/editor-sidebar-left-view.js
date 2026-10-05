@@ -1,14 +1,28 @@
 export function getEditorSidebarLeftHtml() {
   return `
-    <aside class="editor-sidebar">
-      <div class="tool-card">
+    <aside class="editor-sidebar" id="editorSidebarLeft">
+      <div class="sidebar-tab-nav" id="leftSidebarTabNav">
+        <button class="sidebar-tab-btn active" id="btnLeftTabPresets" type="button" data-left-tab="presets">
+          <span class="sidebar-tab-icon">📏</span>
+          <span data-i18n="card_size_presets_short">Sizes & Presets</span>
+        </button>
+        <button class="sidebar-tab-btn" id="btnLeftTabBackdrop" type="button" data-left-tab="backdrop">
+          <span class="sidebar-tab-icon">🎨</span>
+          <span data-i18n="card_backdrop_short">Backdrop</span>
+        </button>
+      </div>
+
+      <div class="tool-card sidebar-tab-panel active" id="panelPresets">
         <div class="tool-card-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
           <div class="tool-card-title" style="margin-bottom: 0;" data-i18n="card_size_presets">📏 Photo Size & Country Presets</div>
+          <button class="btn-preset-settings-gear" id="btnTogglePresetSettings" title="Manage Presets" data-i18n-title="tooltip_manage_presets" type="button">
+            ⚙️ <span data-i18n="btn_manage_presets">Manage</span>
+          </button>
+        </div>
+        <div class="preset-sort-bar" id="presetManageDrawer" style="display: none;">
           <button class="btn-preset-add-header" id="btnAddPhotoPresetHeader" title="Add New Preset" data-i18n-title="tooltip_add_preset" type="button">
             <span data-i18n="btn_add_preset">➕ Add Size</span>
           </button>
-        </div>
-        <div class="preset-sort-bar">
           <label class="sort-mode-toggle" title="Toggle between manual fixed order and recent usage sorting" data-i18n-title="sort_mode_tip">
             <input type="checkbox" id="chkManualPresetSort">
             <span class="sort-mode-slider"></span>
@@ -22,11 +36,10 @@ export function getEditorSidebarLeftHtml() {
         <div class="preset-grid" id="photoPresetGrid"></div>
       </div>
 
-      <!-- Compact Studio Backdrop Card -->
-      <div class="tool-card" style="padding: 10px 12px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-          <div class="tool-card-title" style="margin-bottom: 0; font-size: 0.84rem;" data-i18n="card_backdrop">🎨 Studio Backdrop</div>
-          <button type="button" id="btnQuickConfigBgEngines" title="Manage Engines in Settings" style="background: none; border: none; font-size: 0.72rem; color: var(--accent-primary); cursor: pointer; padding: 0; font-weight: 600;">⚙️ Config</button>
+      <div class="tool-card sidebar-tab-panel" id="panelBackdrop" style="display: none; padding: 12px 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div class="tool-card-title" style="margin-bottom: 0; font-size: 0.88rem;" data-i18n="card_backdrop">🎨 Studio Backdrop</div>
+          <button type="button" id="btnQuickConfigBgEngines" title="Manage Engines in Settings" style="background: none; border: none; font-size: 0.75rem; color: var(--accent-primary); cursor: pointer; padding: 0; font-weight: 600;">⚙️ Config</button>
         </div>
 
         <div class="form-group" style="margin-bottom: 8px;">
@@ -49,10 +62,8 @@ export function getEditorSidebarLeftHtml() {
           </div>
         </div>
 
-        <!-- Saved Recent & Preset Color Swatches -->
         <div id="savedBackdropSwatchesContainer" class="color-swatches" style="margin-bottom: 6px; display: flex; flex-wrap: wrap; gap: 5px;"></div>
 
-        <!-- Custom Color & Shade in a single ultra-compact row -->
         <div style="display: flex; gap: 6px; align-items: center; background: var(--bg-inset); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 4px 6px;">
           <div style="position: relative; width: 26px; height: 26px; flex-shrink: 0;">
             <input type="color" id="customBgColor" value="#ffffff" title="Pick Custom Color" style="width: 100%; height: 100%; padding: 0; border: none; border-radius: 3px; cursor: pointer;">

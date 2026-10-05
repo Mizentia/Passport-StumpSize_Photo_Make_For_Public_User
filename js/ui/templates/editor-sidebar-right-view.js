@@ -1,7 +1,18 @@
 export function getEditorSidebarRightHtml() {
   return `
-    <aside class="editor-sidebar">
-      <div class="tool-card">
+    <aside class="editor-sidebar" id="editorSidebarRight">
+      <div class="sidebar-tab-nav" id="rightSidebarTabNav">
+        <button class="sidebar-tab-btn active" id="btnRightTabRetouch" type="button" data-right-tab="retouch">
+          <span class="sidebar-tab-icon">✨</span>
+          <span data-i18n="tab_retouch_short">Retouch & Beauty</span>
+        </button>
+        <button class="sidebar-tab-btn" id="btnRightTabAttire" type="button" data-right-tab="attire">
+          <span class="sidebar-tab-icon">👔</span>
+          <span data-i18n="tab_attire_short">Formal Attire</span>
+        </button>
+      </div>
+
+      <div class="tool-card sidebar-tab-panel active" id="panelRetouch">
         <div class="tool-card-title" data-i18n="card_retouch">✨ Retouch, Blurry Fix & Beauty</div>
         <div class="retouch-tools-bar">
           <button class="btn-retouch-tool" id="btnToolSpotHeal" type="button" data-i18n="tool_spot_heal">🩹 Spot Heal</button>
@@ -33,7 +44,8 @@ export function getEditorSidebarRightHtml() {
         <div class="form-group"><div class="form-label"><span data-i18n="filter_warmth">Warmth / Tone</span><span id="val_warmth">0</span></div><input type="range" id="slider_warmth" class="range-slider" min="-50" max="50" value="0"></div>
         <div class="form-group"><div class="form-label"><span data-i18n="filter_exposure">Exposure</span><span id="val_exposure">0</span></div><input type="range" id="slider_exposure" class="range-slider" min="-30" max="30" value="0"></div>
       </div>
-      <div class="tool-card">
+
+      <div class="tool-card sidebar-tab-panel" id="panelAttire" style="display: none;">
         <div class="tool-card-title" data-i18n="card_attire">👔 Formal Attire / Suit Changer</div>
         <div class="suit-grid">
           <div class="suit-item active" data-suit="none"><span class="suit-icon">🚫</span><span data-i18n="attire_none">Original</span></div>
