@@ -4,12 +4,28 @@ import { renderPhotoToCanvas } from '../../core/canvas-engine.js';
 import { updateUIFromState } from '../editor-transform-ui.js';
 import { toBengaliNumeral } from '../../config/i18n.js';
 
+function getBatchItemEditorThumb(item) {
+  if (item.id === batchManager.activeId) {
+    try {
+      const c = document.createElement('canvas'); renderPhotoToCanvas(c);
+      item.editorThumbDataUrl = c.toDataURL('image/jpeg', 0.85);
+      return item.editorThumbDataUrl;
+    } catch (_) {}
+  }
+  if (item.editorThumbDataUrl) return item.editorThumbDataUrl;
+  try {
+    const c = document.createElement('canvas'); renderPhotoToCanvas(c, { state: item });
+    item.editorThumbDataUrl = c.toDataURL('image/jpeg', 0.85);
+    return item.editorThumbDataUrl;
+  } catch (_) { return item.thumbDataUrl || item.originalImage?.src || ''; }
+}
+
 export function buildBatchDrawerElement(item, mainCanvas, tabManager, onClose) {
   const isBn = appState.get('lang') === 'bn';
   const drawer = document.createElement('div');
   drawer.className = 'batch-hover-drawer history-stage-drawer';
 
-  const editorThumb = item.editorThumbDataUrl || item.thumbDataUrl || item.originalImage?.src || '';
+  const editorThumb = getBatchItemEditorThumb(item);
   const presetName = (item.selectedPreset || 'passport').replace(/_/g, ' ').toUpperCase();
   const sizeText = item.customSize ? `${Math.round(item.customSize.widthMm)}x${Math.round(item.customSize.heightMm)}mm` : '';
 
@@ -31,9 +47,7 @@ export function buildBatchDrawerElement(item, mainCanvas, tabManager, onClose) {
       </div>
     </div>`;
 
-  drawer.querySelector('.drawer-header-close')?.addEventListener('click', (e) => {
-    e.stopPropagation(); onClose();
-  });
+  drawer.querySelector('.drawer-header-close')?.addEventListener('click', (e) => { e.stopPropagation(); onClose(); });
   drawer.querySelector('.drawer-editor-item')?.addEventListener('click', (e) => {
     e.stopPropagation(); onClose();
     batchManager.setActive(item.id);
@@ -46,6 +60,8 @@ export function buildBatchDrawerElement(item, mainCanvas, tabManager, onClose) {
       e.stopPropagation(); onClose();
       batchManager.setActive(item.id);
       tabManager?.switchTab('sheet');
+      const p = si.dataset.page;
+      if (p !== undefined) setTimeout(() => document.querySelector(`.sheet-page-card[data-page="${Number(p) + 1}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
     });
   });
 
@@ -54,7 +70,7 @@ export function buildBatchDrawerElement(item, mainCanvas, tabManager, onClose) {
 
 function buildBatchSheetItemsHtml(isBn) {
   const sheetCanvases = (typeof window !== 'undefined' && window._renderedSheetPages) || [];
-  if (sheetCanvases.length > 1) {
+  if (sheetCanvases.length >= 1) {
     return sheetCanvases.map((canvas, idx) => {
       const pageStr = isBn ? toBengaliNumeral(idx + 1) : idx + 1;
       return `

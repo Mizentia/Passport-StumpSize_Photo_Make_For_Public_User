@@ -1,7 +1,7 @@
 import { batchManager } from '../core/batch-manager.js';
 import { renderPhotoToCanvas } from '../core/canvas-engine.js';
 import { updateUIFromState } from './editor-transform-ui.js';
-import { attachCardHoverDrawer } from './batch/batch-card-drawer.js';
+import { attachCardHoverDrawer, removeActiveDrawer } from './batch/batch-card-drawer.js';
 import { toastService } from './toast-service.js';
 import { t } from '../config/i18n.js';
 import { appState } from '../core/state.js';
@@ -50,7 +50,8 @@ export function setupBatchUI(mainCanvas, tabManager) {
 
       const thumb = document.createElement('img');
       thumb.className = 'batch-item-thumb';
-      thumb.src = item.thumbDataUrl || item.originalImage.src;
+      const origSrc = (typeof item.originalImage === 'string' ? item.originalImage : item.originalImage?.src) || item.thumbDataUrl;
+      thumb.src = origSrc;
 
       const info = document.createElement('div');
       info.className = 'batch-item-info';
@@ -62,6 +63,7 @@ export function setupBatchUI(mainCanvas, tabManager) {
       btnDelete.title = 'Remove photo from queue';
       btnDelete.addEventListener('click', (e) => {
         e.stopPropagation();
+        removeActiveDrawer();
         handleDelete(item, card);
       });
 

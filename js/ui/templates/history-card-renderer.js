@@ -1,6 +1,6 @@
 import { t, toBengaliNumeral } from '../../config/i18n.js';
 import { appState } from '../../core/state.js';
-import { attachHistoryCardHoverDrawer } from '../history/history-card-drawer.js';
+import { attachHistoryCardHoverDrawer, removeActiveHistoryDrawer } from '../history/history-card-drawer.js';
 
 export function createHistoryCardElement(record, serialNum, onOpen, onAddToSheet, onDelete, tabManager) {
   const card = document.createElement('div');
@@ -19,6 +19,7 @@ export function createHistoryCardElement(record, serialNum, onOpen, onAddToSheet
   const cSize = snap.customSize ? `${Math.round(snap.customSize.widthMm)}x${Math.round(snap.customSize.heightMm)}` : '';
   const presetLabel = cSize || (record.selectedPreset || record.preset || 'BD').replace(/_/g, ' ').toUpperCase();
   const badgeTitle = isCompleted ? (isBn ? 'সংরক্ষিত প্রজেক্ট' : 'Saved Project') : (isBn ? 'অটো-ড্রাফট' : 'Auto-Draft');
+  const origThumb = snap.originalImageData || record.originalDataUrl || record.thumbDataUrl;
 
   card.innerHTML = `
     <div class="history-item-topbar">
@@ -27,7 +28,7 @@ export function createHistoryCardElement(record, serialNum, onOpen, onAddToSheet
       <button class="history-item-del" title="${t('btn_delete_history') || 'Delete'}" type="button">&times;</button>
     </div>
     <div class="history-item-thumb-wrap">
-      <img src="${record.thumbDataUrl}" alt="${record.name}" class="history-item-thumb" loading="lazy">
+      <img src="${origThumb}" alt="${record.name}" class="history-item-thumb" loading="lazy">
       <span class="history-item-badge">${presetLabel}</span>
     </div>
     <div class="history-item-info">
@@ -50,6 +51,7 @@ export function createHistoryCardElement(record, serialNum, onOpen, onAddToSheet
   });
   card.querySelector('.history-item-del')?.addEventListener('click', (e) => {
     e.stopPropagation();
+    removeActiveHistoryDrawer();
     onDelete(record);
   });
   card.addEventListener('click', () => {

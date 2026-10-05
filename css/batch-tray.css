@@ -50,10 +50,10 @@
 }
 [data-theme='light'] .batch-hover-drawer { background: #ffffff; border-color: rgba(59, 130, 246, 0.55); box-shadow: 0 16px 36px rgba(100, 116, 139, 0.22); }
 .batch-hover-drawer::after {
-  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  content: ''; position: absolute; top: 100%; left: var(--arrow-x, 50%); transform: translateX(-50%);
   border-width: 6px; border-style: solid; border-color: var(--accent-primary) transparent transparent transparent;
 }
-.batch-hover-drawer.drawer-below::after { top: auto; bottom: 100%; border-color: transparent transparent var(--accent-primary) transparent; }
+.batch-hover-drawer.drawer-below::after { top: auto; bottom: 100%; left: var(--arrow-x, 50%); border-color: transparent transparent var(--accent-primary) transparent; }
 @keyframes drawerFadeIn { from { opacity: 0; transform: translate(-50%, 6px) scale(0.92); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
 .drawer-inner { display: flex; flex-direction: column; gap: 6px; }
 .drawer-header-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }

@@ -24,7 +24,7 @@
 }
 
 .history-stage-drawer::after {
-  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  content: ''; position: absolute; top: 100%; left: var(--arrow-x, 50%); transform: translateX(-50%);
   border-width: 6px; border-style: solid; border-color: var(--accent-primary) transparent transparent transparent;
 }
 .history-stage-drawer.drawer-below::after {

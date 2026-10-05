@@ -7,7 +7,6 @@ export function buildHistoryDrawerElement(record, tabManager, onClose) {
   const drawer = document.createElement('div');
   drawer.className = 'batch-hover-drawer history-stage-drawer';
 
-  const origThumb = record.snapshot?.originalImageData || record.thumbDataUrl;
   const editThumb = record.thumbDataUrl;
   const snap = record.snapshot || {};
   const presetLabel = (snap.selectedPreset || record.preset || 'Passport').replace(/_/g, ' ').toUpperCase();
@@ -20,19 +19,12 @@ export function buildHistoryDrawerElement(record, tabManager, onClose) {
         <button class="drawer-header-close" type="button" aria-label="Close">✕</button>
       </div>
       <div class="drawer-stages-row">
-        <div class="drawer-step-item drawer-history-original" title="${isBn ? 'মূল ছবি এডিটরে খুলুন' : 'Open original photo'}">
+        <div class="drawer-step-item drawer-history-editor" title="${isBn ? 'স্টুডিও এডিটরে খুলুন' : 'Open in Studio Editor'}">
           <div class="drawer-thumb-wrap">
-            <img src="${origThumb}" class="drawer-thumb" alt="Original Photo">
-            <span class="drawer-thumb-badge">${isBn ? 'মূল ছবি' : 'Original'}</span>
-          </div>
-          <span class="drawer-step-sub">${isBn ? '১. মূল ছবি' : '1. Original'}</span>
-        </div>
-        <div class="drawer-step-item drawer-history-editor" title="${isBn ? 'ক্রপ ও এডিট মোডে খুলুন' : 'Open in Editor'}">
-          <div class="drawer-thumb-wrap">
-            <img src="${editThumb}" class="drawer-thumb" alt="Studio Crop">
+            <img src="${editThumb}" class="drawer-thumb" alt="Studio Edit">
             <span class="drawer-thumb-badge">${cSize || presetLabel}</span>
           </div>
-          <span class="drawer-step-sub">${isBn ? '২. এডিটর' : '2. Editor'}</span>
+          <span class="drawer-step-sub">${isBn ? '২. স্টুডিও এডিটর' : '2. Editor'}</span>
         </div>
         ${buildHistorySheetPagesHtml(editThumb, isBn)}
       </div>
@@ -41,16 +33,18 @@ export function buildHistoryDrawerElement(record, tabManager, onClose) {
   drawer.querySelector('.drawer-header-close')?.addEventListener('click', (e) => {
     e.stopPropagation(); onClose();
   });
-  drawer.querySelector('.drawer-history-original')?.addEventListener('click', async (e) => {
-    e.stopPropagation(); onClose(); await restoreHistoryRecord(record, tabManager);
-  });
   drawer.querySelector('.drawer-history-editor')?.addEventListener('click', async (e) => {
-    e.stopPropagation(); onClose(); await restoreHistoryRecord(record, tabManager);
+    e.stopPropagation(); onClose();
+    await restoreHistoryRecord(record, tabManager);
+    tabManager?.switchTab('editor');
   });
   drawer.querySelectorAll('.drawer-history-sheet').forEach((el) => {
     el.addEventListener('click', async (e) => {
-      e.stopPropagation(); onClose(); await restoreHistoryRecord(record, tabManager);
+      e.stopPropagation(); onClose();
+      await restoreHistoryRecord(record, tabManager);
       tabManager?.switchTab('sheet');
+      const p = el.dataset.page;
+      if (p !== undefined) setTimeout(() => document.querySelector(`.sheet-page-card[data-page="${Number(p) + 1}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
     });
   });
 
@@ -59,11 +53,11 @@ export function buildHistoryDrawerElement(record, tabManager, onClose) {
 
 function buildHistorySheetPagesHtml(fallbackThumb, isBn) {
   const pages = (typeof window !== 'undefined' && window._renderedSheetPages) || [];
-  if (pages.length > 1) {
+  if (pages.length >= 1) {
     return pages.map((canvas, i) => {
       const p = isBn ? toBengaliNumeral(i + 1) : i + 1;
       return `
-        <div class="drawer-step-item drawer-history-sheet" data-page="${i}" title="${isBn ? `পৃষ্ঠা ${p}` : `Page ${p}`}">
+        <div class="drawer-step-item drawer-history-sheet" data-page="${i}" title="${isBn ? `প্রিন্ট শীট পৃষ্ঠা ${p}` : `Print Sheet Page ${p}`}">
           <div class="drawer-thumb-wrap">
             <img src="${canvas.toDataURL('image/jpeg', 0.6)}" class="drawer-thumb drawer-sheet-thumb" alt="Sheet Page ${i + 1}">
             <span class="drawer-thumb-badge">${isBn ? `পৃষ্ঠা ${p}` : `Page ${p}`}</span>
