@@ -15,9 +15,14 @@ const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Api-Key');
   if (req.method === 'OPTIONS') { res.writeHead(204); return res.end(); }
 
-  let reqPath = decodeURI(req.url.split('?')[0]);
-  if (reqPath === '/manifest.json') return handleServerManifest(req, res, 8086, 'photo-public');
-  if (reqPath === '/api/bg-remove' && req.method === 'POST') return handleServerBgRemoval(req, res);
+  const cleanPath = decodeURI(req.url.split('?')[0]).replace(/\/+$/, '') || '/';
+  if (cleanPath === '/manifest.json') return handleServerManifest(req, res, 8086, 'photo-public');
+  if (cleanPath === '/api/bg-remove') {
+    if (req.method === 'POST') return handleServerBgRemoval(req, res);
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ success: true, service: 'NL Studio AI Proxy', status: 'online' }));
+  }
+  let reqPath = cleanPath;
   if (reqPath === '/api/server-info' && req.method === 'GET') return handleServerConfigInfo(req, res);
   if (reqPath === '/api/project-brand') return handleServerProjectBrand(req, res, 8086, 'photo-public');
   if (reqPath === '/api/portal-control' && req.method === 'GET') {
