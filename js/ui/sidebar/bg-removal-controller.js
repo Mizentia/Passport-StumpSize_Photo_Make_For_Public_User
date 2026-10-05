@@ -15,11 +15,13 @@ export function setupBgRemovalListeners(triggerRedraw) {
       bgRemoveBtn.innerHTML = `<span class="spinner-inline"></span> <span>${isBn ? 'প্রসেসিং...' : 'Processing...'}</span>`;
       try {
         const tolerance = Number(document.getElementById('slider_tolerance')?.value) || 45;
-        const activeEngine = appState.get('selectedBgEngine') || 'local_ai';
+        const activeEngine = appState.get('selectedBgEngine') || 'nl_studio_ai';
         const segmented = await removeImageBackground(orig, { engine: activeEngine, tolerance });
-        appState.set('segmentedImage', segmented);
-        appState.set('isBackgroundRemoved', true, true);
-        triggerRedraw();
+        if (segmented) {
+          appState.set('segmentedImage', segmented);
+          appState.set('isBackgroundRemoved', true, true);
+          triggerRedraw();
+        }
       } catch (err) {
         toastService.show((t('msg_bg_error') || 'Background removal failed: ') + err.message, 'error');
       } finally {

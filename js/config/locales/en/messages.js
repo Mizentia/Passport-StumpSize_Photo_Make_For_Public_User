@@ -16,6 +16,7 @@ export const EN_MESSAGES = {
   msg_loading_sample: "Loading sample portrait...",
   msg_camera_error: "Camera access denied or unavailable. Please check camera permissions.",
   msg_bg_processing: "Processing Background Removal...",
+  msg_bg_processing_nl_studio_ai: "⚡ Processing with NL Studio AI...",
   msg_bg_local_ai: "Processing with Local Offline AI...",
   msg_bg_processing_ai: "🤖 Running Offline Local AI in browser...",
   msg_bg_processing_banana: "🍌 Processing with Banana AI / Nano Vision GPU...",

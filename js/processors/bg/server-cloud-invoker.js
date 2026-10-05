@@ -13,8 +13,7 @@ export async function tryServerSideBgRemoval(imageElement, provider = 'auto') {
       body: JSON.stringify({ imageBase64, provider })
     });
 
-    if (!response.ok) return null;
-    const data = await response.json();
+    const data = await response.json().catch(() => ({}));
     if (data.success && data.resultImageBase64) {
       const processedImg = new Image();
       await new Promise((resolve, reject) => {
@@ -22,10 +21,14 @@ export async function tryServerSideBgRemoval(imageElement, provider = 'auto') {
         processedImg.onerror = reject;
         processedImg.src = data.resultImageBase64;
       });
-      return processedImg;
+      return { success: true, image: processedImg };
     }
-    return null;
+    return {
+      success: false,
+      fallbackToLocal: data.fallbackToLocal ?? false,
+      error: data.error || (response.ok ? 'সার্ভার প্রসেসিং ব্যর্থ হয়েছে।' : `সার্ভার এরর কোড: ${response.status}`)
+    };
   } catch (e) {
-    return null;
+    return { success: false, fallbackToLocal: false, error: e.message };
   }
 }

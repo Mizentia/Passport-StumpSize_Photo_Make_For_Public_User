@@ -34,12 +34,12 @@ function showMaintenanceOverlay() {
         🛠️
       </div>
       <h2 style="font-size: 1.4rem; font-weight: 800; margin: 0; color: var(--text-main);">
-        ${isBn ? 'সেবা সাময়িকভাবে স্থগিত' : 'Service Temporarily Offline'}
+        ${isBn ? 'প্রজেক্ট বন্ধ রয়েছে' : 'Project Currently Offline'}
       </h2>
       <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-muted); margin: 0;">
         ${isBn 
-          ? 'নকশা ল্যাব অনলাইন ফটো মেকার সেবাটি নিয়মিত রক্ষণাবেক্ষণের জন্য সাময়িকভাবে বন্ধ রাখা হয়েছে। অনুগ্রহ করে কিছুক্ষণ পর পুনরায় চেষ্টা করুন।' 
-          : 'Noksha Lab Public Photo Maker is currently paused for routine maintenance. Please check back shortly.'}
+          ? 'এই প্রজেক্টটি বর্তমানে বন্ধ আছে, এনএল ড্যাশবোর্ড বা নকশা ল্যাব এর এডমিনের সাথে যোগাযোগ করুন।' 
+          : 'This project is currently offline. Please contact the NL Dashboard or Noksha Lab administrator.'}
       </p>
       <button id="retryPortalBtn" style="margin-top: 0.5rem; background: var(--accent-gradient); color: #fff; border: none; padding: 0.75rem 1.75rem; border-radius: var(--radius-md); font-weight: 700; cursor: pointer; font-size: 0.9rem; transition: transform var(--transition-fast);">
         ${isBn ? '🔄 পুনরায় চেষ্টা করুন' : '🔄 Check Again'}

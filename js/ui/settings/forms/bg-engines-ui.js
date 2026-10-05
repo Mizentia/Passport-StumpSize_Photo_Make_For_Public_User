@@ -49,6 +49,7 @@ export function readBgEngines() {
   const val = id => g(id)?.value?.trim() || '';
   const chk = id => !!g(id)?.checked;
   return {
+    nl_studio_ai: { enabled: true },
     local_ai: { enabled: g('chkEngineLocalAi') ? g('chkEngineLocalAi').checked : true },
     banana: { enabled: chk('chkEngineBanana') && !!val('inputBananaApiKey'), apiKey: val('inputBananaApiKey'), modelKey: val('inputBananaModelKey') },
     gemini: { enabled: chk('chkEngineGemini') && !!val('inputGeminiApiKey'), model: val('selectGeminiModel') || 'gemini-2.0-flash', apiKey: val('inputGeminiApiKey') },

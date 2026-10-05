@@ -42,6 +42,7 @@ export function createDefaultState() {
     bgEngineMode: 'auto', bgApiProvider: 'removebg', bgApiKey: '',
     bgCustomEndpoint: '', bgFeatherRadius: 2, targetKbLimit: null,
     bgEnginesConfig: {
+      nl_studio_ai: { enabled: true },
       local_ai: { enabled: true },
       banana: { enabled: false, apiKey: '', modelKey: '' },
       gemini: { enabled: false, apiKey: '', model: 'gemini-2.0-flash' },
@@ -54,7 +55,7 @@ export function createDefaultState() {
       floodfill: { enabled: true, tolerance: 45 },
       chromakey: { enabled: false, keyColor: '#00ff00', tolerance: 40 }
     },
-    selectedBgEngine: 'local_ai',
+    selectedBgEngine: 'nl_studio_ai',
     headHeightRatio: 0.75, namingTemplate: 'preset_dpi_date',
     shortcuts: getDefaultShortcuts()
   };

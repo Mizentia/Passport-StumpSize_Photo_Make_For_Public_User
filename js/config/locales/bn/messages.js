@@ -16,6 +16,7 @@ export const BN_MESSAGES = {
   msg_loading_sample: "নমুনা ছবি লোড করা হচ্ছে...",
   msg_camera_error: "ক্যামেরা অ্যাক্সেস পাওয়া যায়নি বা ক্যামেরা যুক্ত নেই। অনুগ্রহ করে ক্যামেরার অনুমতি দিন।",
   msg_bg_processing: "ব্যাকগ্রাউন্ড রিমুভ করা হচ্ছে...",
+  msg_bg_processing_nl_studio_ai: "⚡ NL Studio AI দিয়ে প্রসেস করা হচ্ছে...",
   msg_bg_local_ai: "লোকাল অফলাইন AI দিয়ে প্রসেস করা হচ্ছে...",
   msg_bg_processing_ai: "🤖 ব্রাউজারে অফলাইন লোকাল AI কাজ করছে...",
   msg_bg_processing_banana: "🍌 Banana AI / Nano Vision GPU দিয়ে প্রসেস করা হচ্ছে...",

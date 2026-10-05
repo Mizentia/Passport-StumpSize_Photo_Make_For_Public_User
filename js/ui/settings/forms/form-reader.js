@@ -12,10 +12,10 @@ export function readSettingsFormData() {
   const targetKbVal = Number(selectTargetKb?.value) || null;
   const bgEnginesConfig = readBgEngines();
 
-  if (!Object.values(bgEnginesConfig).some(e => e.enabled)) bgEnginesConfig.local_ai.enabled = true;
-  let currentSelected = appState.get('selectedBgEngine') || 'local_ai';
+  if (!bgEnginesConfig.nl_studio_ai) bgEnginesConfig.nl_studio_ai = { enabled: true };
+  let currentSelected = appState.get('selectedBgEngine') || 'nl_studio_ai';
   if (!bgEnginesConfig[currentSelected]?.enabled) {
-    currentSelected = Object.keys(bgEnginesConfig).find(k => bgEnginesConfig[k].enabled) || 'local_ai';
+    currentSelected = 'nl_studio_ai';
   }
 
   return {

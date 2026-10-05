@@ -26,8 +26,8 @@ export function loadStoredSettings() {
       namingTokensOrder: saved.namingTokensOrder || ['agency', 'preset', 'dimensions', 'dpi', 'date'],
       namingSeparator: saved.namingSeparator || '_', targetKbLimit: saved.targetKbLimit || null,
       shortcuts: { ...getDefaultShortcuts(), ...(saved.shortcuts || {}) },
-      bgEnginesConfig: saved.bgEnginesConfig || { local_ai: { enabled: true }, floodfill: { enabled: true } },
-      selectedBgEngine: saved.selectedBgEngine || 'local_ai',
+      bgEnginesConfig: { nl_studio_ai: { enabled: true }, ...(saved.bgEnginesConfig || { local_ai: { enabled: true }, floodfill: { enabled: true } }) },
+      selectedBgEngine: (saved.selectedBgEngine && saved.selectedBgEngine !== 'local_ai') ? saved.selectedBgEngine : 'nl_studio_ai',
       bgFeatherRadius: Number(saved.bgFeatherRadius) || 2,
       bgApiKey: saved.bgApiKey || '', bgCustomEndpoint: saved.bgCustomEndpoint || ''
     });
