@@ -5,15 +5,14 @@
   .canvas-viewport-card { padding: 8px 10px; gap: 6px; min-height: auto; }
   .canvas-top-bar {
     flex-direction: row; align-items: center; justify-content: space-between;
-    gap: 4px; flex-wrap: nowrap; overflow-x: auto; width: 100%; padding-bottom: 2px;
+    gap: 4px; flex-wrap: nowrap; overflow: hidden; width: 100%; padding-bottom: 2px;
   }
   .btn-group-smart {
-    display: flex; flex-wrap: nowrap; gap: 4px; flex: 1; overflow-x: auto; scrollbar-width: none;
+    display: flex; align-items: center; gap: 3px; flex: 1; min-width: 0; overflow: hidden;
   }
-  .btn-group-smart::-webkit-scrollbar { display: none; }
   .btn-smart {
-    flex-shrink: 0; padding: 3px 6px; font-size: 0.70rem; height: 26px; white-space: nowrap;
-    border-radius: 4px; gap: 3px;
+    flex: 1 1 0; min-width: 0; padding: 3px 4px; font-size: 0.70rem; height: 28px;
+    white-space: nowrap; justify-content: center; text-align: center; border-radius: 4px; gap: 2px;
   }
   .btn-group-history {
     display: inline-flex; align-items: center; gap: 2px; flex-shrink: 0;
@@ -68,11 +67,11 @@
 
   /* Left & Right Sidebar Cards in Mobile Tool Deck */
   .editor-sidebar .sidebar-tab-nav { display: none; }
-  .preset-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; max-height: 240px; }
-  .preset-btn { padding: 6px 6px; }
-  .preset-name-text { font-size: 0.72rem; }
-  .preset-dim-subtext { font-size: 0.64rem; }
-  .preset-dpi-badge { font-size: 0.58rem; }
+  .preset-grid { display: flex; flex-direction: column; gap: 6px; max-height: 260px; overflow-y: auto; overflow-x: hidden; }
+  .preset-btn { padding: 6px 8px; width: 100%; box-sizing: border-box; }
+  .preset-name-text { font-size: 0.74rem; }
+  .preset-dim-subtext { font-size: 0.66rem; }
+  .preset-dpi-badge { font-size: 0.60rem; }
   .preset-sort-bar { flex-wrap: wrap; gap: 4px; }
 
   .suit-grid { grid-template-columns: repeat(4, 1fr); gap: 5px; max-height: 180px; }

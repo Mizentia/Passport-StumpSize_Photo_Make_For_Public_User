@@ -37,10 +37,26 @@
 .transform-actions { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
 .download-single-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
-.filter-presets-bar { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
-.filter-preset-chip { background: var(--bg-inset); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 3px 7px; font-size: 0.73rem; font-weight: 600; color: var(--text-muted); cursor: pointer; white-space: nowrap; }
-.filter-preset-chip:hover { background: var(--bg-card-hover); color: var(--text-main); border-color: var(--accent-primary); }
-.filter-preset-chip.active { background: var(--badge-bg); border-color: var(--accent-primary); color: var(--accent-primary); }
+.filter-presets-bar {
+  display: flex; flex-wrap: wrap; gap: 5px; overflow-x: hidden;
+  padding-bottom: 2px; width: 100%;
+}
+.filter-preset-chip {
+  background: var(--bg-inset); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm); padding: 5px 8px; font-size: 0.72rem;
+  font-weight: 600; color: var(--text-muted); cursor: pointer; white-space: nowrap;
+  flex: 1 1 calc(33.333% - 5px); min-width: 65px; text-align: center;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: all var(--transition-fast);
+}
+.filter-preset-chip:hover {
+  background: var(--bg-card-hover); color: var(--text-main);
+  border-color: var(--accent-primary); transform: translateY(-1px);
+}
+.filter-preset-chip.active {
+  background: var(--badge-bg); border-color: var(--accent-primary);
+  color: var(--accent-primary); box-shadow: 0 1px 6px rgba(59, 130, 246, 0.22);
+}
 
 .suit-controls-box { background: var(--bg-inset); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 10px; margin-top: 6px; display: flex; flex-direction: column; gap: 8px; }
 .retouch-tools-bar { display: flex; align-items: center; gap: 6px; background: var(--bg-inset); padding: 5px 8px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); }

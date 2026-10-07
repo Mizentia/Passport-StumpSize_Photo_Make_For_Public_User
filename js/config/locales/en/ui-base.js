@@ -89,5 +89,6 @@ export const EN_UI_BASE = {
   mobile_tool_size: "Size", mobile_tool_backdrop: "Backdrop",
   mobile_tool_retouch: "Retouch", mobile_tool_attire: "Attire",
   btn_change_photo_short: "Photo", btn_auto_fit_short: "Fit Face", btn_auto_enhance_short: "Enhance",
-  btn_save_project_short: "Save", btn_add_to_history_short: "Batch"
+  btn_save_project_short: "Save", btn_add_to_history_short: "Batch",
+  quick_templates_title: "⚡ Popular Quick Sizes:", label_width: "1. Width (↔)", label_height: "2. Height (↕)", tooltip_swap_hw: "Swap Orientation (Width ⇄ Height)"
 };

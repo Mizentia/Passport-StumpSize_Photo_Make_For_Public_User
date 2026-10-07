@@ -21,7 +21,7 @@ export function setupCustomSizeModal(onRedraw) {
     warningBox: document.getElementById('customValidationWarning'), hiddenId: document.getElementById('customEditingPresetId')
   };
 
-  const state = { isHeightFirst: true, previousUnit: elements.selectUnit?.value || 'mm' };
+  const state = { isWidthFirst: true, previousUnit: elements.selectUnit?.value || 'mm' };
   const closeModal = () => modal?.classList.remove('active');
 
   elements.selectDpi?.addEventListener('change', () => {
@@ -32,8 +32,8 @@ export function setupCustomSizeModal(onRedraw) {
   elements.customDpiInput?.addEventListener('input', () => updateLiveCustomPreview(elements, state));
   elements.btnSwap?.addEventListener('click', () => {
     const temp = elements.input1.value; elements.input1.value = elements.input2.value; elements.input2.value = temp;
-    state.isHeightFirst = !state.isHeightFirst;
-    elements.btnSwap.style.transform = state.isHeightFirst ? 'rotate(0deg)' : 'rotate(180deg)';
+    state.isWidthFirst = !state.isWidthFirst;
+    elements.btnSwap.style.transform = state.isWidthFirst ? 'rotate(0deg)' : 'rotate(180deg)';
     updateLiveCustomPreview(elements, state);
   });
   elements.input1?.addEventListener('input', () => updateLiveCustomPreview(elements, state));
@@ -42,10 +42,25 @@ export function setupCustomSizeModal(onRedraw) {
     state.previousUnit = elements.selectUnit.value;
     updateLiveCustomPreview(elements, state);
   });
+  document.querySelectorAll('.btn-template-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      if (elements.selectUnit) elements.selectUnit.value = chip.dataset.u || 'mm';
+      if (elements.input1) elements.input1.value = chip.dataset.w;
+      if (elements.input2) elements.input2.value = chip.dataset.h;
+      if (elements.selectDpi) elements.selectDpi.value = chip.dataset.dpi || '300';
+      if (elements.customDpiInput) elements.customDpiInput.style.display = 'none';
+      state.isWidthFirst = true;
+      if (elements.btnSwap) elements.btnSwap.style.transform = 'rotate(0deg)';
+      updateLiveCustomPreview(elements, state);
+      chip.classList.add('chip-selected');
+      setTimeout(() => chip.classList.remove('chip-selected'), 300);
+    });
+  });
   elements.btnClose?.addEventListener('click', closeModal);
   modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   window.addEventListener('customSizeModalOpened', () => {
-    state.isHeightFirst = true; state.previousUnit = elements.selectUnit?.value || 'mm';
+    state.isWidthFirst = true; state.previousUnit = elements.selectUnit?.value || 'mm';
+    if (elements.btnSwap) elements.btnSwap.style.transform = 'rotate(0deg)';
     updateLiveCustomPreview(elements, state);
   });
 

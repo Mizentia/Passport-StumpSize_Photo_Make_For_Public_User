@@ -1,6 +1,11 @@
 /* --------------------------------------------------------------------------
    4. COMPACT MOBILE SCREENS & SMALL PHONES (max-width: 480px)
    -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .btn-smart .btn-smart-label { display: none; }
+  .btn-smart { min-width: 28px; padding: 0 2px; font-size: 0.85rem; justify-content: center; }
+}
+
 @media (max-width: 480px) {
   .app-container { padding: 5px 6px; gap: 8px; }
   .navbar { padding: 5px 8px; gap: 5px 6px; }
@@ -12,7 +17,7 @@
 
   .canvas-viewport-card { padding: 10px 8px; }
   .tool-card { padding: 12px 10px; }
-  .preset-grid { grid-template-columns: 1fr 1fr; gap: 5px; }
+  .preset-grid { display: flex; flex-direction: column; gap: 5px; }
   .preset-btn { padding: 5px 6px; }
   .suit-grid { grid-template-columns: repeat(4, 1fr); gap: 4px; }
   .suit-item { font-size: 0.62rem; padding: 4px 1px; min-height: 44px; }
@@ -38,9 +43,9 @@
 @media (max-width: 360px) {
   .brand-text h1 { font-size: 0.78rem; }
   .step-btn { padding: 0 2px; font-size: 0.64rem; height: 22px; }
-  .preset-grid { grid-template-columns: 1fr; }
-  .preset-custom { grid-column: span 1 !important; } /* Fix grid blowout */
-  .btn-group-smart .btn-smart { flex: 1 1 100%; min-width: 100%; }
+  .preset-grid { display: flex; flex-direction: column; }
+  .preset-custom { width: 100%; }
+  .btn-group-smart .btn-smart { flex: 1 1 0; min-width: 24px; padding: 0; }
   
   .download-single-actions { flex-direction: column; width: 100%; }
   .download-single-actions button { width: 100%; }

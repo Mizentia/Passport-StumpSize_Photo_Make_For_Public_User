@@ -86,5 +86,6 @@ export const BN_UI_BASE = {
   mobile_tool_size: "সাইজ", mobile_tool_backdrop: "ব্যাকড্রপ",
   mobile_tool_retouch: "রিটাচ", mobile_tool_attire: "স্যুট",
   btn_change_photo_short: "ছবি", btn_auto_fit_short: "ফিট ফেস", btn_auto_enhance_short: "এনহ্যান্স",
-  btn_save_project_short: "সেভ", btn_add_to_history_short: "ব্যাচ"
+  btn_save_project_short: "সেভ", btn_add_to_history_short: "ব্যাচ",
+  quick_templates_title: "⚡ দ্রুত জনপ্রিয় সাইজ:", label_width: "১. প্রস্থ (↔)", label_height: "২. উচ্চতা (↕)", tooltip_swap_hw: "দিক পরিবর্তন (প্রস্থ ⇄ উচ্চতা)"
 };

@@ -34,6 +34,7 @@ export function getEditorSidebarLeftHtml() {
           </div>
         </div>
         <div class="preset-grid" id="photoPresetGrid"></div>
+        <div class="preset-custom-dock" id="presetCustomDock"></div>
       </div>
 
       <div class="tool-card sidebar-tab-panel" id="panelBackdrop" style="display: none; padding: 12px 14px;">

@@ -49,27 +49,35 @@ export function renderSavedPhotoPresetsInSidebar(onRedraw) {
     customCard.innerHTML = `
       <div class="preset-card-header-row" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
         <span class="preset-name-text">✏️ ${isBn ? 'কাস্টম সাইজ' : 'Custom Size'}</span>
-        <span style="font-size: 0.68rem; color: var(--accent-primary); font-weight: 700;">✓ ${isBn ? 'সক্রিয়' : 'Active'}</span>
+        <span style="font-size: 0.68rem; color: var(--accent-primary); font-weight: 700;">⚙️ ${isBn ? 'এডিট' : 'Edit'}</span>
       </div>
       <div class="preset-card-sub-row" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
         <small class="preset-dim-subtext">${dimText}</small>
         <span class="preset-dpi-badge">${isBn ? toBengaliNumeral(appState.get('dpi') || 300) : (appState.get('dpi') || 300)} DPI</span>
       </div>`;
   } else {
-    customCard.innerHTML = `<span data-i18n="preset_custom">✏️ ${isBn ? 'কাস্টম সাইজ...' : 'Custom Size...'}</span><small data-i18n="preset_sub_custom">${isBn ? 'যেকোনো মিমি / ইঞ্চি / px' : 'Any mm / in / px'}</small>`;
+    customCard.innerHTML = `
+      <div class="preset-card-header-row" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <span class="preset-name-text">✏️ ${isBn ? 'কাস্টম সাইজ তৈরি...' : 'Custom Size...'}</span>
+        <span style="font-size: 0.68rem; color: #8b5cf6; font-weight: 700;">+ ${isBn ? 'নতুন' : 'New'}</span>
+      </div>
+      <div class="preset-card-sub-row" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <small class="preset-dim-subtext">${isBn ? 'যেকোনো মিমি / ইঞ্চি / px / cm' : 'Any mm / inch / px / cm'}</small>
+        <span class="preset-dpi-badge" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6;">📐 ${isBn ? 'মুক্ত মাপ' : 'Custom'}</span>
+      </div>`;
   }
 
   customCard.addEventListener('click', () => {
-    if (appState.get('selectedPreset') !== 'custom') {
-      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
-      customCard.classList.add('active');
-      appState.set('selectedPreset', 'custom', true);
-      if (onRedraw) onRedraw();
-      updateDimensionDisplay();
-      renderSavedPhotoPresetsInSidebar(onRedraw);
-    } else {
-      openCustomSizeModal(null);
-    }
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    customCard.classList.add('active');
+    appState.set('selectedPreset', 'custom', true);
+    if (onRedraw) onRedraw();
+    updateDimensionDisplay();
+    renderSavedPhotoPresetsInSidebar(onRedraw);
+    openCustomSizeModal(null);
   });
-  presetGrid.appendChild(customCard);
+
+  const dock = document.getElementById('presetCustomDock');
+  if (dock) { dock.innerHTML = ''; dock.appendChild(customCard); }
+  else { presetGrid.appendChild(customCard); }
 }

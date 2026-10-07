@@ -35,8 +35,8 @@ export function openCustomSizeModal(presetToEdit = null) {
     if (titleEl) titleEl.textContent = isBn ? `ছবির সাইজ এডিট: ${presetObj.name}` : `Edit Preset: ${presetObj.name}`;
     if (inputName) inputName.value = presetObj.name || '';
     if (inputUnit) inputUnit.value = unit;
-    if (input1) input1.value = hVal;
-    if (input2) input2.value = wVal;
+    if (input1) input1.value = wVal;
+    if (input2) input2.value = hVal;
     if (selectDpi) {
       if ([200, 300, 600].includes(dpiVal)) { selectDpi.value = String(dpiVal); if (customDpiInput) customDpiInput.style.display = 'none'; }
       else { selectDpi.value = 'custom'; if (customDpiInput) { customDpiInput.style.display = 'block'; customDpiInput.value = dpiVal; } }
@@ -67,8 +67,8 @@ export function openCustomSizeModal(presetToEdit = null) {
     if (titleEl) titleEl.textContent = t('modal_add_preset_title') || (isBn ? 'নতুন ছবির সাইজ ও প্রিসেট যোগ করুন' : 'Add New Photo Preset');
     if (inputName) inputName.value = '';
     if (inputUnit) inputUnit.value = unit;
-    if (input1) input1.value = hVal;
-    if (input2) input2.value = wVal;
+    if (input1) input1.value = wVal;
+    if (input2) input2.value = hVal;
     if (selectDpi) {
       if ([200, 300, 600].includes(dpiVal)) {
         selectDpi.value = String(dpiVal);

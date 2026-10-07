@@ -11,8 +11,8 @@ export function setupModalActions(elements, state, onRedraw, closeModal) {
 
   function getCalculatedPresetData() {
     const v1 = Number(input1?.value) || 0, v2 = Number(input2?.value) || 0;
-    const heightVal = state.isHeightFirst ? v1 : v2;
-    const widthVal = state.isHeightFirst ? v2 : v1;
+    const widthVal = state.isWidthFirst ? v1 : v2;
+    const heightVal = state.isWidthFirst ? v2 : v1;
     const unit = selectUnit?.value || 'mm';
     const targetDpi = selectDpi?.value === 'custom' ? (Number(customDpiInput?.value) || 300) : (Number(selectDpi?.value) || 300);
 
