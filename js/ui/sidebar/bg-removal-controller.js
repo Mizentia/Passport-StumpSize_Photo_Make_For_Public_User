@@ -3,6 +3,7 @@ import { removeImageBackground } from '../../processors/bg-remover.js';
 import { toastService } from '../toast-service.js';
 import { t } from '../../config/i18n.js';
 import { updateBgEngineSelectorUI } from './engine-meta.js';
+import { getSavedBackdropColors, renderSavedBackdropSwatches } from './sidebar-palette-manager.js';
 
 export function setupBgRemovalListeners(triggerRedraw) {
   const bgRemoveBtn = document.getElementById('btnRemoveBg');
@@ -20,6 +21,11 @@ export function setupBgRemovalListeners(triggerRedraw) {
         if (segmented) {
           appState.set('segmentedImage', segmented);
           appState.set('isBackgroundRemoved', true, true);
+          const firstColor = getSavedBackdropColors()[0] || '#38bdf8';
+          appState.set('backgroundColor', firstColor, true);
+          const customColor = document.getElementById('customBgColor');
+          if (customColor) customColor.value = firstColor;
+          renderSavedBackdropSwatches(triggerRedraw);
           triggerRedraw();
         }
       } catch (err) {

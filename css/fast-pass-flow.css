@@ -31,9 +31,9 @@
   font-weight: 700;
   border-radius: 999px;
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
-  pointer-events: none;
+  pointer-events: none !important;
   z-index: 100;
-  animation: fastpassBadgePop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fastpassFadeOut 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .fastpass-step-badge kbd {
@@ -44,16 +44,15 @@
   font-size: 0.7rem;
 }
 
-@keyframes fastpassBadgePop {
-  0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes fastpassFadeOut {
+  0% { transform: translateY(-4px) scale(0.92); opacity: 0; }
+  15% { transform: translateY(0) scale(1); opacity: 1; }
+  72% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-6px) scale(0.94); opacity: 0; visibility: hidden; }
 }
 
 @media (max-width: 860px) {
   .fastpass-step-badge {
-    top: 4px;
-    right: 6px;
-    font-size: 0.65rem;
-    padding: 2px 6px;
+    display: none !important;
   }
 }

@@ -32,6 +32,7 @@ export function applyFastPassFocus(stepKey) {
   if (!target) return null;
 
   target.classList.add('fastpass-focused-section');
+  if (window.innerWidth <= 860) return target;
 
   const isBn = appState.get('lang') === 'bn';
   const labelObj = STEP_LABELS[stepKey] || { bn: 'এন্টার ↵', en: 'Enter ↵' };
@@ -42,5 +43,6 @@ export function applyFastPassFocus(stepKey) {
   badge.innerHTML = `<span>${text}</span>`;
   target.appendChild(badge);
 
+  setTimeout(() => { if (badge.parentElement) badge.remove(); }, 1400);
   return target;
 }

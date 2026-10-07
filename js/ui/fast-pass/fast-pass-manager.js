@@ -24,7 +24,7 @@ function bindSectionMouseHover(selector, stepKey) {
   const handleInteraction = () => {
     const tab = appState.get('activeTab');
     if ((tab === 'editor' && stepKey !== 'sheet') || (tab === 'sheet' && stepKey === 'sheet')) {
-      if (currentStep !== stepKey) setFastPassStep(stepKey);
+      setFastPassStep(stepKey);
     }
   };
   el.addEventListener('pointerenter', handleInteraction);

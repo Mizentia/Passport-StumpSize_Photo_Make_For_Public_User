@@ -1,7 +1,7 @@
 import { appState } from '../../core/state.js';
 
 const RECENT_COLORS_STORAGE_KEY = 'passport_studio_recent_bg_colors';
-const DEFAULT_COLORS = ['#ffffff', '#38bdf8', '#93c5fd', '#1e40af', '#e2e8f0', '#f8fafc', '#dc2626'];
+const DEFAULT_COLORS = ['#38bdf8', '#ffffff', '#93c5fd', '#1e40af', '#e2e8f0', '#f8fafc', '#dc2626'];
 
 export function getSavedBackdropColors() {
   try {
