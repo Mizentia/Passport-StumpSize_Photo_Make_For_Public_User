@@ -8,6 +8,8 @@
   .sheet-page-card { padding: 8px; width: 100%; max-width: 100%; }
   .sheet-canvas-wrapper { max-height: 380px; width: 100%; }
   .sheet-canvas-wrapper canvas, #sheetCanvas { max-height: 380px; }
+  .sheet-history-panel { width: 100%; }
+  .sheet-history-vertical-scroll { max-height: 260px; }
   .sheet-export-buttons-compact > div { grid-template-columns: 1fr !important; gap: 8px; }
   .sheet-export-buttons button, .sheet-export-buttons-compact button {
     width: 100%; padding: 10px 8px; font-size: 0.8rem; text-align: center; justify-content: center;
@@ -26,10 +28,8 @@
   #modalPaperAddActions button, #modalPaperEditActions button { width: 100%; }
   .webcam-viewport { height: auto; aspect-ratio: 4/3; max-height: 50vh; }
 
-  /* Settings Modal on Mobile */
-  .settings-modal-box {
-    padding: 12px; width: 96vw; height: 92vh; max-height: 92vh; border-radius: var(--radius-lg);
-  }
+  /* Settings Page on Mobile */
+  .settings-page-card { padding: 14px 12px; }
   .settings-tabs-nav {
     flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
     scrollbar-width: none; gap: 4px; padding-bottom: 6px;
@@ -40,8 +40,8 @@
   .bg-engine-grid { grid-template-columns: 1fr; gap: 10px; }
   .shortcuts-category-grid { grid-template-columns: 1fr; }
   .shortcut-row { padding: 6px 10px; font-size: 0.78rem; }
-  .settings-modal-footer { flex-direction: column-reverse; gap: 8px; }
-  .settings-modal-footer button { width: 100%; }
+  .settings-page-footer { flex-direction: column-reverse; gap: 10px; }
+  .settings-page-footer button { width: 100%; }
 
   /* History Tab on Mobile - Fixed compact multi-column photo grid */
   .history-page-card { padding: 14px 10px; }

@@ -28,7 +28,7 @@ export const BN_SETTINGS_ADVANCED = {
   btn_save_settings: "💾 সেটিংস সংরক্ষণ করুন",
   storage_backup_desc: "সকল স্টুডিও পরিমাপ, প্রিসেট এবং কাস্টম সাইজ একটি ফাইলে ব্যাকআপ বা রিস্টোর করুন।",
   storage_status_active: "IndexedDB সেশন সক্রিয় রয়েছে",
-  settings_esc_tip: "💡 যেকোনো সময় Esc চেপে সেটিংস বন্ধ করতে পারেন",
+  settings_footer_tip: "💡 সেটিংসে করা পরিবর্তন সংরক্ষণ করলে স্টুডিও ও প্রিন্ট শিটে সাথে সাথে কার্যকর হবে।",
   bio_guide_title: "🌐 আন্তর্জাতিক বায়োমেট্রিক পাসপোর্ট নিয়ম ও ফ্রেম স্ট্যান্ডার্ড",
   bio_col_country: "দেশ / ফরম্যাট",
   bio_col_dim: "মাপ (মিমি / ইঞ্চি / পিক্সেল)",

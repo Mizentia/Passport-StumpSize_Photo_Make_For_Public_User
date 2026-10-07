@@ -28,7 +28,7 @@ This handbook provides practical guidelines for extending features, adding new p
 ### 2. Adding a New Background Removal Provider
 1. Open `scripts/server-provider-callers.js` and implement the API caller function.
 2. Register the engine ID in `scripts/server-bg-proxy.js`.
-3. Add the engine option in `js/ui/sidebar/engine-meta.js` and `js/ui/templates/settings-cloud-engines-view.js`.
+3. Add the engine option in `js/ui/sidebar/engine-meta.js`.
 
 ### 3. Adding New UI Translations (i18n)
 1. Add the key and English text in `js/config/locales/en/*.js`.

@@ -20,6 +20,7 @@ import { createPhotoLoadHandler } from './app-image-loader.js';
 import { setupAppCoreListeners } from './app-lifecycle.js';
 import { setupAboutModal } from './ui/about-modal-ui.js';
 import { setupNavDrawer } from './ui/nav-drawer-ui.js';
+import { initFastPassWorkflow } from './ui/fast-pass/fast-pass-manager.js';
 
 function initApp() {
   toastService.init();
@@ -39,6 +40,7 @@ function initApp() {
   setupWebcamController(handleLoadedImage);
   setupUploadHandlers(handleLoadedImage);
   setupBatchUI(mainCanvas, tabManager);
+  initFastPassWorkflow();
 
   setupSettingsModal(() => {
     renderPhotoToCanvas(mainCanvas);

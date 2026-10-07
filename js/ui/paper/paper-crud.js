@@ -8,8 +8,16 @@ export function getAllPaperPresets() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      let parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        const a4Idx = parsed.findIndex(p => p.id === 'a4');
+        if (a4Idx > 0) {
+          const [a4] = parsed.splice(a4Idx, 1);
+          parsed.unshift(a4);
+          saveAllPaperPresets(parsed);
+        }
+        return parsed;
+      }
     }
     const legacyRaw = localStorage.getItem(LEGACY_STORAGE_KEY);
     if (legacyRaw) {

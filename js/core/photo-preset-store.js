@@ -16,7 +16,14 @@ class PhotoPresetStore {
       const raw = localStorage.getItem(STORAGE_KEY_PRESETS);
       if (raw) {
         const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed) && parsed.length > 0) { this.presets = parsed; return; }
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const bd = parsed.find(p => p.id === 'bd_passport');
+          if (bd && bd.isBuiltin && (bd.widthMm === 40 || !bd.name.includes('1.5x2'))) {
+            bd.widthMm = 38.1; bd.heightMm = 50.8; bd.aspectRatio = 38.1 / 50.8; bd.name = 'BD Passport (1.5x2")';
+          }
+          this.presets = parsed;
+          return;
+        }
       }
     } catch (e) { console.warn('Presets fallback to default', e); }
     this.presets = getDefaultPresetsArray();

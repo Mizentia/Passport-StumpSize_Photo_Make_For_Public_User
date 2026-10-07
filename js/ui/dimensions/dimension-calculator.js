@@ -10,20 +10,20 @@ export function formatNumber(num, isBn) {
 }
 
 export function calculateDimensions(presetKey, custom, currentDpi = 300) {
-  let wMm = 40, hMm = 50, wInch = 1.57, hInch = 1.97, nameKey = 'bd_passport';
+  let wMm = 38.1, hMm = 50.8, wInch = 1.5, hInch = 2.0, nameKey = 'bd_passport';
   const storedPreset = photoPresetStore.getPreset(presetKey);
 
   if (presetKey === 'custom') {
     nameKey = 'custom';
-    const activeData = custom || appState.get('customSize') || { widthMm: 40, heightMm: 50, unit: 'mm' };
+    const activeData = custom || appState.get('customSize') || { widthMm: 38.1, heightMm: 50.8, unit: 'mm' };
     if (activeData.exactPixels) {
       wMm = (activeData.exactPixels.width / currentDpi) * 25.4;
       hMm = (activeData.exactPixels.height / currentDpi) * 25.4;
       wInch = activeData.exactPixels.width / currentDpi;
       hInch = activeData.exactPixels.height / currentDpi;
     } else {
-      wMm = Number(activeData.widthMm) || 40;
-      hMm = Number(activeData.heightMm) || 50;
+      wMm = Number(activeData.widthMm) || 38.1;
+      hMm = Number(activeData.heightMm) || 50.8;
       wInch = wMm / 25.4;
       hInch = hMm / 25.4;
     }

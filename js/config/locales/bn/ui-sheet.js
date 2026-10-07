@@ -85,6 +85,7 @@ export const BN_UI_SHEET = {
   lbl_session_tree: "📸 সেশন হিস্ট্রি ছবি",
   btn_load_more_short: "⬇️ আরও ছবি লোড করুন",
   toggle_row_packing: "ফাঁকা স্থানে ছোট ছবি বসান",
-  hint_row_packing: "বড় ছবির পাশের ফাঁকা স্থানে ছোট ছবি স্বয়ংক্রিয়ভাবে বসবে",
-  lbl_reorder_paper: "কাগজের ক্রম / অগ্রাধিকার পরিবর্তন:"
+  lbl_reorder_paper: "কাগজের ক্রম / অগ্রাধিকার পরিবর্তন:",
+  hint_history_add: "ছবিতে ক্লিক করে শিটে যুক্ত করুন",
+  summary_advanced_sheet_options: "⚙️ মার্জিন, বর্ডার ও কাটার দাগ"
 };

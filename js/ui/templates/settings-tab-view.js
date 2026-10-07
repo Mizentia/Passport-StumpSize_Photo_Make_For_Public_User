@@ -20,10 +20,6 @@ export function getSettingsTabHtml() {
             <p class="settings-page-subtitle" data-i18n="settings_page_subtitle">Configure DPI resolution, default paper sizes, print margins, hotkeys, and automated backup rules.</p>
           </div>
           <div class="settings-header-actions">
-            <button class="btn-primary" id="btnSaveSettingsTop">
-              <span>💾</span>
-              <span data-i18n="btn_save_settings">Save Preferences</span>
-            </button>
             <button class="btn-secondary" id="btnSettingsBackToStudio">
               <span>←</span>
               <span data-i18n="btn_back_to_studio">Return to Studio</span>
@@ -50,7 +46,7 @@ export function getSettingsTabHtml() {
         </div>
 
         <div class="settings-page-footer">
-          <div class="settings-footer-tip" data-i18n="settings_esc_tip">💡 সেটিংসে করা পরিবর্তন সেভ করলে স্টুডিও ও প্রিন্ট শিটে সাথে সাথে কার্যকর হবে।</div>
+          <div class="settings-footer-tip" data-i18n="settings_footer_tip">💡 সেটিংসে করা পরিবর্তন সংরক্ষণ করলে স্টুডিও ও প্রিন্ট শিটে সাথে সাথে কার্যকর হবে।</div>
           <div class="settings-footer-actions">
             <button class="btn-primary" id="btnSaveSettings" data-i18n="btn_save_settings">💾 Save Preferences</button>
           </div>

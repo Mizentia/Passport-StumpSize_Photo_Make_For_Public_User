@@ -1,5 +1,5 @@
 export const PHOTO_PRESETS_DATA = {
-  bd_passport: { id: 'bd_passport', name: 'Bangladesh Passport', widthMm: 40, heightMm: 50, aspectRatio: 40 / 50, category: 'passport', headRatio: '70-80%' },
+  bd_passport: { id: 'bd_passport', name: 'BD Passport (1.5x2")', widthMm: 38.1, heightMm: 50.8, aspectRatio: 38.1 / 50.8, category: 'passport', headRatio: '70-80%' },
   bd_stamp: { id: 'bd_stamp', name: 'Bangladesh Stamp', widthMm: 20, heightMm: 25, aspectRatio: 20 / 25, category: 'stamp', headRatio: '70%' },
   bd_job: { id: 'bd_job', name: 'Govt Job / Teletalk (300x300)', widthMm: 25.4, heightMm: 25.4, aspectRatio: 1, category: 'job', exactPixels: { width: 300, height: 300 } },
   bd_sign: { id: 'bd_sign', name: 'Job Signature (300x80)', widthMm: 25.4, heightMm: 6.773, aspectRatio: 300 / 80, category: 'job', exactPixels: { width: 300, height: 80 } },

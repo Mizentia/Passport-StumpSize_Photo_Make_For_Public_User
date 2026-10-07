@@ -10,7 +10,6 @@ The `js/export/` directory contains all layout engines, 300 DPI canvas rasterize
 | :--- | :--- |
 | `sheet-generator.js` | Top-level print sheet coordinator. Calculates total columns, rows, spacing, and orchestrates the sheet canvas render. |
 | `sheet-drawer.js` | Canvas drawing pipeline for photo tiling, border strokes, spacing gaps, and corner cutting guides (crop marks). |
-| `sheet-combos.js` | Layout calculator for **Mixed Batch Sheets** (combining different photo sizes, e.g. 4 Passport + 8 Stamp photos on a 4R sheet). |
 | `paper-config-helper.js` | Converts paper physical dimensions (mm/inches) into exact pixel dimensions at 300 DPI. |
 | `drawer/sheet-crop-marks.js` | Renders high-precision cutting guide lines and cross-hair corner marks for physical paper trimming. |
 | `drawer/sheet-border.js` | Draws customizable 1px/2px outer borders around each individual photo on the sheet. |

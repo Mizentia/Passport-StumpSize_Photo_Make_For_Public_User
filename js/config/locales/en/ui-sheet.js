@@ -83,6 +83,7 @@ export const EN_UI_SHEET = {
   lbl_session_tree: "📸 Session History Photos",
   btn_load_more_short: "⬇️ Load More Photos",
   toggle_row_packing: "Fill Row Space with Smaller Photos",
-  hint_row_packing: "Smaller photos fill empty row space beside larger photos",
-  lbl_reorder_paper: "Change Priority / Order:"
+  lbl_reorder_paper: "Change Priority / Order:",
+  hint_history_add: "Click any photo to add to sheet",
+  summary_advanced_sheet_options: "⚙️ Margins, Borders & Cut Marks"
 };

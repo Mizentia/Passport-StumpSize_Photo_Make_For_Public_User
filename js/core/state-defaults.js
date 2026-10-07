@@ -17,7 +17,7 @@ export function createDefaultState() {
   return {
     originalImage: null, segmentedImage: null, isBackgroundRemoved: false,
     backgroundColor: '#ffffff', bgTolerance: 45, selectedPreset: 'bd_passport',
-    customSize: { widthMm: 40, heightMm: 50, unit: 'mm' },
+    customSize: { widthMm: 38.1, heightMm: 50.8, unit: 'mm' },
     activeTab: 'upload', lang: 'en', zoom: 1, rotation: 0,
     flipH: false, flipV: false, cropOffset: { x: 0, y: 0 }, showGuides: true,
     filters: {
@@ -26,7 +26,7 @@ export function createDefaultState() {
     },
     selectedSuit: 'none', suitScale: 1.0, suitOffsetX: 0, suitOffsetY: 0,
     suitCollarWidth: 1.0, suitRotation: 0, suitBrightness: 100,
-    paperPreset: 'photo_4r', sheetLayoutMode: 'combo_4r_4p_4s', sheetCopies: 6,
+    paperPreset: 'a4', sheetLayoutMode: 'combo_4r_4p_4s', sheetCopies: 6,
     sheetMarginMm: null, sheetGapMm: null,
     includeBorder: true, includeCutMarks: true, dpi: 300, customDpi: 300,
     exportFormat: 'image/jpeg', jpegQuality: 0.98, webpQuality: 0.95,

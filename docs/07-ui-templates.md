@@ -27,9 +27,8 @@ The `js/ui/templates/` directory provides pure functional HTML generation module
 | `custom-size-modal-view.js` | Modal template for inputting custom photo width, height, unit (mm/inch/px), DPI, and preset name. |
 | `custom-paper-modal-view.js` | Modal template for creating custom printer sheet paper sizes (e.g. 8x10 inch, 12x18 inch). |
 | `webcam-modal-view.js` | Modal containing live video feed, camera flip button, countdown timer, and snap capture button. |
-| `settings-modal-view.js` | Main modal wrapper with tabbed settings navigation. |
+| `settings-tab-view.js` | Full tab workspace container for Studio master configuration and preferences. |
 | `settings-backdrop-view.js` | Settings panel for default studio backdrop color swatches and chroma thresholds. |
-| `settings-cloud-engines-view.js` | Settings panel for configuring AI Background removal providers and API keys (Clipdrop, Remove.bg, etc.). |
 | `settings-shortcuts-view.js` | Interactive keybinding customizer for all global and editor hotkeys. |
 | `settings-standards-storage-view.js` | IndexedDB storage stats, draft auto-save interval, and factory reset actions. |
 | `settings-branding-view.js` | Studio branding info and watermark toggle settings. |

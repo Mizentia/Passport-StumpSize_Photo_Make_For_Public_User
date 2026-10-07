@@ -9,25 +9,50 @@ export { loadAndRenderSessionHistoryStrip };
 
 export function renderSheetBatchTray(triggerSheetRedraw) {
   renderPhotoQueueList(triggerSheetRedraw);
-  loadAndRenderSessionHistoryStrip(triggerSheetRedraw, false);
 }
 
-function ensureActivePhotoInBatch() {
-  const items = batchManager.getAll();
-  const origImg = appState.get('originalImage');
-  if (items.length === 0 && origImg) {
+let isSyncing = false;
+
+export function initFreshStudioSheetQueue() {
+  if (isSyncing) return;
+  isSyncing = true;
+  try {
+    const origImg = appState.get('originalImage');
+    if (!origImg) return;
+
     const preset = appState.get('selectedPreset') || 'bd_passport';
     const cSize = appState.get('customSize') || { widthMm: 40, heightMm: 50 };
     const name = `${preset.toUpperCase().replace('_', ' ')} (${Math.round(cSize.widthMm)}x${Math.round(cSize.heightMm)}mm)`;
-    const thumb = generateThumbDataUrl();
-    const item = batchManager.addPhoto(origImg, name);
-    if (item) {
-      item.thumbDataUrl = thumb;
-      item.quantityOnSheet = appState.get('sheetCopies') || 6;
-      item.allowRowSpaceSharing = true;
-      item.customSize = { ...cSize };
-      item.selectedPreset = preset;
-    }
+    let thumb = null;
+    try { thumb = generateThumbDataUrl(); } catch (_) {}
+
+    const id = 'photo_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+    const item = {
+      id, name, originalImage: origImg, segmentedImage: appState.get('segmentedImage') || null,
+      isBackgroundRemoved: !!appState.get('isBackgroundRemoved'), backgroundColor: appState.get('backgroundColor') || '#ffffff',
+      cropOffset: { ...(appState.get('cropOffset') || { x: 0, y: 0 }) }, zoom: appState.get('zoom') || 1,
+      rotation: appState.get('rotation') || 0, flipH: !!appState.get('flipH'), flipV: !!appState.get('flipV'),
+      filters: { ...(appState.get('filters') || {}) }, selectedSuit: appState.get('selectedSuit') || 'none',
+      suitScale: appState.get('suitScale') ?? 1.0, suitOffsetX: appState.get('suitOffsetX') ?? 0, suitOffsetY: appState.get('suitOffsetY') ?? 0,
+      suitCollarWidth: appState.get('suitCollarWidth') ?? 1.0, suitRotation: appState.get('suitRotation') ?? 0,
+      selectedPreset: preset, customSize: { ...cSize }, dpi: appState.get('dpi') || 300,
+      quantityOnSheet: appState.get('sheetCopies') || 6, allowRowSpaceSharing: true, enabledForPrint: true,
+      thumbDataUrl: thumb, editorThumbDataUrl: thumb, timestamp: Date.now()
+    };
+
+    batchManager.items = [item];
+    batchManager.activeId = item.id;
+  } finally {
+    isSyncing = false;
+  }
+}
+
+function ensureActivePhotoInBatch() {
+  if (isSyncing) return;
+  const items = batchManager.getAll();
+  const origImg = appState.get('originalImage');
+  if (items.length === 0 && origImg) {
+    initFreshStudioSheetQueue();
   }
 }
 
@@ -55,6 +80,6 @@ export function renderPhotoQueueList(triggerSheetRedraw) {
 
   const badge = document.getElementById('sheetCapacityBadge');
   if (badge) {
-    badge.textContent = isBn ? `${toBengaliNumeral(totalPhotos)}টি ছবি কিউতে` : `${totalPhotos} photos in queue`;
+    badge.textContent = isBn ? `${toBengaliNumeral(totalPhotos)}টি ছবি` : `${totalPhotos} photos`;
   }
 }

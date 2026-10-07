@@ -15,7 +15,7 @@ export function getSettingsStandardsAndStorageHtml() {
             </tr>
           </thead>
           <tbody>
-            <tr><td><strong>🇧🇩 BD Passport</strong></td><td>40x50 mm (1.57x1.97")</td><td>Pure White</td><td>70-80%</td><td>E-Passport standard</td><td><button class="btn-smart btn-sm btn-apply-bio-preset" data-preset="bd_passport" data-i18n="bio_btn_apply">Apply</button></td></tr>
+            <tr><td><strong>🇧🇩 BD Passport</strong></td><td>38.1x50.8 mm (1.5x2")</td><td>Pure White</td><td>70-80%</td><td>Standard 1.5x2"</td><td><button class="btn-smart btn-sm btn-apply-bio-preset" data-preset="bd_passport" data-i18n="bio_btn_apply">Apply</button></td></tr>
             <tr><td><strong>🇧🇩 BD Stamp</strong></td><td>20x25 mm (0.79x0.98")</td><td>Sky Blue / White</td><td>70%</td><td>Official forms</td><td><button class="btn-smart btn-sm btn-apply-bio-preset" data-preset="bd_stamp" data-i18n="bio_btn_apply">Apply</button></td></tr>
             <tr><td><strong>🇧🇩 Govt Job</strong></td><td>300x300 px (1x1")</td><td>Pure White</td><td>Full Face</td><td>Max 100 KB</td><td><button class="btn-smart btn-sm btn-apply-bio-preset" data-preset="bd_job" data-i18n="bio_btn_apply">Apply</button></td></tr>
             <tr><td><strong>🇺🇸 US Visa</strong></td><td>2x2" (50.8x50.8 mm)</td><td>Pure White</td><td>50-69%</td><td>No glasses</td><td><button class="btn-smart btn-sm btn-apply-bio-preset" data-preset="us_passport" data-i18n="bio_btn_apply">Apply</button></td></tr>

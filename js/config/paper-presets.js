@@ -1,5 +1,13 @@
 export const DEFAULT_PAPER_PRESETS_LIST = [
   {
+    id: 'a4',
+    name: 'A4 Standard Sheet (8.27 x 11.69" / 210 x 297 mm)',
+    widthMm: 210,
+    heightMm: 297,
+    marginMm: 8,
+    gapMm: 4
+  },
+  {
     id: 'photo_4r',
     name: '4R Photo Paper (4 x 6" / 102 x 152 mm)',
     widthMm: 101.6,
@@ -21,14 +29,6 @@ export const DEFAULT_PAPER_PRESETS_LIST = [
     widthMm: 152.4,
     heightMm: 203.2,
     marginMm: 6,
-    gapMm: 4
-  },
-  {
-    id: 'a4',
-    name: 'A4 Standard Sheet (8.27 x 11.69" / 210 x 297 mm)',
-    widthMm: 210,
-    heightMm: 297,
-    marginMm: 8,
     gapMm: 4
   },
   {

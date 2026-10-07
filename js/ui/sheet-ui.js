@@ -5,9 +5,9 @@ import { renderCustomPaperOptionsInSelect, setupCustomPaperModalController } fro
 import { batchManager } from '../core/batch-manager.js';
 import { updateDynamicButtonLabels, updateComboVisibility } from './sheet/sheet-labels.js';
 import { renderSheetBatchTray } from './sheet/sheet-batch-tray.js';
+import { loadAndRenderSessionHistoryStrip } from './sheet/sheet-history-strip.js';
 import { renderSheetPagesCards } from './sheet/sheet-pages-renderer.js';
 import { bindSheetOptions } from './sheet/sheet-options-bind.js';
-import { historyManager } from '../core/history-manager.js';
 
 export function setupSheetUI(primarySheetCanvas, photoCanvas) {
   let redrawFrameId = null;
@@ -67,18 +67,13 @@ export function setupSheetUI(primarySheetCanvas, photoCanvas) {
     triggerSheetRedraw();
   });
 
-  historyManager.onChange(() => {
-    if (appState.get('activeTab') === 'sheet') {
-      renderSheetBatchTray(triggerSheetRedraw);
-    }
-  });
-
   appState.on('activeTab', (tab) => {
     if (tab === 'sheet') {
       batchManager.saveActiveSnapshot();
       renderCustomPaperOptionsInSelect();
       updateDynamicButtonLabels();
       renderSheetBatchTray(triggerSheetRedraw);
+      loadAndRenderSessionHistoryStrip(triggerSheetRedraw, false);
       setTimeout(triggerSheetRedraw, 50);
     }
   });

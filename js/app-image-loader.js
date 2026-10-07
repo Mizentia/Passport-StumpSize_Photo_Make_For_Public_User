@@ -6,6 +6,7 @@ import { computeAutoEnhanceSettings } from './processors/image-filters.js';
 import { toastService } from './ui/toast-service.js';
 import { TRANSLATIONS } from './config/i18n.js';
 import { historyManager } from './core/history-manager.js';
+import { setFastPassStep } from './ui/fast-pass/fast-pass-manager.js';
 
 export function createPhotoLoadHandler(mainCanvas, tabManager) {
   return function handleLoadedImage(img, isPasted = false) {
@@ -28,6 +29,7 @@ export function createPhotoLoadHandler(mainCanvas, tabManager) {
     renderPhotoToCanvas(mainCanvas);
     updateUIFromState();
     tabManager.switchTab('editor');
+    setFastPassStep('center');
 
     // Auto-record draft in project history
     historyManager.resetCurrentDraftId();

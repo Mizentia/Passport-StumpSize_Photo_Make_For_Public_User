@@ -41,7 +41,6 @@ export function setupSettingsModal(onSettingChange, tabManager) {
   };
 
   document.getElementById('btnSaveSettings')?.addEventListener('click', handleSave);
-  document.getElementById('btnSaveSettingsTop')?.addEventListener('click', handleSave);
 
   document.querySelectorAll('.btn-apply-bio-preset').forEach(btn => {
     btn.addEventListener('click', () => {

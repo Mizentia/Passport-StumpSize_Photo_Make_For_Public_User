@@ -28,7 +28,7 @@ export const EN_SETTINGS_ADVANCED = {
   btn_save_settings: "💾 Save Preferences",
   storage_backup_desc: "Download all studio parameters, branding and custom dimensions as a JSON file or import previously saved configuration.",
   storage_status_active: "IndexedDB Session Active",
-  settings_esc_tip: "💡 Press Esc to exit settings anytime",
+  settings_footer_tip: "💡 Saved preferences apply immediately across Studio Editor and Print Sheet.",
   bio_guide_title: "🌐 International Biometric Passport Standards & Requirements",
   bio_col_country: "Country / Format",
   bio_col_dim: "Dimensions (mm / in / px)",

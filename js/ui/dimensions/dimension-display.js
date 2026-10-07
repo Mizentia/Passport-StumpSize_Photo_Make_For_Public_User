@@ -7,7 +7,7 @@ import { formatNumber, calculateDimensions } from './dimension-calculator.js';
 
 export function updateDimensionDisplay() {
   const presetKey = appState.get('selectedPreset') || 'bd_passport';
-  const custom = appState.get('customSize') || { widthMm: 40, heightMm: 50, unit: 'mm' };
+  const custom = appState.get('customSize') || { widthMm: 38.1, heightMm: 50.8, unit: 'mm' };
   const storedPreset = photoPresetStore.getPreset(presetKey);
   const currentDpi = storedPreset?.dpi || appState.get('dpi') || 300;
   const zoom = Math.round((appState.get('zoom') || 1) * 100);

@@ -28,10 +28,10 @@ export function getEditorCanvasHtml() {
 
       <div class="canvas-dimension-header">
         <div class="dim-badge-content">
-          <span class="dim-badge-chip dim-title-chip" id="dimPresetTitle">BD Passport</span>
-          <span class="dim-badge-chip" id="dimMmDetails">40 x 50 mm</span>
-          <span class="dim-badge-chip" id="dimInchDetails">1.57 x 1.97"</span>
-          <span class="dim-badge-chip" id="dimPxDetails">472 x 591 px</span>
+          <span class="dim-badge-chip dim-title-chip" id="dimPresetTitle">BD Passport (1.5x2")</span>
+          <span class="dim-badge-chip" id="dimMmDetails">38.1 x 50.8 mm</span>
+          <span class="dim-badge-chip" id="dimInchDetails">1.5 x 2.0"</span>
+          <span class="dim-badge-chip" id="dimPxDetails">450 x 600 px</span>
           <span class="dim-badge-chip" id="dimDpiDetails" data-i18n="unit_dpi">300 DPI</span>
         </div>
         <div class="dim-zoom-chip" id="dimZoomPercent">🔍 100%</div>
@@ -39,8 +39,8 @@ export function getEditorCanvasHtml() {
 
       <div class="canvas-workspace-layout">
         <div class="ruler-corner"></div>
-        <div class="ruler-top" id="rulerWidthText">⟵ 40 mm / 1.57" (472 px) ⟶</div>
-        <div class="ruler-left" id="rulerHeightText">⟵ 50 mm / 1.97" (591 px) ⟶</div>
+        <div class="ruler-top" id="rulerWidthText">⟵ 38.1 mm / 1.5" (450 px) ⟶</div>
+        <div class="ruler-left" id="rulerHeightText">⟵ 50.8 mm / 2.0" (600 px) ⟶</div>
         <div class="canvas-container">
           <canvas id="mainCanvas"></canvas>
           <div class="crop-guide-overlay" id="cropGuides"><div class="head-oval-guide"></div><div class="eye-line-guide"></div></div>

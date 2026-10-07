@@ -21,7 +21,7 @@ export function renderCustomPaperOptionsInSelect() {
 
   const list = getAllPaperPresets();
   const savedPref = (() => { try { return localStorage.getItem('passport_default_paper'); } catch (_) { return null; } })();
-  const currentVal = appState.get('paperPreset') || savedPref || list[0]?.id || 'photo_4r';
+  const currentVal = appState.get('paperPreset') || savedPref || list[0]?.id || 'a4';
   const isBn = appState.get('lang') === 'bn';
 
   select.innerHTML = '';
