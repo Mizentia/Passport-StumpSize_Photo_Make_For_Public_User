@@ -48,8 +48,8 @@ export function getEditorSidebarLeftHtml() {
         </div>
 
         <div style="display: flex; gap: 6px; align-items: stretch; margin-bottom: 8px;">
-          <button class="btn-primary btn-sm" id="btnRemoveBg" style="flex: 1; min-height: 34px; font-size: 0.75rem; padding: 6px 6px; font-weight: 600; white-space: nowrap; justify-content: center; gap: 4px; border-radius: var(--radius-md);" data-i18n="btn_remove_bg" data-i18n-title="tooltip_remove_bg" data-shortcut-key="removeBg">🪄 Cutout</button>
-          <button class="btn-primary btn-sm" id="btnAiEnhance" style="flex: 1; min-height: 34px; font-size: 0.75rem; padding: 6px 6px; font-weight: 600; white-space: nowrap; justify-content: center; gap: 4px; border-radius: var(--radius-md); background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); border-color: #6366f1;" data-i18n="btn_ai_enhance" data-i18n-title="tooltip_ai_enhance" title="Cloudinary AI দিয়ে ছবির শার্পনেস ও কোয়ালিটি এনহ্যান্স করুন">✨ Enhance</button>
+          <button class="btn-primary btn-sm" id="btnRemoveBg" style="flex: 1; min-height: 34px; font-size: 0.73rem; padding: 6px 6px; font-weight: 600; white-space: nowrap; justify-content: center; gap: 4px; border-radius: var(--radius-md);" data-i18n="btn_remove_bg" data-i18n-title="tooltip_remove_bg" data-shortcut-key="removeBg">🪄 Remove Background</button>
+          <button class="btn-primary btn-sm" id="btnAiEnhance" style="flex: 1; min-height: 34px; font-size: 0.74rem; padding: 6px 6px; font-weight: 600; white-space: nowrap; justify-content: center; gap: 4px; border-radius: var(--radius-md); background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); border-color: #6366f1;" data-i18n="btn_ai_enhance" data-i18n-title="tooltip_ai_enhance" title="Cloudinary AI দিয়ে ছবির শার্পনেস ও কোয়ালিটি এনহ্যান্স করুন">✨ Enhance</button>
           <button class="btn-secondary btn-sm" id="btnRestoreBg" title="Restore Original Background" style="min-height: 34px; padding: 6px 10px; font-size: 0.78rem; border-radius: var(--radius-md); flex-shrink: 0;" data-i18n="btn_restore_bg" data-i18n-title="title_restore_bg" data-shortcut-key="restoreBg">↺</button>
         </div>
 

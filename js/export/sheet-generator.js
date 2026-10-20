@@ -3,7 +3,7 @@ import { appState } from '../core/state.js';
 import { getActivePaperConfig } from './paper-config-helper.js';
 import {
   drawStudioFooter, drawProofWatermark, buildPhotoCanvasList,
-  packPhotosOntoPages, renderPageWithPlacedPhotos
+  packPhotosOntoPages, renderPageWithPlacedPhotos, calculateSheetGridInfo
 } from './sheet-drawer.js';
 
 export { getActivePaperConfig };
@@ -20,6 +20,7 @@ export function renderPrintSheet(primaryCanvas, photoCanvas) {
   const margin = mmToPixels(marginMm, dpi);
   const gap = mmToPixels(gapMm, dpi);
 
+  const gridInfo = calculateSheetGridInfo(sheetW, sheetH, margin, gap);
   const totalRequestedCopies = Math.max(1, appState.get('sheetCopies') || 6);
   const photoCanvases = buildPhotoCanvasList(photoCanvas, totalRequestedCopies);
 
@@ -47,7 +48,9 @@ export function renderPrintSheet(primaryCanvas, photoCanvas) {
   return {
     pages,
     totalPages,
-    capacityPerPage: packedPages[0]?.length || 1,
-    totalPhotos: photoCanvases.length
+    capacityPerPage: packedPages[0]?.length || gridInfo.capacityPerPage || 1,
+    totalPhotos: photoCanvases.length,
+    cols: gridInfo.cols,
+    rows: gridInfo.rows
   };
 }

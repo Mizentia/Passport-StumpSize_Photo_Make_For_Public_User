@@ -59,7 +59,7 @@ export const EN_UI_BASE = {
   card_backdrop: "🎨 Studio Backdrop",
   lbl_active_bg_engine: "Active Method:",
   lbl_chroma_key_color: "Screen Key Color",
-  btn_remove_bg: "🪄 Cutout",
+  btn_remove_bg: "🪄 Remove Background",
   tooltip_remove_bg: "Remove Photo Background with Selected Method",
   btn_ai_enhance: "✨ Enhance",
   tooltip_ai_enhance: "Enhance facial sharpness & HD quality via Cloudinary AI",

@@ -27,7 +27,7 @@ async function callDashboardCutout(imageBase64) {
     ...dbUrls,
     'http://127.0.0.1:3000',
     'http://localhost:3000',
-    'https://nl-admin-dashboard.vercel.app'
+    'https://nl-admin.mizentia.com'
   ].filter(Boolean))];
 
   let lastError = null;
@@ -60,7 +60,7 @@ async function callDashboardEnhance(imageBase64) {
     ...dbUrls,
     'http://127.0.0.1:3000',
     'http://localhost:3000',
-    'https://nl-admin-dashboard.vercel.app'
+    'https://nl-admin.mizentia.com'
   ].filter(Boolean))];
 
   let lastError = null;

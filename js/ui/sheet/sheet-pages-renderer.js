@@ -13,20 +13,14 @@ export function renderSheetPagesCards(result, primarySheetCanvas) {
     const pageStr = isBn ? toBengaliNumeral(totalPages) : totalPages;
     const photosStr = isBn ? toBengaliNumeral(totalPhotos) : totalPhotos;
     const capStr = isBn ? toBengaliNumeral(capacityPerPage) : capacityPerPage;
-    const colsStr = isBn ? toBengaliNumeral(cols) : cols;
-    const rowsStr = isBn ? toBengaliNumeral(rows) : rows;
-    pageInfoPill.innerHTML = `📄 <strong>${isBn ? `পৃষ্ঠা সংখ্যা: ${pageStr}` : `Total Pages: ${pageStr}`}</strong> &bull; ${photosStr} ${isBn ? 'ছবি' : 'Photos'} (${colsStr} x ${rowsStr} = ${capStr}/${isBn ? 'পেজ' : 'page'})`;
+    const gridDetail = (cols && rows)
+      ? `(${isBn ? toBengaliNumeral(cols) : cols} x ${isBn ? toBengaliNumeral(rows) : rows} = ${capStr}/${isBn ? 'পেজ' : 'page'})`
+      : `(${capStr}/${isBn ? 'পেজ' : 'page'})`;
+    pageInfoPill.innerHTML = `📄 <strong>${isBn ? `পৃষ্ঠা সংখ্যা: ${pageStr}` : `Total Pages: ${pageStr}`}</strong> &bull; ${photosStr} ${isBn ? 'ছবি' : 'Photos'} ${gridDetail}`;
   }
 
   if (pagesContainer) {
     pagesContainer.innerHTML = '';
-    if (pages.length > 1) {
-      pagesContainer.classList.add('has-multi-pages');
-      pagesContainer.classList.remove('single-page');
-    } else {
-      pagesContainer.classList.add('single-page');
-      pagesContainer.classList.remove('has-multi-pages');
-    }
     pages.forEach((canvas, idx) => {
       const pageCard = document.createElement('div');
       pageCard.className = 'sheet-page-card';

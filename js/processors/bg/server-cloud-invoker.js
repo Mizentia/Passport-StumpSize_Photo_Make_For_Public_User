@@ -1,3 +1,31 @@
+import { removeBgWithCloudApi } from './cloud-api.js';
+
+const FIRESTORE_API_KEYS = 'https://firestore.googleapis.com/v1/projects/metaaccountmanager/databases/(default)/documents/ecosystem/apiKeys';
+
+async function fetchDirectCloudKeys() {
+  try {
+    const res = await fetch(FIRESTORE_API_KEYS, { signal: AbortSignal.timeout(4000) });
+    if (!res.ok) return [];
+    const json = await res.json();
+    const rawList = json.fields?.value?.arrayValue?.values || [];
+    const keys = [];
+    for (const it of rawList) {
+      const f = it.mapValue?.fields || {};
+      const platform = (f.platformId?.stringValue || f.platformName?.stringValue || '').toLowerCase();
+      const status = f.status?.stringValue || 'active';
+      const value = f.value?.stringValue || f.apiKey?.stringValue || '';
+      const rem = Number(f.remainingCredits?.integerValue || f.remainingCredits?.doubleValue || 0);
+      if (status === 'active' && value && (platform.includes('remove') || platform.includes('bg_remove'))) {
+        keys.push({ platform: 'removebg', value, remaining: rem });
+      }
+    }
+    keys.sort((a, b) => b.remaining - a.remaining);
+    return keys;
+  } catch (_) {
+    return [];
+  }
+}
+
 async function attemptCutout(url, payload) {
   try {
     const res = await fetch(url, {
@@ -16,32 +44,46 @@ const FIRESTORE_PROJECTS = 'https://firestore.googleapis.com/v1/projects/metaacc
 async function getDashboardUrlsFromDatabase() {
   if (cachedDbUrls) return cachedDbUrls;
   try {
-    const res = await fetch(FIRESTORE_PROJECTS, { signal: AbortSignal.timeout(3000) });
+    const res = await fetch(FIRESTORE_PROJECTS, { signal: AbortSignal.timeout(4000) });
     if (res.ok) {
       const json = await res.json();
       for (const item of (json.fields?.value?.arrayValue?.values || [])) {
         const p = item.mapValue?.fields;
         const port = String(p?.port?.integerValue || p?.port?.stringValue || '');
-        if (port === '3000' || p?.name?.stringValue === 'Noksha Lab') {
+        const name = String(p?.name?.stringValue || '').toLowerCase();
+        if (port === '3000' || name.includes('noksha lab') || name.includes('admin dashboard')) {
+          const live = (p.liveUrl?.stringValue || p.cloudUrl?.stringValue || p.url?.stringValue || '').trim();
+          const local = (p.localUrl?.stringValue || 'http://localhost:3000').trim();
           cachedDbUrls = {
-            localUrl: (p.localUrl?.stringValue || 'http://localhost:3000').replace(/\/+$/, ''),
-            liveUrl: (p.liveUrl?.stringValue || p.cloudUrl?.stringValue || p.url?.stringValue || 'https://nl-admin-dashboard.vercel.app').replace(/\/+$/, '')
+            localUrl: (local || 'http://localhost:3000').replace(/\/+$/, ''),
+            liveUrl: (live || 'https://nl-admin.mizentia.com').replace(/\/+$/, '')
           };
           return cachedDbUrls;
         }
       }
     }
   } catch (_) {}
-  return { localUrl: 'http://localhost:3000', liveUrl: 'https://nl-admin-dashboard.vercel.app' };
+  return { localUrl: 'http://localhost:3000', liveUrl: 'https://nl-admin.mizentia.com' };
 }
 
 async function getCandidateEndpoints() {
   const isLocal = typeof window !== 'undefined' && ['localhost', '127.0.0.1'].includes(window.location.hostname);
   const dbUrls = await getDashboardUrlsFromDatabase();
+  const list = [];
   if (isLocal) {
-    return ['/api/bg-remove', `${dbUrls.localUrl}/api/api-keys/cutout`, `${dbUrls.liveUrl}/api/api-keys/cutout`];
+    list.push('/api/bg-remove');
+    if (dbUrls.localUrl) list.push(`${dbUrls.localUrl}/api/api-keys/cutout`);
   }
-  return [`${dbUrls.liveUrl}/api/api-keys/cutout`, '/api/bg-remove'];
+  if (dbUrls.liveUrl) {
+    list.push(`${dbUrls.liveUrl}/api/api-keys/cutout`);
+  }
+  if (!list.includes('https://nl-admin.mizentia.com/api/api-keys/cutout')) {
+    list.push('https://nl-admin.mizentia.com/api/api-keys/cutout');
+  }
+  if (!isLocal && !list.includes('/api/bg-remove')) {
+    list.push('/api/bg-remove');
+  }
+  return list;
 }
 
 export async function tryServerSideBgRemoval(imageElement, provider = 'auto') {
@@ -82,6 +124,20 @@ export async function tryServerSideBgRemoval(imageElement, provider = 'auto') {
       }
       lastError = status === 413 ? 'ছবির সাইজ ক্লাউড লিমিট (৪.৫ MB) ছাড়িয়েছে' : `সার্ভার এরর কোড: ${status}`;
     }
+
+    // Direct fallback: If dashboard endpoints failed (e.g., deployed on GitHub Pages), try calling Remove.bg directly
+    try {
+      const directKeys = await fetchDirectCloudKeys();
+      for (const k of directKeys) {
+        try {
+          const directImg = await removeBgWithCloudApi(imageElement, k.platform, k.value);
+          if (directImg) return { success: true, image: directImg };
+        } catch (err) {
+          console.warn('Direct Remove.bg fallback failed for key:', err.message);
+        }
+      }
+    } catch (_) {}
+
     return { success: false, fallbackToLocal: false, error: lastError || 'সার্ভারের সাথে সংযোগ স্থাপন করা যায়নি।' };
   } catch (e) {
     return { success: false, fallbackToLocal: false, error: e.message };
@@ -91,10 +147,21 @@ export async function tryServerSideBgRemoval(imageElement, provider = 'auto') {
 async function getCandidateEnhanceEndpoints() {
   const isLocal = typeof window !== 'undefined' && ['localhost', '127.0.0.1'].includes(window.location.hostname);
   const dbUrls = await getDashboardUrlsFromDatabase();
+  const list = [];
   if (isLocal) {
-    return ['/api/enhance', `${dbUrls.localUrl}/api/api-keys/enhance`, `${dbUrls.liveUrl}/api/api-keys/enhance`];
+    list.push('/api/enhance');
+    if (dbUrls.localUrl) list.push(`${dbUrls.localUrl}/api/api-keys/enhance`);
   }
-  return [`${dbUrls.liveUrl}/api/api-keys/enhance`, '/api/enhance'];
+  if (dbUrls.liveUrl) {
+    list.push(`${dbUrls.liveUrl}/api/api-keys/enhance`);
+  }
+  if (!list.includes('https://nl-admin.mizentia.com/api/api-keys/enhance')) {
+    list.push('https://nl-admin.mizentia.com/api/api-keys/enhance');
+  }
+  if (!isLocal && !list.includes('/api/enhance')) {
+    list.push('/api/enhance');
+  }
+  return list;
 }
 
 export async function tryServerSideEnhance(imageElement) {

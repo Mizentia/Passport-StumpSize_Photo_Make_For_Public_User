@@ -51,7 +51,7 @@ export function updateBgEngineSelectorUI() {
   const currentMeta = getEngineMeta(selected);
   const isBn = appState.get('lang') === 'bn';
   if (btnRemoveBg && !btnRemoveBg.disabled) {
-    btnRemoveBg.innerHTML = `<span>${currentMeta.icon || '🪄'}</span> <span>${isBn ? 'কাটআউট' : 'Cutout'}</span>`;
+    btnRemoveBg.innerHTML = `<span>${currentMeta.icon || '🪄'}</span> <span>${isBn ? 'ব্যাকগ্রাউন্ড রিমুভ' : 'Remove Background'}</span>`;
   }
   const btnAiEnhance = document.getElementById('btnAiEnhance');
   if (btnAiEnhance && !btnAiEnhance.disabled) {

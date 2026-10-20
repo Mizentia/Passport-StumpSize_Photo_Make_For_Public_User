@@ -57,7 +57,7 @@ export const BN_UI_BASE = {
   card_backdrop: "🎨 স্টুডিও ব্যাকড্রপ",
   lbl_active_bg_engine: "সক্রিয় পদ্ধতি:",
   lbl_chroma_key_color: "পর্দার রঙ:",
-  btn_remove_bg: "🪄 কাটআউট",
+  btn_remove_bg: "🪄 ব্যাকগ্রাউন্ড রিমুভ",
   tooltip_remove_bg: "নির্বাচিত পদ্ধতিতে ব্যাকগ্রাউন্ড রিমুভ করুন",
   btn_ai_enhance: "✨ এনহ্যান্স",
   tooltip_ai_enhance: "Cloudinary AI দিয়ে ছবির শার্পনেস ও কোয়ালিটি বৃদ্ধি করুন",
