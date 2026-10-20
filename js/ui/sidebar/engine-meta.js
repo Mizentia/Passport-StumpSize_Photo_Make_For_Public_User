@@ -49,9 +49,13 @@ export function updateBgEngineSelectorUI() {
   }
 
   const currentMeta = getEngineMeta(selected);
+  const isBn = appState.get('lang') === 'bn';
   if (btnRemoveBg && !btnRemoveBg.disabled) {
-    const isBn = appState.get('lang') === 'bn';
-    btnRemoveBg.innerHTML = `<span>${currentMeta.icon || '🪄'}</span> <span>${isBn ? 'ব্যাকগ্রাউন্ড মুছুন' : 'Remove Background'}</span>`;
+    btnRemoveBg.innerHTML = `<span>${currentMeta.icon || '🪄'}</span> <span>${isBn ? 'কাটআউট' : 'Cutout'}</span>`;
+  }
+  const btnAiEnhance = document.getElementById('btnAiEnhance');
+  if (btnAiEnhance && !btnAiEnhance.disabled) {
+    btnAiEnhance.innerHTML = `<span>✨</span> <span>${isBn ? 'এনহ্যান্স' : 'Enhance'}</span>`;
   }
 
   if (rowChroma) rowChroma.style.display = (selected === 'chromakey') ? 'block' : 'none';

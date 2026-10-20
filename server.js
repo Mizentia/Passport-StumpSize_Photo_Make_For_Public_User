@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { MIME_TYPES, getLocalIPv4 } = require('./scripts/server-utils.js');
-const { handleServerBgRemoval, handleServerConfigInfo } = require('./scripts/server-bg-proxy.js');
+const { handleServerBgRemoval, handleServerEnhance, handleServerConfigInfo } = require('./scripts/server-bg-proxy.js');
 const { handleServerProjectBrand, handleServerManifest } = require('./scripts/server-brand-proxy.js');
 
 const PORT = process.env.PORT || 8086;
@@ -21,6 +21,11 @@ const server = http.createServer((req, res) => {
     if (req.method === 'POST') return handleServerBgRemoval(req, res);
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ success: true, service: 'NL Studio AI Proxy', status: 'online' }));
+  }
+  if (cleanPath === '/api/enhance' || cleanPath === '/api/image-enhance') {
+    if (req.method === 'POST') return handleServerEnhance(req, res);
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ success: true, service: 'NL Studio AI Enhance Proxy', status: 'online' }));
   }
   let reqPath = cleanPath;
   if (reqPath === '/api/server-info' && req.method === 'GET') return handleServerConfigInfo(req, res);

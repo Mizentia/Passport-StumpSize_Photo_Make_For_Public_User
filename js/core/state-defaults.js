@@ -13,10 +13,26 @@ export function getDefaultShortcuts() {
   };
 }
 
+function getInitialBackdropColor() {
+  try {
+    if (typeof localStorage !== 'undefined') {
+      const active = localStorage.getItem('passport_studio_active_bg_color');
+      if (active) return active;
+      const raw = localStorage.getItem('passport_studio_recent_bg_colors');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed[0];
+      }
+    }
+  } catch (_) {}
+  return '#38bdf8';
+}
+
 export function createDefaultState() {
+  const initialBg = getInitialBackdropColor();
   return {
     originalImage: null, segmentedImage: null, isBackgroundRemoved: false,
-    backgroundColor: '#ffffff', bgTolerance: 45, selectedPreset: 'bd_passport',
+    backgroundColor: initialBg, defaultBackdropColor: initialBg, bgTolerance: 45, selectedPreset: 'bd_passport',
     customSize: { widthMm: 38.1, heightMm: 50.8, unit: 'mm' },
     activeTab: 'upload', lang: 'en', zoom: 1, rotation: 0,
     flipH: false, flipV: false, cropOffset: { x: 0, y: 0 }, showGuides: true,
@@ -77,7 +93,7 @@ export function extractStateSnapshot(s) {
 export function getResetAdjustments() {
   return {
     zoom: 1, rotation: 0, flipH: false, flipV: false, cropOffset: { x: 0, y: 0 },
-    backgroundColor: '#ffffff',
+    backgroundColor: getInitialBackdropColor(),
     filters: {
       brightness: 100, contrast: 100, saturation: 100,
       sharpness: 25, smoothing: 0, warmth: 0, exposure: 0

@@ -15,7 +15,7 @@ export {
 };
 
 export function setupEditorSidebar(triggerRedraw) {
-  let baseColorHex = appState.get('backgroundColor') || '#ffffff';
+  let baseColorHex = appState.get('backgroundColor') || getSavedBackdropColors()[0] || '#38bdf8';
   renderSavedBackdropSwatches(triggerRedraw);
 
   const customColor = document.getElementById('customBgColor');
@@ -23,7 +23,9 @@ export function setupEditorSidebar(triggerRedraw) {
     customColor.value = baseColorHex;
     customColor.addEventListener('input', (e) => {
       baseColorHex = e.target.value;
+      saveBackdropColor(e.target.value);
       appState.set('backgroundColor', e.target.value);
+      renderSavedBackdropSwatches(triggerRedraw);
       triggerRedraw();
     });
     customColor.addEventListener('change', (e) => {

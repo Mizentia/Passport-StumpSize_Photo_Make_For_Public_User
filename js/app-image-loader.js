@@ -8,9 +8,11 @@ import { TRANSLATIONS } from './config/i18n.js';
 import { historyManager } from './core/history-manager.js';
 import { setFastPassStep } from './ui/fast-pass/fast-pass-manager.js';
 
+import { getPreferredBackdropColor } from './ui/sidebar/sidebar-palette-manager.js';
+
 export function createPhotoLoadHandler(mainCanvas, tabManager) {
   return function handleLoadedImage(img, isPasted = false) {
-    const defaultBg = appState.get('defaultBackdropColor') || '#ffffff';
+    const defaultBg = getPreferredBackdropColor();
     const autoEnhance = !!appState.get('autoEnhanceOnUpload');
     const initialFilters = autoEnhance ? computeAutoEnhanceSettings(img) : {
       brightness: 100, contrast: 100, saturation: 100, sharpness: 25, smoothing: 0, warmth: 0, exposure: 0

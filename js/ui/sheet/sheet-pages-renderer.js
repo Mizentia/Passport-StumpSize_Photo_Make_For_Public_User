@@ -20,6 +20,13 @@ export function renderSheetPagesCards(result, primarySheetCanvas) {
 
   if (pagesContainer) {
     pagesContainer.innerHTML = '';
+    if (pages.length > 1) {
+      pagesContainer.classList.add('has-multi-pages');
+      pagesContainer.classList.remove('single-page');
+    } else {
+      pagesContainer.classList.add('single-page');
+      pagesContainer.classList.remove('has-multi-pages');
+    }
     pages.forEach((canvas, idx) => {
       const pageCard = document.createElement('div');
       pageCard.className = 'sheet-page-card';

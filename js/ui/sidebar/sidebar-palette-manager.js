@@ -14,6 +14,15 @@ export function getSavedBackdropColors() {
   return [...DEFAULT_COLORS];
 }
 
+export function getPreferredBackdropColor() {
+  try {
+    const active = localStorage.getItem('passport_studio_active_bg_color');
+    if (active) return active;
+  } catch (_) {}
+  const saved = getSavedBackdropColors();
+  return saved[0] || '#38bdf8';
+}
+
 export function saveBackdropColor(colorHex) {
   if (!colorHex || typeof colorHex !== 'string') return;
   const col = colorHex.toLowerCase();
@@ -22,7 +31,9 @@ export function saveBackdropColor(colorHex) {
   if (list.length > 9) list.pop();
   try {
     localStorage.setItem(RECENT_COLORS_STORAGE_KEY, JSON.stringify(list));
+    localStorage.setItem('passport_studio_active_bg_color', col);
   } catch (_) {}
+  appState.set('defaultBackdropColor', col);
 }
 
 export function renderSavedBackdropSwatches(triggerRedraw) {
@@ -30,14 +41,15 @@ export function renderSavedBackdropSwatches(triggerRedraw) {
   if (!container) return;
 
   const list = getSavedBackdropColors();
-  const activeColor = (appState.get('backgroundColor') || '#ffffff').toLowerCase();
+  const activeColor = (appState.get('backgroundColor') || getPreferredBackdropColor()).toLowerCase();
 
   container.innerHTML = '';
   list.forEach(color => {
     const btn = document.createElement('div');
     btn.className = 'swatch-btn';
-    if (color.toLowerCase() === activeColor) btn.classList.add('active');
-    btn.style.cssText = `background: ${color}; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; border: 1px solid var(--border-subtle); flex-shrink: 0; transition: transform 0.15s ease, border-color 0.15s ease;`;
+    const isSelected = color.toLowerCase() === activeColor;
+    if (isSelected) btn.classList.add('active');
+    btn.style.cssText = `background: ${color}; width: 24px; height: 24px; border-radius: 4px; cursor: pointer; border: ${isSelected ? '2px solid var(--accent-primary)' : '1px solid var(--border-subtle)'}; flex-shrink: 0; transition: transform 0.15s ease, border-color 0.15s ease; box-shadow: ${isSelected ? '0 0 0 2px rgba(59, 130, 246, 0.35)' : 'none'};`;
     btn.dataset.color = color;
     btn.title = color;
 
