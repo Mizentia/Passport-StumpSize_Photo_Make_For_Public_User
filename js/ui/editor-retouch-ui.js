@@ -37,7 +37,8 @@ export function setupRetouchUI(mainCanvas, triggerRedraw) {
 
   mainCanvas?.addEventListener('click', (e) => {
     if (activeRetouchTool === 'none') return;
-    const img = appState.get('originalImage');
+    const isBgRemoved = !!appState.get('isBackgroundRemoved');
+    const img = (isBgRemoved ? appState.get('segmentedImage') : null) || appState.get('originalImage');
     if (!img) return;
 
     const { imgX, imgY, scale, origW, origH } = mapCanvasClickToImage(e, mainCanvas, img, appState.get('cropOffset') || {}, appState.get('zoom') || 1);
@@ -52,7 +53,8 @@ export function setupRetouchUI(mainCanvas, triggerRedraw) {
 
     const updatedImg = new Image();
     updatedImg.onload = () => {
-      appState.set('originalImage', updatedImg);
+      if (isBgRemoved && appState.get('segmentedImage')) appState.set('segmentedImage', updatedImg);
+      else appState.set('originalImage', updatedImg);
       appState.recordHistorySnapshot();
       triggerRedraw();
       toastService.show(t('msg_retouch_applied'), 'success');

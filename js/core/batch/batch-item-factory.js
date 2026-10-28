@@ -13,7 +13,7 @@ export function createBatchItem(img, name, count) {
     id, name: `${name} ${count + 1}`, originalImage: img, segmentedImage: null,
     isBackgroundRemoved: false, backgroundColor: appState.get('defaultBackdropColor') || '#ffffff',
     cropOffset: { x: 0, y: 0 }, zoom: 1, rotation: 0, flipH: false, flipV: false,
-    filters: { brightness: 100, contrast: 100, saturation: 100, sharpness: 25, smoothing: 0, warmth: 0, exposure: 0 },
+    filters: { brightness: 100, contrast: 100, saturation: 100, sharpness: 0, smoothing: 0, warmth: 0, exposure: 0 },
     selectedSuit: 'none', suitScale: 1.0, suitOffsetX: 0, suitOffsetY: 0, suitCollarWidth: 1.0, suitRotation: 0,
     selectedPreset: appState.get('selectedPreset') || 'bd_passport',
     customSize: { ...(appState.get('customSize') || { widthMm: 40, heightMm: 50, unit: 'mm' }) },

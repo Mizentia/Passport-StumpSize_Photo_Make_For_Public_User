@@ -74,6 +74,9 @@ export async function restoreSavedSession() {
       data.segmentedImageData ? dataUrlToImage(data.segmentedImageData) : Promise.resolve(null)
     ]);
     if (!origImg) return null;
+    if (data.filters && data.filters.sharpness === 25 && data.filters.brightness === 100 && data.filters.contrast === 100 && data.filters.saturation === 100 && !data.filters.smoothing && !data.filters.warmth && !data.filters.exposure) {
+      data.filters.sharpness = 0;
+    }
     return { ...data, originalImage: origImg, segmentedImage: segImg };
   } catch (err) {
     console.warn('Session restore warning:', err);

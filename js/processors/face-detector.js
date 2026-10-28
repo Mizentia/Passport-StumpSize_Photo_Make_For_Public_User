@@ -31,5 +31,5 @@ export function calculateAutoFitTransform(imageElement, targetWidth, targetHeigh
   const currentCenterX = face.centerX * baseScale * zoom;
   const offsetX = Math.round((targetCenterX - currentCenterX) / zoom);
 
-  return { zoom, offsetX, offsetY, face };
+  return { zoom, offsetX, offsetY, cropOffset: { x: offsetX, y: offsetY }, face };
 }

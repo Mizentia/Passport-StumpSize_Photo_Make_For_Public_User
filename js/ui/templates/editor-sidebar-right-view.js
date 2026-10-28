@@ -36,7 +36,7 @@ export function getEditorSidebarRightHtml() {
             <button class="filter-preset-chip" data-filter="bw" data-i18n="preset_bw">⬛ B&W Mono</button>
           </div>
         </div>
-        <div class="form-group"><div class="form-label"><span data-i18n="filter_sharpness">Sharpness / Fix Blur</span><span id="val_sharpness">25</span></div><input type="range" id="slider_sharpness" class="range-slider" min="0" max="100" value="25"></div>
+        <div class="form-group"><div class="form-label"><span data-i18n="filter_sharpness">Sharpness / Fix Blur</span><span id="val_sharpness">0</span></div><input type="range" id="slider_sharpness" class="range-slider" min="0" max="100" value="0"></div>
         <div class="form-group"><div class="form-label"><span data-i18n="filter_smoothing">Skin Smoothing / Beauty</span><span id="val_smoothing">0</span></div><input type="range" id="slider_smoothing" class="range-slider" min="0" max="100" value="0"></div>
         <div class="form-group"><div class="form-label"><span data-i18n="filter_brightness">Brightness</span><span id="val_brightness">100</span></div><input type="range" id="slider_brightness" class="range-slider" min="50" max="150" value="100"></div>
         <div class="form-group"><div class="form-label"><span data-i18n="filter_contrast">Contrast</span><span id="val_contrast">100</span></div><input type="range" id="slider_contrast" class="range-slider" min="50" max="150" value="100"></div>

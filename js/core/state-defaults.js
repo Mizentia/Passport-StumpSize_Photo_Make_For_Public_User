@@ -2,28 +2,21 @@ export function getDefaultShortcuts() {
   return {
     tabUpload: 'Alt+1', tabEditor: 'Alt+2', tabSheet: 'Alt+3', tabHistory: 'Alt+4',
     openSettings: 'Alt+S', toggleTheme: 'Alt+T', toggleLang: 'Alt+L',
-    openWebcam: 'Alt+W', chooseFile: 'Alt+O',
-    autoFit: 'F', autoEnhance: 'E',
-    removeBg: 'Alt+B', restoreBg: 'Alt+Shift+B',
-    downloadSingle: 'Ctrl+S', downloadPng: 'Ctrl+Shift+S',
-    downloadSheet: 'Ctrl+P', downloadPdf: 'Ctrl+Shift+P', printDirect: 'Ctrl+Shift+D',
-    undo: 'Ctrl+Z', redo: 'Ctrl+Y', resetAll: 'Alt+R', resetFilters: 'Alt+F',
-    zoomIn: '+', zoomOut: '-', zoomFit: '0',
+    openWebcam: 'Alt+W', chooseFile: 'Alt+O', autoFit: 'F', autoEnhance: 'E',
+    removeBg: 'Alt+B', restoreBg: 'Alt+Shift+B', downloadSingle: 'Ctrl+S',
+    downloadPng: 'Ctrl+Shift+S', downloadSheet: 'Ctrl+P', downloadPdf: 'Ctrl+Shift+P',
+    printDirect: 'Ctrl+Shift+D', undo: 'Ctrl+Z', redo: 'Ctrl+Y', resetAll: 'Alt+R',
+    resetFilters: 'Alt+F', zoomIn: '+', zoomOut: '-', zoomFit: '0',
     rotate: 'R', flipH: 'H', flipV: 'V', guides: 'G'
   };
 }
 
 function getInitialBackdropColor() {
   try {
-    if (typeof localStorage !== 'undefined') {
-      const active = localStorage.getItem('passport_studio_active_bg_color');
-      if (active) return active;
-      const raw = localStorage.getItem('passport_studio_recent_bg_colors');
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed[0];
-      }
-    }
+    const act = localStorage.getItem('passport_studio_active_bg_color');
+    if (act) return act;
+    const rec = JSON.parse(localStorage.getItem('passport_studio_recent_bg_colors') || '[]');
+    if (rec && rec[0]) return rec[0];
   } catch (_) {}
   return '#38bdf8';
 }
@@ -38,7 +31,7 @@ export function createDefaultState() {
     flipH: false, flipV: false, cropOffset: { x: 0, y: 0 }, showGuides: true,
     filters: {
       brightness: 100, contrast: 100, saturation: 100,
-      sharpness: 25, smoothing: 0, warmth: 0, exposure: 0
+      sharpness: 0, smoothing: 0, warmth: 0, exposure: 0
     },
     selectedSuit: 'none', suitScale: 1.0, suitOffsetX: 0, suitOffsetY: 0,
     suitCollarWidth: 1.0, suitRotation: 0, suitBrightness: 100,
@@ -47,32 +40,25 @@ export function createDefaultState() {
     includeBorder: true, includeCutMarks: true, dpi: 300, customDpi: 300,
     exportFormat: 'image/jpeg', jpegQuality: 0.98, webpQuality: 0.95,
     borderColor: '#cbd5e1', borderWidth: 1, cutMarksStyle: 'inter_boundary',
-    cutMarksWidth: 1, cutMarksColor: '#94a3b8',
-    backdropShade: 50,
-    namingTemplate: 'custom_builder',
+    cutMarksWidth: 1, cutMarksColor: '#94a3b8', backdropShade: 50,
+    namingTemplate: 'custom_builder', namingSeparator: '_',
     namingTokensOrder: ['agency', 'preset', 'dimensions', 'dpi', 'date'],
-    namingSeparator: '_',
     autoSaveEnabled: true, studioName: 'Passport Photo Maker', studioPhone: '',
     enableStudioTag: false, enableWatermark: false, watermarkText: 'SAMPLE PROOF',
-    defaultBackdropColor: '#ffffff', autoEnhanceOnUpload: false,
-    bgEngineMode: 'auto', bgApiProvider: 'removebg', bgApiKey: '',
-    bgCustomEndpoint: '', bgFeatherRadius: 2, targetKbLimit: null,
+    autoEnhanceOnUpload: false, bgEngineMode: 'auto', bgApiProvider: 'removebg',
+    bgApiKey: '', bgCustomEndpoint: '', bgFeatherRadius: 2, targetKbLimit: null,
     bgEnginesConfig: {
-      nl_studio_ai: { enabled: true },
-      local_ai: { enabled: true },
+      nl_studio_ai: { enabled: true }, local_ai: { enabled: true },
       banana: { enabled: false, apiKey: '', modelKey: '' },
       gemini: { enabled: false, apiKey: '', model: 'gemini-2.0-flash' },
       huggingface: { enabled: false, apiKey: '', model: 'ZhengPeng7/BiRefNet' },
-      photoroom: { enabled: false, apiKey: '' },
-      cutoutpro: { enabled: false, apiKey: '' },
-      removebg: { enabled: false, apiKey: '' },
-      clipdrop: { enabled: false, apiKey: '' },
+      photoroom: { enabled: false, apiKey: '' }, cutoutpro: { enabled: false, apiKey: '' },
+      removebg: { enabled: false, apiKey: '' }, clipdrop: { enabled: false, apiKey: '' },
       custom_api: { enabled: false, endpoint: '', apiKey: '' },
       floodfill: { enabled: true, tolerance: 45 },
       chromakey: { enabled: false, keyColor: '#00ff00', tolerance: 40 }
     },
-    selectedBgEngine: 'nl_studio_ai',
-    headHeightRatio: 0.75, namingTemplate: 'preset_dpi_date',
+    selectedBgEngine: 'nl_studio_ai', headHeightRatio: 0.75,
     shortcuts: getDefaultShortcuts()
   };
 }
@@ -96,7 +82,7 @@ export function getResetAdjustments() {
     backgroundColor: getInitialBackdropColor(),
     filters: {
       brightness: 100, contrast: 100, saturation: 100,
-      sharpness: 25, smoothing: 0, warmth: 0, exposure: 0
+      sharpness: 0, smoothing: 0, warmth: 0, exposure: 0
     },
     selectedSuit: 'none', suitScale: 1.0, suitOffsetX: 0, suitOffsetY: 0,
     suitCollarWidth: 1.0, suitRotation: 0, suitBrightness: 100

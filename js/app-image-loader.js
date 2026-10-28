@@ -15,7 +15,7 @@ export function createPhotoLoadHandler(mainCanvas, tabManager) {
     const defaultBg = getPreferredBackdropColor();
     const autoEnhance = !!appState.get('autoEnhanceOnUpload');
     const initialFilters = autoEnhance ? computeAutoEnhanceSettings(img) : {
-      brightness: 100, contrast: 100, saturation: 100, sharpness: 25, smoothing: 0, warmth: 0, exposure: 0
+      brightness: 100, contrast: 100, saturation: 100, sharpness: 0, smoothing: 0, warmth: 0, exposure: 0
     };
 
     appState.set('originalImage', img);
@@ -24,6 +24,10 @@ export function createPhotoLoadHandler(mainCanvas, tabManager) {
     appState.set('backgroundColor', defaultBg);
     appState.set('cropOffset', { x: 0, y: 0 });
     appState.set('zoom', 1);
+    appState.set('rotation', 0);
+    appState.set('flipH', false);
+    appState.set('flipV', false);
+    appState.set('selectedSuit', 'none');
     appState.set('filters', initialFilters);
     appState.recordHistorySnapshot();
 

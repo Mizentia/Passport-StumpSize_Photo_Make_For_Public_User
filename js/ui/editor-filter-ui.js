@@ -4,7 +4,7 @@ import { toastService } from './toast-service.js';
 import { t } from '../config/i18n.js';
 
 export const FILTER_LOOKS = {
-  natural: { brightness: 100, contrast: 100, saturation: 100, sharpness: 25, smoothing: 0, warmth: 0, exposure: 0 },
+  natural: { brightness: 100, contrast: 100, saturation: 100, sharpness: 0, smoothing: 0, warmth: 0, exposure: 0 },
   vivid: { brightness: 105, contrast: 114, saturation: 122, sharpness: 45, smoothing: 10, warmth: 2, exposure: 2 },
   warm: { brightness: 102, contrast: 106, saturation: 110, sharpness: 25, smoothing: 15, warmth: 16, exposure: 0 },
   cool: { brightness: 102, contrast: 110, saturation: 95, sharpness: 30, smoothing: 10, warmth: -14, exposure: 0 },
@@ -87,4 +87,9 @@ export function updateFilterSliderValues(filters) {
     if (slider) slider.value = val;
     if (display) display.textContent = val;
   }
+  document.querySelectorAll('.filter-preset-chip').forEach(c => {
+    const look = FILTER_LOOKS[c.dataset.filter];
+    const isMatch = look && Object.keys(look).every(k => Number(filters[k] ?? look[k]) === look[k]);
+    c.classList.toggle('active', !!isMatch);
+  });
 }
