@@ -45,7 +45,18 @@ export function getEditorCanvasHtml() {
           <canvas id="mainCanvas"></canvas>
           <div class="crop-guide-overlay" id="cropGuides"><div class="head-oval-guide"></div><div class="eye-line-guide"></div></div>
           <div class="crop-grid-overlay" id="cropGrid" style="display: none;"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          <div class="canvas-rotate-handle" id="canvasRotateHandle" title="Click & drag left/right or around to rotate photo freely (Double-click to reset 0°)">
+            <span id="canvasRotateBadge">↻ 0°</span>
+          </div>
         </div>
+      </div>
+
+      <div class="canvas-rotation-bar" id="canvasRotationBar">
+        <span class="rotation-bar-label" title="Fine Angle / Straighten">📐</span>
+        <button type="button" class="btn-rot-step" id="btnRotateStepLeft" title="Rotate -0.5° Counter-Clockwise">↺ -0.5°</button>
+        <input type="range" id="sliderRotationAngle" class="range-slider rotation-angle-slider" min="-180" max="180" step="0.5" value="0" title="Drag to rotate photo to any exact angle (-180° to +180°)">
+        <button type="button" class="btn-rot-step" id="btnRotateStepRight" title="Rotate +0.5° Clockwise">+0.5° ↻</button>
+        <button type="button" class="btn-rot-reset" id="btnResetRotation" title="Click to reset rotation to 0°">0°</button>
       </div>
 
       <div class="canvas-bottom-bar">
@@ -54,7 +65,8 @@ export function getEditorCanvasHtml() {
           <button class="btn-icon" id="btnZoomFit" title="Fit & Center" data-i18n-title="title_zoom_fit" data-shortcut-key="zoomFit">🔲</button>
           <button class="btn-icon" id="btnZoomIn" title="Zoom In" data-i18n-title="title_zoom_in" data-shortcut-key="zoomIn">➕</button>
           <div style="width: 1px; height: 18px; background: var(--border-subtle); margin: 0 2px;"></div>
-          <button class="btn-icon" id="btnRotateRight" title="Rotate 90°" data-i18n-title="title_rotate" data-shortcut-key="rotate">🔄</button>
+          <button class="btn-icon" id="btnRotateLeft" title="Rotate 90° Left (Counter-Clockwise)">↺</button>
+          <button class="btn-icon" id="btnRotateRight" title="Rotate 90° Right (Clockwise)" data-i18n-title="title_rotate" data-shortcut-key="rotate">🔄</button>
           <button class="btn-icon" id="btnFlipH" title="Flip Horizontal" data-i18n-title="title_flip" data-shortcut-key="flipH">↔️</button>
           <button class="btn-icon" id="btnFlipV" title="Flip Vertical" data-i18n-title="title_flip_v" data-shortcut-key="flipV">↕️</button>
           <button class="btn-icon" id="btnToggleGuides" title="Toggle Passport Guides" data-i18n-title="title_guides" data-shortcut-key="guides">🎯</button>

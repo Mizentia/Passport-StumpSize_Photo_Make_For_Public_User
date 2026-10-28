@@ -1,3 +1,5 @@
+import { appState } from '../../core/state.js';
+
 export function mapCanvasClickToImage(e, mainCanvas, img, cropOffset, zoom) {
   const rect = mainCanvas.getBoundingClientRect();
   const clickCanvasX = (e.clientX - rect.left) * (mainCanvas.width / rect.width);
@@ -8,11 +10,14 @@ export function mapCanvasClickToImage(e, mainCanvas, img, cropOffset, zoom) {
 
   const imgRatio = origW / origH, targetRatio = canvasW / canvasH;
   const drawW = imgRatio > targetRatio ? canvasH * imgRatio : canvasW;
-  const imgCenterX = canvasW / 2 + (cropOffset.x || 0);
-  const imgCenterY = canvasH / 2 + (cropOffset.y || 0);
+  const dx = clickCanvasX - (canvasW / 2 + (cropOffset.x || 0));
+  const dy = clickCanvasY - (canvasH / 2 + (cropOffset.y || 0));
+  const rad = -((appState.get('rotation') || 0) * Math.PI) / 180;
+  const rx = dx * Math.cos(rad) - dy * Math.sin(rad);
+  const ry = dx * Math.sin(rad) + dy * Math.cos(rad);
   const scale = (drawW / origW) * (zoom || 1);
 
-  const imgX = (clickCanvasX - imgCenterX) / scale + origW / 2;
-  const imgY = (clickCanvasY - imgCenterY) / scale + origH / 2;
+  const imgX = (rx * (appState.get('flipH') ? -1 : 1)) / scale + origW / 2;
+  const imgY = (ry * (appState.get('flipV') ? -1 : 1)) / scale + origH / 2;
   return { imgX, imgY, scale, origW, origH };
 }

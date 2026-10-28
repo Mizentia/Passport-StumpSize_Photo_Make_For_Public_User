@@ -8,8 +8,11 @@ import { updateAttireUIFromState } from './editor-attire-ui.js';
 import { updateDimensionDisplay } from './editor-dimension-ui.js';
 import { updateBackdropUIFromState } from './editor-sidebar-ui.js';
 import { setupGlobalHotkeys } from './editor-hotkeys.js';
+import { setupRotationController, updateRotationUIFromState } from './rotation-controller.js';
 
 export function setupEditorTransforms(triggerRedraw) {
+  const { applyRotation } = setupRotationController(triggerRedraw);
+
   document.getElementById('btnAutoFit')?.addEventListener('click', () => {
     const img = appState.get('originalImage');
     if (!img) return;
@@ -29,13 +32,11 @@ export function setupEditorTransforms(triggerRedraw) {
     triggerRedraw();
   };
   const zoomFit = () => {
-    appState.update({ zoom: 1.0, cropOffset: { x: 0, y: 0 } }, true);
+    appState.update({ zoom: 1.0, cropOffset: { x: 0, y: 0 }, rotation: 0 }, true);
+    updateRotationUIFromState();
     triggerRedraw();
   };
-  const rotate = () => {
-    appState.set('rotation', (appState.get('rotation') + 90) % 360, true);
-    triggerRedraw();
-  };
+  const rotate = () => applyRotation((appState.get('rotation') || 0) + 90, true);
   const flipH = () => {
     appState.set('flipH', !appState.get('flipH'), true);
     triggerRedraw();
@@ -48,7 +49,6 @@ export function setupEditorTransforms(triggerRedraw) {
   document.getElementById('btnZoomIn')?.addEventListener('click', zoomIn);
   document.getElementById('btnZoomOut')?.addEventListener('click', zoomOut);
   document.getElementById('btnZoomFit')?.addEventListener('click', zoomFit);
-  document.getElementById('btnRotateRight')?.addEventListener('click', rotate);
   document.getElementById('btnFlipH')?.addEventListener('click', flipH);
   document.getElementById('btnFlipV')?.addEventListener('click', flipV);
 
@@ -84,6 +84,7 @@ export function updateUIFromState() {
   updateFilterSliderValues(appState.get('filters') || {});
   updateAttireUIFromState();
   updateBackdropUIFromState();
+  updateRotationUIFromState();
   const preset = appState.get('selectedPreset');
   document.querySelectorAll('.preset-btn').forEach(b => b.classList.toggle('active', b.dataset.preset === preset));
   updateDimensionDisplay();

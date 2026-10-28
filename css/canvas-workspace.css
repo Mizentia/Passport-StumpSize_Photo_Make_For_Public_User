@@ -47,3 +47,36 @@
 }
 .crop-grid-overlay div { border: 0.5px dashed rgba(255, 255, 255, 0.4); }
 [data-theme="light"] .crop-grid-overlay div { border: 0.5px dashed rgba(0, 0, 0, 0.35); }
+
+.canvas-rotate-handle {
+  position: absolute; top: 6px; left: 50%; transform: translateX(-50%); z-index: 6;
+  background: rgba(15, 23, 42, 0.82); color: #f8fafc; border: 1.5px solid rgba(59, 130, 246, 0.85);
+  border-radius: 999px; padding: 2px 10px; font-size: 0.70rem; font-weight: 700;
+  cursor: grab; user-select: none; touch-action: none; display: inline-flex; align-items: center;
+  gap: 4px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35); backdrop-filter: blur(4px);
+  transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+.canvas-rotate-handle:hover, .canvas-rotate-handle.dragging {
+  background: var(--accent-primary); color: #ffffff; border-color: #ffffff;
+  transform: translateX(-50%) scale(1.06);
+}
+.canvas-rotate-handle:active, .canvas-rotate-handle.dragging { cursor: grabbing; }
+
+.canvas-rotation-bar {
+  width: 100%; display: flex; align-items: center; gap: 6px; padding: 4px 8px;
+  background: var(--bg-inset); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
+}
+.rotation-bar-label { font-size: 0.78rem; flex-shrink: 0; user-select: none; }
+.rotation-angle-slider { flex: 1; height: 4px; margin: 0; cursor: pointer; }
+.btn-rot-step {
+  background: var(--bg-card); border: 1px solid var(--border-subtle); color: var(--text-main);
+  border-radius: 4px; padding: 2px 6px; font-size: 0.68rem; font-weight: 700; cursor: pointer;
+  white-space: nowrap; transition: all var(--transition-fast); height: 22px;
+}
+.btn-rot-step:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+.btn-rot-reset {
+  background: var(--badge-bg); border: 1px solid var(--badge-border); color: var(--accent-primary);
+  border-radius: 4px; padding: 2px 7px; font-size: 0.68rem; font-weight: 700; cursor: pointer;
+  min-width: 44px; text-align: center; white-space: nowrap; height: 22px;
+}
+.btn-rot-reset.active { background: var(--accent-primary); color: #ffffff; border-color: var(--accent-primary); }
